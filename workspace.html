@@ -13,24 +13,20 @@
         body { background: var(--nt-bg); color: var(--text); }
         .ws-container { padding-top: 140px; max-width: 1100px; margin: 0 auto; padding-inline: 20px; }
         
-        /* APP HEADER */
         .app-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
         .sync-status { display: flex; align-items: center; gap: 8px; background: var(--light-grey); padding: 8px 15px; border-radius: 30px; font-size: 10px; font-weight: 800; }
         .pulse-dot { width: 8px; height: 8px; background: #00ff64; border-radius: 50%; box-shadow: 0 0 10px #00ff64; animation: pulse 2s infinite; }
         @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
 
-        /* VIEW TABS */
         .tab-row { display: flex; background: var(--light-grey); padding: 5px; border-radius: 12px; width: fit-content; margin-bottom: 30px; }
         .tab { padding: 10px 25px; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 13px; color: #888; transition: 0.3s; }
         .tab.active { background: #fff; color: var(--nt-pink); box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
 
-        /* CREATOR BAR */
         .creator-bar { background: var(--light-grey); padding: 25px; border-radius: 24px; border: 1px solid var(--nt-border); margin-bottom: 30px; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr auto; gap: 12px; }
         input, select { padding: 12px; border-radius: 10px; border: 1px solid var(--nt-border); font-family: inherit; font-size: 14px; outline: none; }
         .push-btn { background: var(--nt-pink); color: white; border: none; padding: 0 25px; border-radius: 10px; font-weight: 800; cursor: pointer; transition: 0.2s; }
         .push-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(255, 20, 147, 0.3); }
 
-        /* DATA TABLE */
         .data-table { width: 100%; border-collapse: collapse; }
         .data-table th { text-align: left; font-size: 11px; text-transform: uppercase; color: #aaa; padding: 15px; border-bottom: 1px solid var(--nt-border); }
         .data-table td { padding: 20px 15px; border-bottom: 1px solid var(--nt-border); font-size: 14px; }
@@ -47,7 +43,7 @@
     <nav>
         <div class="nav-container">
             <a href="index.html" class="pink" style="text-decoration:none; font-weight:800;">← DISCONNECT</a>
-            <div class="sync-status"><div class="pulse-dot"></div> <span id="sync-text">LIVE NETWORK</span></div>
+            <div class="sync-status"><div class="pulse-dot"></div> <span id="sync-text">NETWORK ACTIVE</span></div>
         </div>
     </nav>
 
@@ -103,15 +99,14 @@
                         <th>From</th>
                     </tr>
                 </thead>
-                <tbody id="db-body">
-                    </tbody>
+                <tbody id="db-body"></tbody>
             </table>
         </div>
 
     </div>
 
     <script>
-        const PROD_URL = "https://script.google.com/macros/s/AKfycbwqwJflwiiKXPvuvx8cU6fBzVgqDP1ZZBc5Y1u9bBxoSdYKKCv_0L5UjurdUM-BADEp/exec";
+        const PROD_URL = "https://script.google.com/macros/s/AKfycbwaA5oQOkWm6gxbvLC-QHEH2KZX9UaspEfHcALYDzGa60kfDozc9llBMPdOj_lpY3j2/exec";
         let currentUser = "";
         let currentTab = "all";
 
@@ -123,16 +118,15 @@
             fetchData();
         }
 
-        async function fetchData() {
+        function fetchData() {
             document.getElementById('sync-text').innerText = "SYNCING...";
-            try {
-                const response = await fetch(PROD_URL);
-                const data = await response.json();
-                render(data);
+            const script = document.createElement('script');
+            script.src = `${PROD_URL}?callback=render`;
+            document.body.appendChild(script);
+            script.onload = () => {
+                document.body.removeChild(script);
                 document.getElementById('sync-text').innerText = "CONNECTED: " + currentUser.toUpperCase();
-            } catch (e) {
-                document.getElementById('sync-text').innerText = "OFFLINE - RECONNECTING";
-            }
+            };
         }
 
         async function submitTask() {
@@ -148,23 +142,22 @@
                 author: currentUser
             };
 
-            taskInput.value = "Sending to cloud...";
+            taskInput.value = "Sending...";
             
             await fetch(PROD_URL, {
                 method: 'POST',
-                mode: 'no-cors', // Essential for Google Apps Script POST
+                mode: 'no-cors',
                 body: JSON.stringify(payload)
             });
 
             taskInput.value = "";
-            setTimeout(fetchData, 1000); // Wait 1s for sheet to update
+            setTimeout(fetchData, 1500); 
         }
 
         function render(data) {
             const body = document.getElementById('db-body');
             body.innerHTML = "";
             
-            // Apply View Filter
             const displayData = currentTab === 'all' ? data : data.filter(r => r[2] === currentUser);
 
             displayData.reverse().forEach(row => {
@@ -187,8 +180,7 @@
             fetchData();
         }
 
-        // Auto-refresh every 20 seconds
-        setInterval(fetchData, 20000);
+        setInterval(() => { if(currentUser) fetchData(); }, 20000);
     </script>
 </body>
 </html>
