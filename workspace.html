@@ -3,226 +3,192 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>N!TRO | Operating System</title>
+    <title>N!TRO | Command Center</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --nt-bg: #ffffff;
-            --nt-sidebar: #fbfbfa;
-            --nt-border: #edeef0;
-            --nt-hover: #efefef;
-            --nt-text-subtle: #808080;
-        }
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --nt-bg: #191919;
-                --nt-sidebar: #202020;
-                --nt-border: #2f2f2f;
-                --nt-hover: #2a2a2a;
-                --nt-text-subtle: #a0a0a0;
-            }
-        }
+        :root { --nt-pink: #ff1493; --nt-bg: #ffffff; --nt-border: #edeef0; }
+        @media (prefers-color-scheme: dark) { :root { --nt-bg: #000; --nt-border: #333; } }
 
-        body { background: var(--nt-bg); margin: 0; display: flex; height: 100vh; overflow: hidden; font-family: 'Inter', sans-serif; }
+        body { background: var(--nt-bg); color: var(--text); }
+        .ws-container { padding-top: 140px; max-width: 1100px; margin: 0 auto; padding-inline: 20px; }
         
-        /* Sidebar Navigation */
-        .sidebar { width: 260px; background: var(--nt-sidebar); border-right: 1px solid var(--nt-border); display: flex; flex-direction: column; padding: 20px 10px; }
-        .profile-btn { padding: 10px; border-radius: 8px; display: flex; align-items: center; gap: 10px; cursor: pointer; margin-bottom: 30px; }
-        .profile-btn:hover { background: var(--nt-hover); }
-        .avatar { width: 24px; height: 24px; background: var(--pink); border-radius: 4px; display: flex; align-items: center; justify-content: center; color: white; font-size: 12px; font-weight: 800; }
-        
-        .nav-item { padding: 8px 12px; border-radius: 6px; font-size: 14px; font-weight: 500; cursor: pointer; color: var(--text); display: flex; align-items: center; gap: 10px; margin-bottom: 2px; }
-        .nav-item:hover { background: var(--nt-hover); }
-        .nav-item.active { background: var(--nt-hover); font-weight: 600; }
+        /* APP HEADER */
+        .app-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
+        .sync-status { display: flex; align-items: center; gap: 8px; background: var(--light-grey); padding: 8px 15px; border-radius: 30px; font-size: 10px; font-weight: 800; }
+        .pulse-dot { width: 8px; height: 8px; background: #00ff64; border-radius: 50%; box-shadow: 0 0 10px #00ff64; animation: pulse 2s infinite; }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
 
-        /* Main Canvas */
-        .canvas { flex: 1; display: flex; flex-direction: column; overflow-y: auto; }
-        .canvas-header { padding: 40px 60px 20px 60px; position: sticky; top: 0; background: var(--nt-bg); z-index: 10; }
-        .view-controls { display: flex; gap: 20px; border-bottom: 1px solid var(--nt-border); margin-top: 20px; padding-bottom: 10px; }
-        
-        /* Kanban Board */
-        .board-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; padding: 20px 60px; }
-        .column-header { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; font-size: 14px; font-weight: 600; color: var(--nt-text-subtle); }
-        .count { background: var(--nt-hover); padding: 2px 8px; border-radius: 10px; font-size: 12px; }
+        /* VIEW TABS */
+        .tab-row { display: flex; background: var(--light-grey); padding: 5px; border-radius: 12px; width: fit-content; margin-bottom: 30px; }
+        .tab { padding: 10px 25px; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 13px; color: #888; transition: 0.3s; }
+        .tab.active { background: #fff; color: var(--nt-pink); box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
 
-        /* Task Cards */
-        .card { background: var(--nt-bg); border: 1px solid var(--nt-border); border-radius: 8px; padding: 16px; margin-bottom: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); transition: 0.2s; cursor: pointer; }
-        .card:hover { border-color: var(--pink); transform: translateY(-2px); }
-        .card-title { font-size: 15px; font-weight: 600; margin-bottom: 10px; display: block; }
-        
-        .prop-row { display: flex; gap: 8px; flex-wrap: wrap; }
-        .chip { font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
-        .chip-blue { background: #e1f0ff; color: #0070f3; }
-        .chip-pink { background: #ffe1f0; color: #f30070; }
-        .chip-gray { background: var(--nt-hover); color: var(--nt-text-subtle); }
+        /* CREATOR BAR */
+        .creator-bar { background: var(--light-grey); padding: 25px; border-radius: 24px; border: 1px solid var(--nt-border); margin-bottom: 30px; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr auto; gap: 12px; }
+        input, select { padding: 12px; border-radius: 10px; border: 1px solid var(--nt-border); font-family: inherit; font-size: 14px; outline: none; }
+        .push-btn { background: var(--nt-pink); color: white; border: none; padding: 0 25px; border-radius: 10px; font-weight: 800; cursor: pointer; transition: 0.2s; }
+        .push-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(255, 20, 147, 0.3); }
 
-        /* Creator UI */
-        .creator-modal { padding: 20px; border-top: 1px solid var(--nt-border); display: flex; gap: 10px; background: var(--nt-sidebar); }
-        .creator-modal input, .creator-modal select { background: var(--nt-bg); border: 1px solid var(--nt-border); padding: 10px; border-radius: 6px; color: var(--text); outline: none; }
+        /* DATA TABLE */
+        .data-table { width: 100%; border-collapse: collapse; }
+        .data-table th { text-align: left; font-size: 11px; text-transform: uppercase; color: #aaa; padding: 15px; border-bottom: 1px solid var(--nt-border); }
+        .data-table td { padding: 20px 15px; border-bottom: 1px solid var(--nt-border); font-size: 14px; }
+        .tag-member { background: var(--navy); color: white; padding: 4px 10px; border-radius: 5px; font-size: 11px; font-weight: 700; }
         
-        #login-overlay { position: fixed; inset: 0; background: var(--nt-bg); z-index: 100; display: flex; align-items: center; justify-content: center; text-align: center; }
-        .login-card { width: 400px; }
+        #auth-screen { text-align: center; padding-top: 100px; }
+        .acc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; max-width: 600px; margin: 40px auto; }
+        .acc-card { padding: 30px; border: 1px solid var(--nt-border); border-radius: 20px; cursor: pointer; font-weight: 700; transition: 0.3s; }
+        .acc-card:hover { border-color: var(--nt-pink); background: var(--light-grey); transform: translateY(-5px); }
     </style>
 </head>
 <body>
 
-    <div id="login-overlay">
-        <div class="login-card">
-            <h2 class="section-tag">N!TRO Operating System</h2>
-            <p class="large-text">Welcome back.</p>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 30px;">
-                <div class="nav-item" style="border: 1px solid var(--nt-border); justify-content: center; padding: 15px;" onclick="boot('Aryeh')">Aryeh</div>
-                <div class="nav-item" style="border: 1px solid var(--nt-border); justify-content: center; padding: 15px;" onclick="boot('Anay')">Anay</div>
-                <div class="nav-item" style="border: 1px solid var(--nt-border); justify-content: center; padding: 15px;" onclick="boot('Aariv')">Aariv</div>
-                <div class="nav-item" style="border: 1px solid var(--nt-border); justify-content: center; padding: 15px;" onclick="boot('Rishaan')">Rishaan</div>
-                <div class="nav-item" style="border: 1px solid var(--nt-border); justify-content: center; padding: 15px;" onclick="boot('Vansh')">Vansh</div>
-                <div class="nav-item" style="border: 1px solid var(--nt-border); justify-content: center; padding: 15px;" onclick="boot('Aryavardhan')">Aryavardhan</div>
-            </div>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="pink" style="text-decoration:none; font-weight:800;">← DISCONNECT</a>
+            <div class="sync-status"><div class="pulse-dot"></div> <span id="sync-text">LIVE NETWORK</span></div>
         </div>
-    </div>
+    </nav>
 
-    <div class="sidebar">
-        <div class="profile-btn">
-            <div class="avatar" id="user-init">N!</div>
-            <span style="font-weight: 700; font-size: 14px;" id="user-name">Team Member</span>
-        </div>
+    <div class="ws-container">
         
-        <div class="nav-item active" onclick="setView('all')">Team Board</div>
-        <div class="nav-item" onclick="setView('me')">My Focus</div>
-        <div class="nav-item" onclick="exportData()">Export Workspace (JSON)</div>
-        <div class="nav-item" style="margin-top: auto; color: var(--pink);" onclick="location.href='index.html'">← Public Portal</div>
-    </div>
-
-    <div class="canvas">
-        <div class="canvas-header">
-            <h1 id="view-title" style="font-size: 32px; font-weight: 800; letter-spacing: -1px;">Team Board</h1>
-            <div class="view-controls">
-                <div class="nav-item active" style="font-size: 12px;">Board View</div>
+        <div id="auth-screen">
+            <h2 class="section-tag">Internal Access</h2>
+            <p class="large-text">Identify <span class="pink">Operator.</span></p>
+            <div class="acc-grid">
+                <div class="acc-card" onclick="login('Aryeh')">Aryeh</div>
+                <div class="acc-card" onclick="login('Anay')">Anay</div>
+                <div class="acc-card" onclick="login('Aariv')">Aariv</div>
+                <div class="acc-card" onclick="login('Rishaan')">Rishaan</div>
+                <div class="acc-card" onclick="login('Vansh')">Vansh</div>
+                <div class="acc-card" onclick="login('Aryavardhan')">Aryavardhan</div>
             </div>
         </div>
 
-        <div class="board-container">
-            <div class="board-column">
-                <div class="column-header"><span>To Do</span><span class="count" id="count-todo">0</span></div>
-                <div id="col-todo"></div>
+        <div id="main-app" style="display:none;">
+            <div class="app-header">
+                <div>
+                    <h2 class="section-tag">Global Sprint</h2>
+                    <p style="font-size: 2.5rem; font-weight: 800; letter-spacing: -1px;">Task <span class="pink">Database.</span></p>
+                </div>
+                <div class="tab-row">
+                    <div id="t-all" class="tab active" onclick="setTab('all')">Team Feed</div>
+                    <div id="t-me" class="tab" onclick="setTab('me')">My Focus</div>
+                </div>
             </div>
-            <div class="board-column">
-                <div class="column-header"><span>In Progress</span><span class="count" id="count-doing">0</span></div>
-                <div id="col-doing"></div>
+
+            <div class="creator-bar">
+                <input type="text" id="in-task" placeholder="Next engineering milestone...">
+                <select id="in-mem">
+                    <option>Aryeh</option><option>Anay</option><option>Aariv</option>
+                    <option>Rishaan</option><option>Vansh</option><option>Aryavardhan</option>
+                </select>
+                <select id="in-pri">
+                    <option>High</option><option>Med</option><option>Low</option>
+                </select>
+                <select id="in-sta">
+                    <option>Todo</option><option>Doing</option><option>Done</option>
+                </select>
+                <button class="push-btn" onclick="submitTask()">Push</button>
             </div>
-            <div class="board-column">
-                <div class="column-header"><span>Done</span><span class="count" id="count-done">0</span></div>
-                <div id="col-done"></div>
-            </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Requirement</th>
+                        <th>Assignee</th>
+                        <th>Priority</th>
+                        <th>Status</th>
+                        <th>From</th>
+                    </tr>
+                </thead>
+                <tbody id="db-body">
+                    </tbody>
+            </table>
         </div>
 
-        <div class="creator-modal">
-            <input type="text" id="t-name" style="flex: 2;" placeholder="What needs to be done?">
-            <select id="t-member">
-                <option value="Aryeh">Aryeh</option><option value="Anay">Anay</option><option value="Aariv">Aariv</option>
-                <option value="Rishaan">Rishaan</option><option value="Vansh">Vansh</option><option value="Aryavardhan">Aryavardhan</option>
-            </select>
-            <select id="t-dept">
-                <option value="Engineering">Engineering</option>
-                <option value="Enterprise">Enterprise</option>
-                <option value="Design">Design</option>
-                <option value="Marketing">Marketing</option>
-            </select>
-            <button class="nav-cta" onclick="addTask()" style="border:none; cursor:pointer;">Add Task</button>
-        </div>
     </div>
 
     <script>
+        const PROD_URL = "https://script.google.com/macros/s/AKfycbwqwJflwiiKXPvuvx8cU6fBzVgqDP1ZZBc5Y1u9bBxoSdYKKCv_0L5UjurdUM-BADEp/exec";
         let currentUser = "";
-        let currentView = "all";
-        let store = JSON.parse(localStorage.getItem('nitro_pro_v5')) || [];
+        let currentTab = "all";
 
-        function boot(name) {
+        function login(name) {
             currentUser = name;
-            document.getElementById('login-overlay').style.display = 'none';
-            document.getElementById('user-name').innerText = name;
-            document.getElementById('user-init').innerText = name[0];
-            document.getElementById('t-member').value = name;
-            render();
+            document.getElementById('auth-screen').style.display = 'none';
+            document.getElementById('main-app').style.display = 'block';
+            document.getElementById('sync-text').innerText = "CONNECTED: " + name.toUpperCase();
+            fetchData();
         }
 
-        function addTask() {
-            const input = document.getElementById('t-name');
-            if(!input.value) return;
-            
-            store.push({
+        async function fetchData() {
+            document.getElementById('sync-text').innerText = "SYNCING...";
+            try {
+                const response = await fetch(PROD_URL);
+                const data = await response.json();
+                render(data);
+                document.getElementById('sync-text').innerText = "CONNECTED: " + currentUser.toUpperCase();
+            } catch (e) {
+                document.getElementById('sync-text').innerText = "OFFLINE - RECONNECTING";
+            }
+        }
+
+        async function submitTask() {
+            const taskInput = document.getElementById('in-task');
+            if(!taskInput.value) return;
+
+            const payload = {
                 id: Date.now(),
-                title: input.value,
-                member: document.getElementById('t-member').value,
-                dept: document.getElementById('t-dept').value,
-                status: 'todo',
-                owner: currentUser
-            });
-            save();
-            input.value = "";
-            render();
-        }
+                task: taskInput.value,
+                member: document.getElementById('in-mem').value,
+                priority: document.getElementById('in-pri').value,
+                status: document.getElementById('in-sta').value,
+                author: currentUser
+            };
 
-        function updateStatus(id, newStatus) {
-            store = store.map(t => t.id === id ? {...t, status: newStatus} : t);
-            save();
-            render();
-        }
-
-        function deleteTask(id) {
-            store = store.filter(t => t.id !== id);
-            save();
-            render();
-        }
-
-        function setView(view) {
-            currentView = view;
-            document.getElementById('view-title').innerText = view === 'all' ? "Team Board" : "My Focus";
-            render();
-        }
-
-        function save() { localStorage.setItem('nitro_pro_v5', JSON.stringify(store)); }
-
-        function render() {
-            const cols = { todo: document.getElementById('col-todo'), doing: document.getElementById('col-doing'), done: document.getElementById('col-done') };
-            Object.values(cols).forEach(c => c.innerHTML = "");
+            taskInput.value = "Sending to cloud...";
             
-            let filtered = currentView === 'all' ? store : store.filter(t => t.member === currentUser);
-
-            filtered.forEach(t => {
-                const card = document.createElement('div');
-                card.className = 'card';
-                card.innerHTML = `
-                    <span class="card-title">${t.title}</span>
-                    <div class="prop-row">
-                        <span class="chip chip-blue">${t.member}</span>
-                        <span class="chip chip-gray">${t.dept}</span>
-                    </div>
-                    <div style="margin-top:15px; display:flex; gap:5px;">
-                        ${t.status !== 'todo' ? `<button onclick="updateStatus(${t.id}, 'todo')" class="chip">To Do</button>` : ''}
-                        ${t.status !== 'doing' ? `<button onclick="updateStatus(${t.id}, 'doing')" class="chip">In Progress</button>` : ''}
-                        ${t.status !== 'done' ? `<button onclick="updateStatus(${t.id}, 'done')" class="chip">Done</button>` : ''}
-                        <button onclick="deleteTask(${t.id})" class="chip chip-pink" style="margin-left:auto">✕</button>
-                    </div>
-                `;
-                cols[t.status].appendChild(card);
+            await fetch(PROD_URL, {
+                method: 'POST',
+                mode: 'no-cors', // Essential for Google Apps Script POST
+                body: JSON.stringify(payload)
             });
 
-            document.getElementById('count-todo').innerText = filtered.filter(t => t.status === 'todo').length;
-            document.getElementById('count-doing').innerText = filtered.filter(t => t.status === 'doing').length;
-            document.getElementById('count-done').innerText = filtered.filter(t => t.status === 'done').length;
+            taskInput.value = "";
+            setTimeout(fetchData, 1000); // Wait 1s for sheet to update
         }
 
-        function exportData() {
-            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(store));
-            const downloadAnchorNode = document.createElement('a');
-            downloadAnchorNode.setAttribute("href", dataStr);
-            downloadAnchorNode.setAttribute("download", "nitro_workspace_sync.json");
-            document.body.appendChild(downloadAnchorNode);
-            downloadAnchorNode.click();
-            downloadAnchorNode.remove();
+        function render(data) {
+            const body = document.getElementById('db-body');
+            body.innerHTML = "";
+            
+            // Apply View Filter
+            const displayData = currentTab === 'all' ? data : data.filter(r => r[2] === currentUser);
+
+            displayData.reverse().forEach(row => {
+                body.innerHTML += `
+                    <tr>
+                        <td style="font-weight:700">${row[1]}</td>
+                        <td><span class="tag-member">${row[2].toUpperCase()}</span></td>
+                        <td style="color:${row[3]==='High'?'#ff1493':'#888'}; font-weight:800; font-size:11px;">${row[3].toUpperCase()}</td>
+                        <td class="pink" style="font-weight:800">${row[4]}</td>
+                        <td style="font-size:11px; opacity:0.3">BY ${row[5]}</td>
+                    </tr>
+                `;
+            });
         }
+
+        function setTab(tab) {
+            currentTab = tab;
+            document.getElementById('t-all').classList.toggle('active', tab === 'all');
+            document.getElementById('t-me').classList.toggle('active', tab === 'me');
+            fetchData();
+        }
+
+        // Auto-refresh every 20 seconds
+        setInterval(fetchData, 20000);
     </script>
 </body>
 </html>
