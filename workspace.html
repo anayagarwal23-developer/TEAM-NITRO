@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>N!TRO | Workspace</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+    <style>
+        .workspace-hero { min-height: 100vh; padding-top: 150px; background: var(--white); }
+        .login-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; margin-top: 50px; }
+        .user-pill { padding: 25px; border: 1px solid #e5e5e7; border-radius: 20px; text-align: center; cursor: pointer; transition: 0.3s; font-weight: 700; }
+        .user-pill:hover { border-color: var(--pink); color: var(--pink); background: var(--light-grey); }
+        .task-board { margin-top: 80px; display: none; animation: fadeIn 0.5s ease; }
+        .board-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px; }
+        .column { background: var(--light-grey); padding: 30px; border-radius: 30px; }
+        .task { background: var(--white); padding: 20px; border-radius: 15px; margin-bottom: 15px; border: 1px solid #ddd; font-size: 0.9rem; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+    <nav><div class="nav-container"><a href="index.html" class="pink" style="font-weight:800; text-decoration:none;">EXIT WORKSPACE</a></div></nav>
+    <div class="workspace-hero">
+        <div class="minimal-container">
+            <div id="login-screen">
+                <h2 class="section-tag">Team Login</h2>
+                <p class="large-text">Select your profile.</p>
+                <div class="login-grid">
+                    <div class="user-pill" onclick="enter('Aryeh')">Aryeh</div>
+                    <div class="user-pill" onclick="enter('Anay')">Anay</div>
+                    <div class="user-pill" onclick="enter('Aariv')">Aariv</div>
+                    <div class="user-pill" onclick="enter('Rishaan')">Rishaan</div>
+                    <div class="user-pill" onclick="enter('Vansh')">Vansh</div>
+                    <div class="user-pill" onclick="enter('Aryavardhan')">Aryavardhan</div>
+                </div>
+            </div>
+            <div id="dashboard" class="task-board">
+                <p class="large-text">Welcome, <span id="user" class="pink">Member</span>.</p>
+                <div class="board-grid">
+                    <div class="column"><h3>To Do</h3><div class="task">Finalize CNC toolpaths</div><div class="task">Update Sponsor Portfolio</div></div>
+                    <div class="column"><h3>In Progress</h3><div class="task">CFD Simulation: Version 4</div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function enter(name) {
+            document.getElementById('login-screen').style.display = 'none';
+            document.getElementById('dashboard').style.display = 'block';
+            document.getElementById('user').innerText = name;
+        }
+    </script>
+</body>
+</html>
