@@ -1,68 +1,43 @@
-:root {
-    --pink: #ff1493;
-    --navy: #000080;
-    --dark-navy: #000033;
-    --text: #1d1d1f;
-    --white: #ffffff;
-    --light-grey: #f5f5f7;
-    --mono-font: 'JetBrains Mono', monospace;
+/* --- THE LAYOUT ENGINE --- */
+.minimal-container { 
+    max-width: 1100px; /* Tightened for better readability */
+    margin: 0 auto; 
+    padding: 120px 40px; 
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body { background: var(--white); color: var(--text); font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+/* This creates the side-by-side look from your previous version */
+.split-layout-grid { 
+    display: grid; 
+    grid-template-columns: 1.1fr 1fr; 
+    gap: 100px; /* Increased gap to prevent cramped text */
+    align-items: start; 
+}
 
-/* NAVIGATION */
-nav { position: fixed; top: 0; width: 100%; height: 110px; background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(20px); z-index: 1000; display: flex; justify-content: center; }
-.nav-container { width: 90%; max-width: 1200px; display: flex; justify-content: space-between; align-items: center; }
-.nav-logo-ultra { height: 50px; width: auto; display: block; }
-.logo-secret-link { display: block; transition: 0.3s; line-height: 0; cursor: pointer; }
-.nav-links a { color: var(--text); text-decoration: none; font-size: 13px; margin-left: 30px; font-weight: 700; text-transform: uppercase; }
+.large-text { 
+    font-size: clamp(2.2rem, 4vw, 3.8rem); 
+    font-weight: 800; 
+    line-height: 1.1; 
+    letter-spacing: -2px; 
+}
 
-/* HERO */
-.hero { height: 100vh; display: flex; align-items: center; justify-content: center; background: #000; color: white; text-align: center; }
-.hero h1 { font-size: clamp(3rem, 8vw, 7rem); font-weight: 800; letter-spacing: -3px; line-height: 0.9; }
+/* Mobile Fix: Stack them on phones */
+@media (max-width: 900px) {
+    .split-layout-grid { 
+        grid-template-columns: 1fr; 
+        gap: 40px; 
+    }
+    .minimal-container {
+        padding: 80px 25px;
+    }
+}
 
-/* LAYOUT GRIDS (The Fix) */
-.minimal-container { max-width: 1200px; margin: 0 auto; padding: 140px 40px; }
-.split-layout-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 80px; align-items: start; }
-
-/* TEAM GRID */
-.team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-.team-card { background: white; padding: 40px; border-radius: 30px; border: 1px solid #eee; }
-.card-num { font-family: var(--mono-font); font-size: 12px; color: #ccc; margin-bottom: 10px; }
-
-/* PINK BUBBLE */
-.pink-dna-bubble { background: var(--pink); color: white; padding: 40px; border-radius: 40px; margin-top: 30px; }
-.pink-dna-bubble h3 { font-size: 1.2rem; text-transform: uppercase; margin-bottom: 15px; }
-.pink-dna-bubble ul { list-style: none; }
-.pink-dna-bubble li { border-bottom: 1px solid rgba(255,255,255,0.2); padding: 8px 0; font-size: 14px; }
-
-/* ENGINEERING TABLE */
-.table-container { border-radius: 20px; border: 1px solid #eee; overflow: hidden; margin-top: 30px; }
-.engineering-table { width: 100%; border-collapse: collapse; background: white; }
-.engineering-table th { background: #f5f5f7; padding: 20px; text-align: left; font-size: 12px; text-transform: uppercase; }
-.engineering-table td { padding: 20px; border-bottom: 1px solid #f5f5f5; font-size: 14px; }
-
-/* SPONSORS */
-.sponsorship-showcase { display: grid; gap: 20px; }
-.jobs-sponsor-hero { background: white; padding: 60px; border-radius: 40px; display: flex; justify-content: space-between; align-items: center; border: 1px solid #eee; position: relative; overflow: hidden; }
-.sponsor-bg-title { position: absolute; left: 30px; font-size: 8rem; font-weight: 900; opacity: 0.03; color: var(--dark-navy); pointer-events: none; }
-
-/* UTILITY */
-.section { width: 100%; }
-.dark-navy-bg { background: var(--dark-navy); color: white; }
-.section-tag { font-size: 12px; color: var(--navy); text-transform: uppercase; letter-spacing: 4px; font-weight: 800; margin-bottom: 40px; display: block; }
-.pink { color: var(--pink) !important; }
-.large-text { font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 800; line-height: 1.1; letter-spacing: -2px; }
-.sapphire-title { font-size: 6rem; font-weight: 800; margin-bottom: 20px; letter-spacing: -3px; }
-
-.reveal { opacity: 0; transform: translateY(30px); transition: 0.8s all ease; }
-.reveal.active { opacity: 1; transform: translateY(0); }
-
-@media (prefers-color-scheme: dark) {
-    :root { --white: #0a0a0a; --text: #f5f5f7; --light-grey: #1c1c1e; }
-    body { background: #000; }
-    .team-card, .jobs-sponsor-hero, .engineering-table { background: #1c1c1e; border-color: #333; }
-    .engineering-table th { background: #2c2c2e; }
+.section-tag { 
+    font-size: 11px; 
+    color: var(--navy); 
+    text-transform: uppercase; 
+    letter-spacing: 5px; 
+    font-weight: 800; 
+    margin-bottom: 50px; 
+    display: block; 
+    opacity: 0.6;
 }
