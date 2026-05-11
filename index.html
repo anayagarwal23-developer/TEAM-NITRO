@@ -9,155 +9,621 @@
 </head>
 <body>
 
-    <nav>
+    <!-- PRELOADER -->
+    <div class="preloader" id="preloader">
+        <div class="preloader-inner">
+            <div class="preloader-logo">N!TRO</div>
+            <div class="preloader-line"></div>
+            <div class="preloader-tagline">THE PURSUIT OF ZERO FRICTION</div>
+        </div>
+    </div>
+
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <nav id="mainNav">
         <div class="nav-container">
-            <a href="workspace.html" class="logo-secret-link">
-                <picture>
-                    <source srcset="Signifier.png" media="(prefers-color-scheme: dark)">
-                    <img src="Signifier Black (2).png" alt="N!TRO Logo" class="nav-logo-ultra">
-                </picture>
-            </a>
-            <div class="nav-links">
-                <a href="#genesis">Genesis</a>
-                <a href="#philosophy">Philosophy</a>
-                <a href="#team">Unity</a>
-                <a href="#design">Sapphire</a>
-                <a href="#enterprise">Partners</a>
-                <a href="mailto:anayagarwal23@gmail.com" class="nav-cta">Connect</a>
+            <img src="nitro-logo.png" alt="N!TRO Logo" class="nav-logo-ultra">
+            <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="nav-links" id="navLinks">
+                <a href="#genesis" onclick="closeMenu()">Genesis</a>
+                <a href="#philosophy" onclick="closeMenu()">Philosophy</a>
+                <a href="#team" onclick="closeMenu()">Unity</a>
+                <a href="#design" onclick="closeMenu()">Sapphire</a>
+                <a href="#manufacturing" onclick="closeMenu()">Manufacturing</a>
+                <a href="#enterprise" onclick="closeMenu()">Partners</a>
+                <a href="mailto:anayagarwal23@gmail.com" class="nav-cta magnetic" onclick="closeMenu()">Connect</a>
             </div>
         </div>
     </nav>
 
-    <header class="hero">
-        <div class="hero-content reveal">
-            <span class="hero-tag">Regional Qualifiers 2026</span>
-            <h1>Design is not just what it looks like. <br>Design is <span class="pink">how it works.</span></h1>
-            <p class="subtitle">TEAM N!TRO • THE PURSUIT OF ZERO FRICTION</p>
+    <!-- HERO -->
+    <header class="hero" id="heroSection">
+        <div class="hero-content">
+            <span class="hero-tag" data-animate="fade">Regional Qualifiers 2026</span>
+            <h1 class="split-text-hero">Design is not just what it looks like. Design is <span class="pink">how it works.</span></h1>
+            <p class="subtitle" data-animate="fade">TEAM N!TRO &bull; THE PURSUIT OF ZERO FRICTION</p>
+        </div>
+        <div class="hero-scroll-hint">
+            <span>Scroll</span>
+            <div class="scroll-arrow"></div>
         </div>
     </header>
 
-    <section id="genesis" class="section white-bg">
+    <!-- MARQUEE STRIP -->
+    <div class="marquee-strip">
+        <div class="marquee-track">
+            <span>ZERO FRICTION &mdash;</span>
+            <span>AERODYNAMIC PRECISION &mdash;</span>
+            <span>ENGINEERING EXCELLENCE &mdash;</span>
+            <span>SAPPHIRE 2026 &mdash;</span>
+            <span>ZERO FRICTION &mdash;</span>
+            <span>AERODYNAMIC PRECISION &mdash;</span>
+            <span>ENGINEERING EXCELLENCE &mdash;</span>
+            <span>SAPPHIRE 2026 &mdash;</span>
+            <span>ZERO FRICTION &mdash;</span>
+            <span>AERODYNAMIC PRECISION &mdash;</span>
+            <span>ENGINEERING EXCELLENCE &mdash;</span>
+            <span>SAPPHIRE 2026 &mdash;</span>
+        </div>
+    </div>
+
+    <!-- GENESIS -->
+    <section id="genesis" class="section dark-section">
         <div class="minimal-container">
-            <h2 class="section-tag reveal">00. THE GENESIS</h2>
-            <div class="reveal">
-                <p class="mega-bold-text">The evolution of <span class="pink">STEM Racing.</span></p>
-                <p class="large-para">STEM Racing is a global movement where physics meets the speed of Formula 1. This platform is the <strong>Digital Twin</strong> for Team N!TRO—a hub for evaluation as we prepare for 2026.</p>
-                <div class="split-layout-grid" style="margin-top: 60px;">
-                    <div class="pink-dna-bubble reveal">
-                        <h3>A Legacy of Speed</h3>
-                        <p>Originating from the F1 in Schools challenge, STEM Racing mimics the real-world F1 lifecycle: from initial sketches to precision manufacturing.</p>
+            <h2 class="section-tag" data-animate="tag">00. The Genesis</h2>
+            <div>
+                <p class="mega-minimal-text split-text">The evolution of <span class="pink">STEM Racing.</span></p>
+                <div class="evolution-flow">
+                    <div class="evo-step" data-animate="slide-right">
+                        <p>STEM Racing is a global movement where physics meets the speed of Formula 1. This platform serves as our <strong>Digital Twin</strong>&mdash;a centralized hub for technical evaluation and vision for 2026.</p>
                     </div>
-                    <div class="pink-dna-bubble reveal">
-                        <h3>The Technical Frontier</h3>
-                        <p>Over the last decade, the competition has shifted toward advanced aerospace-grade simulations and AI-driven generative design.</p>
+                    <div class="evo-step" data-animate="slide-right">
+                        <p>Originating from the F1 in Schools challenge, the circuit has evolved from a classroom project into a professional-grade engineering discipline. It mimics the real-world F1 lifecycle: from initial sketches to CFD and precision manufacturing.</p>
+                    </div>
+                    <div class="evo-step" data-animate="slide-right">
+                        <p>Today, we leverage advanced aerospace-grade simulations and AI-driven generative design. Team N!TRO utilizes these tools to find millisecond advantages on the track.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="team" class="section white-bg">
+    <!-- PHILOSOPHY -->
+    <section id="philosophy" class="section alt-section">
         <div class="minimal-container">
-            <h2 class="section-tag reveal">02. THE UNITY</h2>
-            <div class="reveal"><p class="mega-bold-text">Multi-disciplinary. <br>Relentless focus.</p></div>
-            <div class="team-grid reveal">
-                <div class="team-card"><div class="card-num-highlight">01/06</div><h4 class="member-name-big pink">Aryeh</h4><p>Team Leader & Manufacturing Engineer</p></div>
-                <div class="team-card"><div class="card-num-highlight">02/06</div><h4 class="member-name-big pink">Anay</h4><p>Co-Team Leader & Project Manager</p></div>
-                <div class="team-card"><div class="card-num-highlight">03/06</div><h4 class="member-name-big pink">Aariv</h4><p>Design Engineer</p></div>
-                <div class="team-card"><div class="card-num-highlight">04/06</div><h4 class="member-name-big pink">Rishaan</h4><p>Graphic Designer</p></div>
-                <div class="team-card"><div class="card-num-highlight">05/06</div><h4 class="member-name-big pink">Vansh</h4><p>Portfolio Designer</p></div>
-                <div class="team-card"><div class="card-num-highlight">06/06</div><h4 class="member-name-big pink">Aryavardhan</h4><p>Sponsorship Manager</p></div>
+            <h2 class="section-tag" data-animate="tag">01. The Philosophy</h2>
+            <div class="philosophy-jobs-layout">
+                <div class="philosophy-hero-text">
+                    <p class="jobs-mega-text split-text">Organization is the key to success. We don't just build cars; we build <span class="pink">blueprints for excellence.</span></p>
+                </div>
+                <div class="philosophy-details">
+                    <div class="detail-block" data-animate="slide-up">
+                        <h3>Team Blueprint</h3>
+                        <p>At Team N!TRO, we believe that organization is the key factor in achieving success. Our internal structure keeps us aligned from design through manufacturing.</p>
+                    </div>
+                    <div class="detail-block" data-animate="slide-up">
+                        <h3>Critical Evaluation</h3>
+                        <p>Building on knowledge from previous F1 in Schools teams, we analyzed regulations and design theories to refine our approach through independent research.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="design" class="section dark-navy-bg">
+    <!-- MARQUEE STRIP 2 -->
+    <div class="marquee-strip marquee-reverse">
+        <div class="marquee-track marquee-track-reverse">
+            <span>TEAM N!TRO &mdash;</span>
+            <span>Cd 0.168 &mdash;</span>
+            <span>HYBRID CERAMIC &mdash;</span>
+            <span>50.0g OPTIMAL &mdash;</span>
+            <span>CNC MILLED &mdash;</span>
+            <span>TEAM N!TRO &mdash;</span>
+            <span>Cd 0.168 &mdash;</span>
+            <span>HYBRID CERAMIC &mdash;</span>
+            <span>50.0g OPTIMAL &mdash;</span>
+            <span>CNC MILLED &mdash;</span>
+            <span>TEAM N!TRO &mdash;</span>
+            <span>Cd 0.168 &mdash;</span>
+        </div>
+    </div>
+
+    <!-- TEAM -->
+    <section id="team" class="section dark-section">
         <div class="minimal-container">
-            <h2 class="section-tag pink reveal">03. THE PRODUCT</h2>
-            <div class="split-layout-grid reveal">
-                <div class="layout-left">
-                    <p class="sapphire-title">Sapphire.</p>
-                    <div class="pink-dna-bubble">
+            <h2 class="section-tag" data-animate="tag">02. The Unity</h2>
+            <p class="large-text split-text">Multi-disciplinary. Relentless focus.</p>
+            <div class="sub-nav">
+                <span>Aryeh</span> <span>&bull;</span> <span>Anay</span> <span>&bull;</span> <span>Aariv</span> <span>&bull;</span> <span>Rishaan</span> <span>&bull;</span> <span>Vansh</span> <span>&bull;</span> <span>Aryavardhan</span>
+            </div>
+            <div class="team-grid">
+                <div class="team-card glass-card" data-animate="card">
+                    <div class="card-num">01/06</div>
+                    <h4 class="member-name">Aryeh</h4>
+                    <span class="role">Team Leader & Manufacturing Engineer</span>
+                    <p>Directs technical cohesion and physical manufacturing with micron-level precision.</p>
+                </div>
+                <div class="team-card glass-card" data-animate="card">
+                    <div class="card-num">02/06</div>
+                    <h4 class="member-name">Anay</h4>
+                    <span class="role">Co-Team Leader & Project Manager</span>
+                    <p>Directs the project lifecycle, controlling timelines and resource allocation.</p>
+                </div>
+                <div class="team-card glass-card" data-animate="card">
+                    <div class="card-num">03/06</div>
+                    <h4 class="member-name">Aariv</h4>
+                    <span class="role">Design Engineer</span>
+                    <p>Lead for CAD modeling and CFD simulation. Focuses on drag reduction.</p>
+                </div>
+                <div class="team-card glass-card" data-animate="card">
+                    <div class="card-num">04/06</div>
+                    <h4 class="member-name">Rishaan</h4>
+                    <span class="role">Graphic Designer</span>
+                    <p>Architect of the N!TRO brand identity and all marketing collateral.</p>
+                </div>
+                <div class="team-card glass-card" data-animate="card">
+                    <div class="card-num">05/06</div>
+                    <h4 class="member-name">Vansh</h4>
+                    <span class="role">Portfolio Designer & Tactical Support</span>
+                    <p>Responsible for high-end documentation and cross-functional support.</p>
+                </div>
+                <div class="team-card glass-card" data-animate="card">
+                    <div class="card-num">06/06</div>
+                    <h4 class="member-name">Aryavardhan</h4>
+                    <span class="role">Sponsorship Manager</span>
+                    <p>The bridge between engineering and industry, securing resources for development.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SAPPHIRE -->
+    <section id="design" class="section sapphire-section">
+        <div class="minimal-container">
+            <h2 class="section-tag" data-animate="tag">03. The Product</h2>
+            <div class="philosophy-jobs-layout">
+                <div class="philosophy-hero-text">
+                    <p class="jobs-mega-text sapphire-title split-text">Sapphire.</p>
+                    <div class="pink-info-box" data-animate="slide-up">
                         <h3>Technical DNA</h3>
                         <ul>
-                            <li><span class="dna-label">Material:</span> <span>Polyurethane Foam</span></li>
-                            <li><span class="dna-label">Weight:</span> <span>50.0g Optimal Threshold</span></li>
-                            <li><span class="dna-label">Coefficient:</span> <span>0.168 Target Drag</span></li>
-                            <li><span class="dna-label">Bearings:</span> <span>Hybrid Ceramic Si3N4</span></li>
+                            <li><strong>Material:</strong> Polyurethane Foam</li>
+                            <li><strong>Weight:</strong> <span class="counter" data-target="50.0">0</span>g Optimal Threshold</li>
+                            <li><strong>Coefficient:</strong> <span class="counter" data-target="0.168">0</span> Target Drag</li>
+                            <li><strong>Bearings:</strong> Hybrid Ceramic Si3N4</li>
                         </ul>
                     </div>
                 </div>
-                <div class="layout-right">
-                    <p class="mega-bold-text white">Highly aerodynamic.<br>Visually striking.<br>Relentlessly minimalistic.</p>
-                    <p class="product-para">Following the Apple design philosophy, Sapphire is the result of many iterations, improving airflow and structural stability.</p>
+                <div class="design-jobs-content">
+                    <p class="large-text white-text headline-rhythm split-text">
+                        Highly aerodynamic.
+                        Visually striking.
+                        Relentlessly minimalistic.
+                    </p>
+                    <p class="white-para" data-animate="fade">Our team follows the same process as Apple, highlighting each detail. Sapphire is the result of many iterations, each improving airflow and structural stability.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="engineering" class="section white-bg">
+    <!-- MANUFACTURING -->
+    <section id="manufacturing" class="section alt-section">
         <div class="minimal-container">
-            <h2 class="section-tag reveal">05. THE ENGINEERING</h2>
-            <div class="reveal">
-                <h4 class="pink" style="font-size: 3.5rem; font-weight: 800; margin-bottom: 20px;">The Ogive Nose Cone</h4>
-                <p style="margin-bottom: 50px; font-size: 1.25rem; opacity: 0.7;">An ogive shape spreads the air gently and keeps the airflow attached to the body for longer.</p>
+            <h2 class="section-tag" data-animate="tag">04. Manufacturing</h2>
+            <div>
+                <p class="large-text split-text">From Block to <span class="pink">Blade.</span></p>
+                <div class="manufacturing-grid">
+                    <div class="m-card glass-card" data-animate="card">
+                        <span class="m-num">01</span>
+                        <h4>Raw Material</h4>
+                        <p>We utilize high-density <strong>Polyurethane Foam</strong> for its superior strength-to-weight ratio.</p>
+                    </div>
+                    <div class="m-card glass-card" data-animate="card">
+                        <span class="m-num">02</span>
+                        <h4>CNC Precision</h4>
+                        <p>Machined on a 3-axis CNC router, Sapphire is carved within a tolerance of &plusmn;0.05mm.</p>
+                    </div>
+                    <div class="m-card glass-card" data-animate="card">
+                        <span class="m-num">03</span>
+                        <h4>Surface Friction</h4>
+                        <p>A micro-thin sealant is applied to prevent turbulence while maintaining the 50.0g minimum weight.</p>
+                    </div>
+                </div>
             </div>
-            <div class="table-container reveal">
+        </div>
+    </section>
+
+    <!-- ENGINEERING -->
+    <section id="engineering" class="section dark-section">
+        <div class="minimal-container">
+            <h2 class="section-tag" data-animate="tag">05. The Engineering</h2>
+            <div class="center-text">
+                <h4 class="pink split-text" style="font-size: 2.8rem; margin-bottom: 20px; letter-spacing: -2px; font-weight: 800;">The Ogive Nose Cone</h4>
+                <p style="max-width: 700px; margin: 0 auto 50px; color: rgba(255,255,255,0.5); line-height: 1.7; font-size: 1.05rem;" data-animate="fade">An ogive shape has a smooth, curved point that lets air flow around the car with less resistance. Our ogive nose spreads the air gently and keeps the airflow attached to the body for longer.</p>
+            </div>
+            <div class="table-container" data-animate="slide-up">
                 <table class="engineering-table">
                     <thead>
                         <tr><th>Sub-System</th><th>Requirement</th><th>N!TRO Strategy</th><th>Status</th></tr>
                     </thead>
                     <tbody>
-                        <tr><td>Aerodynamics</td><td>Cd < 0.17</td><td>Ogive Nose Control</td><td>Optimized</td></tr>
-                        <tr><td>Chassis</td><td>Mass: 50.0g</td><td>Selective Pocketing</td><td>Compliant</td></tr>
-                        <tr><td>Axles</td><td>< 0.05μ Friction</td><td>Ceramic Hybridization</td><td>Tested</td></tr>
-                        <tr><td>Manufacturing</td><td>±0.05mm</td><td>High-Speed Milling</td><td>Complete</td></tr>
+                        <tr><td>Aerodynamics</td><td>Cd &lt; 0.17</td><td>Ogive Nose & Boundary Layer Control</td><td><span class="status-badge">Optimized</span></td></tr>
+                        <tr><td>Chassis</td><td>Mass: 50.0g</td><td>Selective Foam Pocketing</td><td><span class="status-badge">Compliant</span></td></tr>
+                        <tr><td>Axles</td><td>&lt; 0.05&mu; Friction</td><td>Ceramic Bearing Hybridization</td><td><span class="status-badge">Tested</span></td></tr>
+                        <tr><td>Manufacturing</td><td>&plusmn;0.05mm</td><td>High-Speed CNC Milling</td><td><span class="status-badge">Complete</span></td></tr>
                     </tbody>
                 </table>
             </div>
         </div>
     </section>
 
-    <section id="enterprise" class="section light-bg">
+    <!-- MARQUEE STRIP 3 -->
+    <div class="marquee-strip">
+        <div class="marquee-track">
+            <span>JAYPEE BROTHERS &mdash;</span>
+            <span>STARWIRE &mdash;</span>
+            <span>LUCKNOW SUPER GIANTS &mdash;</span>
+            <span>MERCEDES BENZ &mdash;</span>
+            <span>JAYPEE BROTHERS &mdash;</span>
+            <span>STARWIRE &mdash;</span>
+            <span>LUCKNOW SUPER GIANTS &mdash;</span>
+            <span>MERCEDES BENZ &mdash;</span>
+            <span>JAYPEE BROTHERS &mdash;</span>
+            <span>STARWIRE &mdash;</span>
+            <span>LUCKNOW SUPER GIANTS &mdash;</span>
+            <span>MERCEDES BENZ &mdash;</span>
+        </div>
+    </div>
+
+    <!-- ENTERPRISE -->
+    <section id="enterprise" class="section alt-section">
         <div class="minimal-container">
-            <h2 class="section-tag reveal">06. ENTERPRISE</h2>
+            <h2 class="section-tag" data-animate="tag">06. Enterprise</h2>
             <div class="sponsorship-showcase">
-                <div class="jobs-sponsor-hero reveal">
+                <div class="jobs-sponsor-hero glass-card" data-animate="slide-up">
                     <div class="sponsor-bg-title">JAYPEE</div>
-                    <div class="sponsor-info"><h3>Jaypee Brothers</h3><p>Precision medical publishing partners.</p></div>
-                    <div class="sponsor-amount-big pink">₹20,000</div>
+                    <div class="sponsor-info">
+                        <h3>Jaypee Brothers</h3>
+                        <p class="sponsor-description">Commitment to precision medical publishing. Providing capital for our CNC tooling.</p>
+                    </div>
+                    <div class="sponsor-amount">&#8377;20,000</div>
                 </div>
-                <div class="jobs-sponsor-hero reveal">
-                    <div class="sponsor-bg-title">LSG</div>
-                    <div class="sponsor-info"><h3>Lucknow Super Giants</h3><p>Sports marketing and brand identity partners.</p></div>
-                    <div class="sponsor-amount-big pink">₹15,000</div>
-                </div>
-                <div class="jobs-sponsor-hero reveal">
-                    <div class="sponsor-bg-title">BEARINGS</div>
-                    <div class="sponsor-info"><h3>F1 Bearings</h3><p>Ceramic bearing technical partner.</p></div>
-                    <div class="sponsor-amount-big pink">Tech Hub</div>
-                </div>
-                <div class="jobs-sponsor-hero reveal">
+                <div class="jobs-sponsor-hero glass-card" data-animate="slide-up">
                     <div class="sponsor-bg-title">STARWIRE</div>
-                    <div class="sponsor-info"><h3>StarWire</h3><p>Alloy manufacturing specialists.</p></div>
-                    <div class="sponsor-amount-big pink">₹10,000</div>
+                    <div class="sponsor-info">
+                        <h3>StarWire</h3>
+                        <p class="sponsor-description">Specialists in alloy manufacturing. Guiding our R&D and CAD/CFD software access.</p>
+                    </div>
+                    <div class="sponsor-amount">&#8377;10,000</div>
+                </div>
+                <div class="jobs-sponsor-hero glass-card" data-animate="slide-up">
+                    <div class="sponsor-bg-title">LSG</div>
+                    <div class="sponsor-info">
+                        <h3>Lucknow Super Giants</h3>
+                        <p class="sponsor-description">Premier sports franchise amplifying our brand identity globally.</p>
+                    </div>
+                    <div class="sponsor-amount">&#8377;15,000</div>
+                </div>
+                <div class="jobs-sponsor-hero glass-card" data-animate="slide-up">
+                    <div class="sponsor-bg-title">MERCEDES</div>
+                    <div class="sponsor-info">
+                        <h3>Mercedes Benz</h3>
+                        <p class="sponsor-description">Technical mentorship and insights into F1 aerodynamic principles.</p>
+                    </div>
+                    <div class="sponsor-amount">In-Kind</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="black-footer">
-        <div class="minimal-container reveal">
-            <a href="mailto:anayagarwal23@gmail.com" class="footer-cta">Join our journey.</a>
-            <div class="footer-legal"><p>© 2026 TEAM N!TRO | Engineering Perfection.</p></div>
+    <footer>
+        <div class="minimal-container">
+            <a href="mailto:anayagarwal23@gmail.com" class="footer-email magnetic split-text">Join our journey.</a>
+            <div class="footer-bottom"><p>&copy; 2026 TEAM N!TRO | Engineering Perfection.</p></div>
         </div>
     </footer>
 
+    <!-- GSAP + ScrollTrigger -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
     <script>
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    document.addEventListener('DOMContentLoaded', () => {
+
+        /* ─── PRELOADER ─── */
+        const preloader = document.getElementById('preloader');
+        function finishPreloader() {
+            if (preloader.dataset.done) return;
+            preloader.dataset.done = '1';
+            preloader.style.display = 'none';
+            animateHero();
+            ScrollTrigger.refresh();
+        }
+        // Safety timeout - kill preloader after 6s no matter what
+        setTimeout(finishPreloader, 6000);
+
+        const tl = gsap.timeline();
+        tl.to('.preloader-logo', { opacity: 1, scale: 1, duration: 0.6, ease: 'power3.out' })
+          .to('.preloader-line', { scaleX: 1, duration: 0.8, ease: 'power2.inOut' }, '-=0.2')
+          .to('.preloader-tagline', { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }, '-=0.3')
+          .to('.preloader-inner', { scale: 40, opacity: 0, duration: 1.2, ease: 'power4.in' }, '+=0.4')
+          .to(preloader, { yPercent: -100, duration: 0.8, ease: 'power4.inOut' }, '-=0.5')
+          .set(preloader, { display: 'none' })
+          .call(() => finishPreloader());
+
+        /* ─── REGISTER GSAP ─── */
+        gsap.registerPlugin(ScrollTrigger);
+
+        /* ─── SPLIT TEXT UTILITY ─── */
+        function splitTextIntoWords(el) {
+            // Walk text nodes only, preserving all HTML elements
+            const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null);
+            const textNodes = [];
+            while (walker.nextNode()) textNodes.push(walker.currentNode);
+
+            textNodes.forEach(node => {
+                const words = node.textContent.split(/(\s+)/);
+                const frag = document.createDocumentFragment();
+                words.forEach(w => {
+                    if (/^\s*$/.test(w)) {
+                        frag.appendChild(document.createTextNode(w));
+                    } else {
+                        const outer = document.createElement('span');
+                        outer.className = 'word';
+                        const inner = document.createElement('span');
+                        inner.className = 'word-inner';
+                        inner.textContent = w;
+                        outer.appendChild(inner);
+                        frag.appendChild(outer);
+                    }
+                });
+                node.parentNode.replaceChild(frag, node);
+            });
+        }
+
+        /* ─── HERO ANIMATIONS ─── */
+        function animateHero() {
+            const heroH1 = document.querySelector('.split-text-hero');
+            if (heroH1) {
+                splitTextIntoWords(heroH1);
+                gsap.from('.split-text-hero .word-inner', {
+                    yPercent: 120,
+                    rotateX: -40,
+                    opacity: 0,
+                    duration: 1,
+                    ease: 'power4.out',
+                    stagger: 0.04,
+                });
+            }
+            gsap.from('[data-animate="fade"]', {
+                opacity: 0, y: 30, duration: 1, ease: 'power3.out', stagger: 0.15, delay: 0.5
+            });
+
+            // Hero parallax on scroll
+            gsap.to('.hero-content', {
+                yPercent: -30,
+                opacity: 0,
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: '.hero',
+                    start: 'top top',
+                    end: 'bottom top',
+                    scrub: 0.5,
+                }
+            });
+        }
+
+        /* ─── NAV SCROLL ─── */
+        const nav = document.getElementById('mainNav');
+        const progressBar = document.getElementById('scrollProgress');
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('scrolled', window.scrollY > 60);
+            const pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100;
+            progressBar.style.width = pct + '%';
+        });
+
+        /* ─── SPLIT TEXT SCROLL REVEALS ─── */
+        document.querySelectorAll('.split-text').forEach(el => {
+            splitTextIntoWords(el);
+
+            gsap.from(el.querySelectorAll('.word-inner'), {
+                yPercent: 100,
+                opacity: 0,
+                rotateX: -30,
+                duration: 0.8,
+                ease: 'power4.out',
+                stagger: 0.03,
+                scrollTrigger: {
+                    trigger: el,
+                    start: 'top 85%',
+                    toggleActions: 'play none none none',
+                }
+            });
+        });
+
+        /* ─── SECTION TAG SCRAMBLE ─── */
+        document.querySelectorAll('[data-animate="tag"]').forEach(el => {
+            const original = el.textContent;
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.!@#';
+
+            ScrollTrigger.create({
+                trigger: el,
+                start: 'top 85%',
+                onEnter: () => {
+                    let iteration = 0;
+                    const interval = setInterval(() => {
+                        el.textContent = original.split('').map((char, i) => {
+                            if (i < iteration) return original[i];
+                            if (char === ' ' || char === '.') return char;
+                            return chars[Math.floor(Math.random() * chars.length)];
+                        }).join('');
+                        iteration += 1;
+                        if (iteration > original.length) clearInterval(interval);
+                    }, 30);
+                },
+                once: true,
+            });
+        });
+
+        /* ─── SLIDE ANIMATIONS ─── */
+        document.querySelectorAll('[data-animate="slide-right"]').forEach((el, i) => {
+            gsap.from(el, {
+                x: -80,
+                opacity: 0,
+                duration: 0.9,
+                ease: 'power3.out',
+                delay: i * 0.12,
+                scrollTrigger: {
+                    trigger: el,
+                    start: 'top 85%',
+                    toggleActions: 'play none none none',
+                }
+            });
+        });
+
+        document.querySelectorAll('[data-animate="slide-up"]').forEach((el, i) => {
+            gsap.from(el, {
+                y: 60,
+                opacity: 0,
+                duration: 0.9,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: el,
+                    start: 'top 88%',
+                    toggleActions: 'play none none none',
+                }
+            });
+        });
+
+        document.querySelectorAll('[data-animate="fade"]').forEach(el => {
+            if (el.closest('.hero')) return; // skip hero, already animated
+            gsap.from(el, {
+                opacity: 0,
+                y: 25,
+                duration: 0.8,
+                ease: 'power2.out',
+                scrollTrigger: {
+                    trigger: el,
+                    start: 'top 88%',
+                    toggleActions: 'play none none none',
+                }
+            });
+        });
+
+        /* ─── CARD STAGGER ─── */
+        document.querySelectorAll('[data-animate="card"]').forEach(card => {
+            card.classList.add('card-hidden');
+        });
+        document.querySelectorAll('.team-grid, .manufacturing-grid').forEach(grid => {
+            const cards = grid.querySelectorAll('[data-animate="card"]');
+            function checkCards() {
+                const rect = grid.getBoundingClientRect();
+                if (rect.top < window.innerHeight * 0.9) {
+                    cards.forEach((card, i) => {
+                        setTimeout(() => card.classList.add('card-visible'), i * 100);
+                    });
+                    window.removeEventListener('scroll', checkCards);
+                }
+            }
+            window.addEventListener('scroll', checkCards, { passive: true });
+            checkCards(); // check immediately
+        });
+
+        /* ─── SPONSOR CARDS REVEAL ─── */
+        const sponsorCards = document.querySelectorAll('.sponsorship-showcase [data-animate="slide-up"]');
+        sponsorCards.forEach(el => el.classList.add('card-hidden'));
+        const sponsorShowcase = document.querySelector('.sponsorship-showcase');
+        if (sponsorShowcase) {
+            function checkSponsors() {
+                const rect = sponsorShowcase.getBoundingClientRect();
+                if (rect.top < window.innerHeight * 0.95) {
+                    sponsorCards.forEach((card, i) => {
+                        setTimeout(() => card.classList.add('card-visible'), i * 120);
+                    });
+                    window.removeEventListener('scroll', checkSponsors);
+                }
+            }
+            window.addEventListener('scroll', checkSponsors, { passive: true });
+            checkSponsors();
+        }
+
+        /* ─── COUNTER ANIMATION ─── */
+        document.querySelectorAll('.counter').forEach(el => {
+            const target = parseFloat(el.dataset.target);
+            const decimals = (target.toString().split('.')[1] || '').length;
+
+            ScrollTrigger.create({
+                trigger: el,
+                start: 'top 85%',
+                once: true,
+                onEnter: () => {
+                    gsap.to({ val: 0 }, {
+                        val: target,
+                        duration: 2,
+                        ease: 'power2.out',
+                        onUpdate: function() {
+                            el.textContent = this.targets()[0].val.toFixed(decimals);
+                        }
+                    });
+                }
+            });
+        });
+
+        /* ─── MARQUEE SCROLL SPEED ─── */
+        document.querySelectorAll('.marquee-strip').forEach(strip => {
+            gsap.to(strip, {
+                x: () => strip.classList.contains('marquee-reverse') ? 40 : -40,
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: strip,
+                    start: 'top bottom',
+                    end: 'bottom top',
+                    scrub: 0.3,
+                }
+            });
+        });
+
+        /* ─── TABLE ROW STAGGER ─── */
+        const tableRows = document.querySelectorAll('.engineering-table tbody tr');
+        gsap.from(tableRows, {
+            x: -40,
+            opacity: 0,
+            duration: 0.6,
+            stagger: 0.08,
+            ease: 'power3.out',
+            scrollTrigger: {
+                trigger: '.engineering-table',
+                start: 'top 80%',
+                toggleActions: 'play none none none',
+            }
+        });
+
+        /* ─── MAGNETIC BUTTONS ─── */
+        document.querySelectorAll('.magnetic').forEach(btn => {
+            btn.addEventListener('mousemove', (e) => {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                gsap.to(btn, { x: x * 0.3, y: y * 0.3, duration: 0.3, ease: 'power2.out' });
+            });
+            btn.addEventListener('mouseleave', () => {
+                gsap.to(btn, { x: 0, y: 0, duration: 0.5, ease: 'elastic.out(1, 0.4)' });
+            });
+        });
+
+        /* ─── MOBILE MENU ─── */
+        window.toggleMenu = function() {
+            document.getElementById('hamburger').classList.toggle('active');
+            document.getElementById('navLinks').classList.toggle('open');
+        };
+        window.closeMenu = function() {
+            document.getElementById('hamburger').classList.remove('active');
+            document.getElementById('navLinks').classList.remove('open');
+        };
+    });
     </script>
 </body>
 </html>
