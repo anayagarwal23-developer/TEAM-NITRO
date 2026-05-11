@@ -19,63 +19,49 @@
     body { background-color: #000; }
     nav { background: rgba(0, 0, 0, 0.85); border-bottom: 1px solid #333; }
     .nav-links a { color: #f5f5f7; }
-    .team-card, .jobs-sponsor-hero { background: #1c1c1e; border-color: #333; }
+    .team-card, .jobs-sponsor-hero, .engineering-table { background: #1c1c1e; border-color: #333; }
+    .engineering-table th { background: #2c2c2e; }
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
 body { background: var(--white); color: var(--text); font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
 
 /* NAVIGATION */
-nav { 
-    position: fixed; top: 0; width: 100%; height: 90px; 
-    background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(20px); 
-    z-index: 9999; display: flex; justify-content: center; 
-}
+nav { position: fixed; top: 0; width: 100%; height: 90px; background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(20px); z-index: 9999; display: flex; justify-content: center; }
 .nav-container { width: 90%; max-width: 1200px; display: flex; justify-content: space-between; align-items: center; }
 .nav-logo-ultra { height: 40px; width: auto; }
 .nav-links a { color: var(--text); text-decoration: none; font-size: 13px; margin-left: 30px; font-weight: 700; text-transform: uppercase; }
-.nav-cta { background: var(--navy); color: white !important; padding: 10px 20px; border-radius: 30px; }
 
-/* HERO (Padded for Nav) */
-.hero { 
-    min-height: 100vh; display: flex; align-items: center; justify-content: center; 
-    text-align: left; padding: 140px 5% 60px 5%; 
-}
+/* HERO */
+.hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: left; padding: 140px 5% 60px 5%; }
 .hero h1 { font-size: clamp(3.5rem, 10vw, 7.5rem); font-weight: 800; letter-spacing: -4px; line-height: 0.9; }
-.subtitle { font-family: var(--mono-font); font-size: 14px; opacity: 0.4; margin-top: 20px; letter-spacing: 2px; }
-
-/* TYPOGRAPHY */
-.mega-bold-text { font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 800; line-height: 1.05; letter-spacing: -3px; margin-bottom: 40px; }
-.large-para { font-size: 1.25rem; line-height: 1.6; max-width: 900px; margin-bottom: 40px; }
-.sapphire-title { font-size: 6rem; font-weight: 800; margin-bottom: 20px; letter-spacing: -3px; }
-.section-tag { font-size: 11px; color: var(--navy); text-transform: uppercase; letter-spacing: 5px; font-weight: 800; margin-bottom: 50px; display: block; opacity: 0.6; }
 
 /* LAYOUTS */
 .minimal-container { max-width: 1150px; margin: 0 auto; padding: 140px 40px; }
 .split-layout-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 80px; align-items: start; }
+.mega-bold-text { font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 800; line-height: 1.05; letter-spacing: -3px; margin-bottom: 40px; }
 
-/* PRODUCT DNA BUBBLE */
-.pink-dna-bubble { 
-    background: var(--pink); color: white; 
-    padding: 50px; border-radius: 40px; 
-    box-shadow: 0 20px 40px rgba(255, 20, 147, 0.15);
-}
+/* ENGINEERING TABLE */
+.table-container { border-radius: 20px; border: 1px solid #eee; overflow: hidden; margin-top: 30px; }
+.engineering-table { width: 100%; border-collapse: collapse; background: white; }
+.engineering-table th { background: #f5f5f7; padding: 25px; text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--navy); }
+.engineering-table td { padding: 25px; border-bottom: 1px solid #f5f5f5; font-size: 15px; }
+
+/* PINK DNA BUBBLE */
+.pink-dna-bubble { background: var(--pink); color: white; padding: 50px; border-radius: 40px; box-shadow: 0 20px 40px rgba(255, 20, 147, 0.15); }
 .pink-dna-bubble h3 { font-size: 1.6rem; font-weight: 800; margin-bottom: 20px; border-bottom: 2px solid rgba(255,255,255,0.3); padding-bottom: 10px; }
-.pink-dna-bubble ul { list-style: none; }
 .pink-dna-bubble li { padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,0.2); font-size: 16px; display: flex; justify-content: space-between; }
-.dna-label { font-weight: 800; opacity: 0.8; }
 
 /* TEAM GRID */
 .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; margin-top: 50px; }
-.team-card { background: white; padding: 60px 45px; border-radius: 50px; border: 1px solid #eee; transition: 0.3s ease; }
+.team-card { background: white; padding: 60px 45px; border-radius: 50px; border: 1px solid #eee; }
 .card-num-highlight { font-family: var(--mono-font); font-size: 16px; font-weight: 700; color: #ccc; margin-bottom: 25px; }
 .member-name-big { font-size: 2rem; font-weight: 800; margin-bottom: 10px; }
 
 /* SPONSORS */
 .jobs-sponsor-hero { background: white; padding: 60px; border-radius: 40px; display: flex; justify-content: space-between; align-items: center; border: 1px solid #eee; position: relative; overflow: hidden; margin-bottom: 25px; }
 .sponsor-bg-title { position: absolute; left: 30px; font-size: 9rem; font-weight: 900; opacity: 0.03; color: var(--dark-navy); pointer-events: none; white-space: nowrap; }
-.sponsor-amount-big { font-size: 2.5rem; font-weight: 800; color: var(--pink); font-family: var(--mono-font); }
+.sponsor-amount-big { font-size: 2.5rem; font-weight: 800; color: var(--pink); font-family: var(--mono-font); position: relative; z-index: 2; }
 
 /* FOOTER */
 .black-footer { background: #000; color: #fff; padding: 100px 0; }
@@ -88,4 +74,4 @@ nav {
 .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s all ease; }
 .reveal.active { opacity: 1; transform: translateY(0); }
 
-@media (max-width: 900px) { .split-layout-grid, .team-grid { grid-template-columns: 1fr; } }
+@media (max-width: 900px) { .split-layout-grid, .team-grid { grid-template-columns: 1fr; } .jobs-sponsor-hero { flex-direction: column; text-align: center; gap: 30px; } }
