@@ -21,23 +21,23 @@ nav { position: fixed; top: 0; width: 100%; height: 110px; background: rgba(255,
 
 /* TYPOGRAPHY */
 .mega-bold-text { font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 800; line-height: 1.05; letter-spacing: -3px; margin-bottom: 40px; }
-.large-para { font-size: 1.2rem; line-height: 1.6; max-width: 800px; margin-bottom: 40px; }
+.large-para { font-size: 1.25rem; line-height: 1.6; max-width: 900px; margin-bottom: 40px; }
 .hero h1 { font-size: clamp(3rem, 8vw, 7rem); font-weight: 800; letter-spacing: -3px; line-height: 0.9; }
 .section-tag { font-size: 11px; color: var(--navy); text-transform: uppercase; letter-spacing: 5px; font-weight: 800; margin-bottom: 50px; display: block; opacity: 0.6; }
 
 /* LAYOUTS */
 .minimal-container { max-width: 1150px; margin: 0 auto; padding: 140px 40px; }
-.split-layout-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 100px; align-items: start; }
+.split-layout-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 80px; align-items: stretch; }
 .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
-.team-card { background: white; padding: 40px; border-radius: 30px; border: 1px solid #eee; }
+.team-card { background: white; padding: 60px 45px; border-radius: 50px; border: 1px solid #eee; transition: 0.3s; }
+.card-num-highlight { font-family: var(--mono-font); font-size: 16px; font-weight: 700; color: #ccc; margin-bottom: 25px; }
+.member-name-big { font-size: 2rem; font-weight: 800; margin-bottom: 10px; }
 
-/* PRODUCT DNA */
-.pink-dna-bubble { background: var(--pink); color: white; padding: 50px; border-radius: 40px; margin-top: 30px; }
-.pink-dna-bubble h3 { font-size: 1.5rem; text-transform: uppercase; margin-bottom: 25px; border-bottom: 2px solid rgba(255,255,255,0.3); padding-bottom: 10px; }
-.pink-dna-bubble ul { list-style: none; }
+/* DNA BUBBLES */
+.pink-dna-bubble { background: var(--pink); color: white; padding: 50px; border-radius: 40px; box-shadow: 0 20px 40px rgba(255, 20, 147, 0.15); }
+.pink-dna-bubble h3 { font-size: 1.6rem; font-weight: 800; margin-bottom: 20px; text-transform: uppercase; border-bottom: 2px solid rgba(255,255,255,0.3); padding-bottom: 10px; }
 .pink-dna-bubble li { padding: 15px 0; border-bottom: 1px solid rgba(255,255,255,0.2); font-size: 16px; display: flex; justify-content: space-between; }
 .dna-label { font-weight: 800; opacity: 0.8; }
-.sapphire-title { font-size: 6rem; font-weight: 800; margin-bottom: 20px; letter-spacing: -3px; }
 
 /* SPONSORS */
 .sponsor-amount-big { font-size: 2.5rem; font-weight: 800; color: var(--pink); font-family: var(--mono-font); }
@@ -55,7 +55,4 @@ nav { position: fixed; top: 0; width: 100%; height: 110px; background: rgba(255,
 .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s all ease; }
 .reveal.active { opacity: 1; transform: translateY(0); }
 
-@media (max-width: 900px) {
-    .split-layout-grid, .team-grid { grid-template-columns: 1fr; }
-    .jobs-sponsor-hero { flex-direction: column; text-align: center; gap: 30px; }
-}
+@media (max-width: 900px) { .split-layout-grid, .team-grid { grid-template-columns: 1fr; } }
