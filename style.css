@@ -1,3 +1,7 @@
+/* TEAM N!TRO | Master Stylesheet 2026
+    Aesthetic: Industrial Minimalism / Jobs-Style
+*/
+
 :root {
     --pink: #ff1493;
     --navy: #000080;
@@ -25,10 +29,10 @@ body {
     font-family: 'Inter', sans-serif; 
     line-height: 1.6; 
     -webkit-font-smoothing: antialiased; 
-    transition: background-color 0.3s, color 0.3s; 
+    overflow-x: hidden;
 }
 
-/* --- ANIMATIONS --- */
+/* --- REVEAL ANIMATIONS --- */
 .reveal { 
     opacity: 0; 
     transform: translateY(30px); 
@@ -52,7 +56,6 @@ nav {
     display: flex; 
     justify-content: center; 
     border-bottom: 1px solid rgba(0,0,0,0.05); 
-    transition: background 0.3s; 
 }
 
 .nav-container { 
@@ -63,25 +66,18 @@ nav {
     align-items: center; 
 }
 
-/* Fix for the secret button click area */
 .logo-secret-link {
-    display: inline-block;
-    text-decoration: none;
+    display: block;
     cursor: pointer;
-    z-index: 1001;
-    transition: transform 0.2s ease;
+    transition: transform 0.3s ease;
 }
 
 .logo-secret-link:hover {
     transform: scale(1.05);
 }
 
-.logo-secret-link:active {
-    transform: scale(0.95);
-}
-
 .nav-logo-ultra { 
-    height: 60px; 
+    height: 50px; 
     width: auto; 
     display: block; 
 }
@@ -121,9 +117,8 @@ nav {
 .hero h1 { 
     font-size: clamp(2.5rem, 8vw, 6.5rem); 
     font-weight: 800; 
-    letter-spacing: -3px; 
-    line-height: 1; 
-    margin-bottom: 20px; 
+    letter-spacing: -4px; 
+    line-height: 0.9; 
 }
 
 .hero-tag { 
@@ -139,15 +134,13 @@ nav {
 .subtitle { 
     font-family: var(--mono-font); 
     font-size: 14px; 
-    opacity: 0.6; 
+    opacity: 0.5; 
     letter-spacing: 2px; 
+    margin-top: 20px;
 }
 
-/* --- LAYOUT SECTIONS --- */
-.section { 
-    width: 100%; 
-}
-
+/* --- SECTION LAYOUTS --- */
+.section { width: 100%; }
 .white-bg { background: var(--white); }
 .light-bg { background: var(--light-grey); }
 .dark-navy-bg { background: var(--dark-navy); color: white; }
@@ -172,11 +165,9 @@ nav {
     font-size: clamp(2rem, 5vw, 3.5rem); 
     font-weight: 700; 
     line-height: 1.1; 
-    margin-bottom: 40px; 
     letter-spacing: -2px; 
 }
 
-/* --- GENESIS FLOW --- */
 .mega-minimal-text { 
     font-size: clamp(2.5rem, 6vw, 4.5rem); 
     font-weight: 800; 
@@ -185,15 +176,44 @@ nav {
     margin-bottom: 60px; 
 }
 
-.evo-step { 
-    margin-bottom: 40px; 
-    border-left: 2px solid var(--light-grey); 
-    padding-left: 30px; 
+/* --- PHILOSOPHY & PRODUCT SPLIT --- */
+.philosophy-jobs-layout { 
+    display: grid; 
+    grid-template-columns: 1.2fr 1fr; 
+    gap: 80px; 
+    align-items: start; 
 }
 
-.evo-step p { 
-    font-size: 1.2rem; 
-    color: #515154; 
+.jobs-mega-text { 
+    font-size: clamp(2rem, 4vw, 3.5rem); 
+    font-weight: 800; 
+    line-height: 1.1; 
+    letter-spacing: -2px; 
+}
+
+/* --- PINK DNA BUBBLE --- */
+.pink-dna-bubble { 
+    background: var(--pink); 
+    color: white; 
+    padding: 50px 40px; 
+    border-radius: 40px; 
+    margin-top: 40px; 
+    box-shadow: 0 30px 60px rgba(255, 20, 147, 0.25);
+}
+
+.pink-dna-bubble h3 { 
+    font-size: 1.5rem; 
+    margin-bottom: 20px; 
+    text-transform: uppercase; 
+    letter-spacing: 2px; 
+}
+
+.pink-dna-bubble ul { list-style: none; }
+.pink-dna-bubble li { 
+    margin-bottom: 12px; 
+    border-bottom: 1px solid rgba(255,255,255,0.2); 
+    padding-bottom: 8px; 
+    font-size: 1.1rem;
 }
 
 /* --- TEAM GRID --- */
@@ -201,82 +221,118 @@ nav {
     display: grid; 
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
     gap: 30px; 
+    margin-top: 50px;
 }
 
 .team-card { 
     background: white; 
-    padding: 60px 40px; 
+    padding: 50px 40px; 
     border-radius: 40px; 
     border: 1px solid #e5e5e7; 
-    transition: 0.3s; 
+    transition: 0.3s ease; 
 }
 
 .team-card:hover { 
-    transform: translateY(-5px); 
+    transform: translateY(-10px); 
+    border-color: var(--pink);
 }
 
 .card-num { 
     font-family: var(--mono-font); 
-    color: #ccc; 
     font-size: 12px; 
+    color: #ccc; 
     margin-bottom: 20px; 
+}
+
+/* --- MANUFACTURING GRID --- */
+.manufacturing-grid { 
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 30px; 
+    margin-top: 50px; 
+}
+
+.m-card { 
+    background: white; 
+    padding: 40px; 
+    border-radius: 30px; 
+    border: 1px solid #eee; 
+}
+
+.m-num { 
+    font-family: var(--mono-font); 
+    font-size: 14px; 
+    color: var(--pink); 
+    font-weight: 800;
     display: block; 
+    margin-bottom: 20px; 
 }
 
-.member-name { 
-    font-size: 1.8rem; 
-    font-weight: 800; 
-    margin-bottom: 5px; 
+/* --- ENGINEERING TABLE --- */
+.table-container { 
+    overflow-x: auto; 
+    margin-top: 50px; 
+    border-radius: 30px; 
+    border: 1px solid #eee; 
 }
 
-.role { 
-    font-size: 0.9rem; 
-    font-weight: 700; 
+.engineering-table { 
+    width: 100%; 
+    border-collapse: collapse; 
+    background: white; 
+}
+
+.engineering-table th { 
+    background: #f5f5f7; 
+    padding: 25px; 
+    text-align: left; 
+    font-size: 12px; 
     text-transform: uppercase; 
-    display: block; 
-    margin-bottom: 20px; 
+    letter-spacing: 2px;
 }
 
-/* --- SPONSOR CARDS --- */
+.engineering-table td { 
+    padding: 25px; 
+    border-bottom: 1px solid #f5f5f5; 
+    font-size: 15px; 
+}
+
+/* --- ENTERPRISE SPONSOR CARDS --- */
+.sponsorship-showcase { 
+    display: grid; 
+    gap: 25px; 
+}
+
 .jobs-sponsor-hero { 
     background: white; 
-    padding: 60px 80px; 
+    padding: 60px; 
     border-radius: 50px; 
     display: flex; 
     justify-content: space-between; 
     align-items: center; 
-    border: 1px solid #e5e5e7; 
-    margin-bottom: 30px; 
+    border: 1px solid #eee; 
     position: relative; 
     overflow: hidden; 
-    transition: 0.3s; 
 }
 
 .sponsor-bg-title { 
     position: absolute; 
-    font-size: 14rem; 
-    font-weight: 800; 
-    color: var(--dark-navy); 
+    left: 40px; 
+    font-size: 8rem; 
+    font-weight: 900; 
+    color: var(--dark-navy);
     opacity: 0.03; 
-    top: 50%; 
-    left: 5%; 
-    transform: translateY(-50%) rotate(-5deg); 
-    z-index: 1; 
-    white-space: nowrap; 
+    pointer-events: none; 
+    white-space: nowrap;
 }
 
-.sponsor-info { 
-    flex: 0 1 60%; 
-    position: relative; 
-    z-index: 2; 
-}
-
+.sponsor-info { position: relative; z-index: 2; }
 .sponsor-amount { 
-    font-size: clamp(1.8rem, 4vw, 3.5rem); 
+    font-size: 2rem; 
     font-weight: 800; 
     color: var(--pink); 
-    z-index: 2; 
     position: relative; 
+    z-index: 2; 
 }
 
 /* --- FOOTER --- */
@@ -288,17 +344,18 @@ footer {
 }
 
 .footer-email { 
-    font-size: clamp(1.5rem, 5vw, 3rem); 
+    font-size: clamp(1.5rem, 5vw, 3.5rem); 
     font-weight: 800; 
     color: white; 
     text-decoration: none; 
 }
 
-/* --- UTILS --- */
+/* --- UTILITIES --- */
 .pink { color: var(--pink) !important; }
 .navy { color: var(--navy) !important; }
+.white { color: white !important; }
 
-/* --- AUTOMATIC DARK MODE --- */
+/* --- DARK MODE (Automatic) --- */
 @media (prefers-color-scheme: dark) {
     :root {
         --white: #0a0a0a;
@@ -307,29 +364,19 @@ footer {
         --navy: #5e5ce6;
     }
     body { background-color: #000; }
-    nav { 
-        background: rgba(0, 0, 0, 0.8); 
-        border-bottom: 1px solid rgba(255,255,255,0.1); 
-    }
+    nav { background: rgba(0, 0, 0, 0.8); border-bottom: 1px solid #333; }
     .nav-links a { color: #f5f5f7; }
-    .evo-step { border-left: 2px solid #333; }
-    .evo-step p { color: #a1a1a6; }
-    .team-card, .jobs-sponsor-hero { 
+    .team-card, .jobs-sponsor-hero, .m-card, .engineering-table { 
         background: #1c1c1e; 
-        border: 1px solid #333; 
+        border-color: #333; 
     }
-    .white-bg { background: #000; }
-    .sponsor-bg-title { color: #fff; opacity: 0.05; }
+    .engineering-table th { background: #2c2c2e; }
+    .sponsor-bg-title { color: white; opacity: 0.05; }
 }
 
 /* --- MOBILE RESPONSIVENESS --- */
 @media (max-width: 992px) {
-    .nav-container { width: 95%; }
-    .nav-links a { margin-left: 15px; font-size: 11px; }
-    .jobs-sponsor-hero { 
-        flex-direction: column; 
-        text-align: center; 
-        padding: 60px 30px; 
-    }
-    .sponsor-amount { margin-top: 30px; }
+    .philosophy-jobs-layout { grid-template-columns: 1fr; }
+    .manufacturing-grid { grid-template-columns: 1fr; }
+    .jobs-sponsor-hero { flex-direction: column; text-align: center; gap: 30px; }
 }
