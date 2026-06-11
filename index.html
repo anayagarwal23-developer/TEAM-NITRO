@@ -671,318 +671,140 @@
     </script>
 <script>
 document.addEventListener("DOMContentLoaded", () => {
+    const oldColours = document.getElementById("team-colours");
+    if (oldColours) oldColours.remove();
 
-    /* ----------------------------------
-       FORCE ORB!TUS NAMING
-    ---------------------------------- */
+    const designSection = document.getElementById("design");
 
-    document.querySelectorAll("*").forEach(el => {
-
-        if(el.childNodes.length === 1 &&
-           el.childNodes[0].nodeType === 3){
-
-            el.textContent =
-            el.textContent
-            .replaceAll("Sapphire","ORB!TUS")
-            .replaceAll("SAPPHIRE","ORB!TUS")
-            .replaceAll("SAPPH!RE","ORB!TUS");
-
-        }
-
-    });
-
-    /* ----------------------------------
-       REMOVE LOGO PACK LINK
-    ---------------------------------- */
-
-    document.querySelectorAll("#navLinks a").forEach(link => {
-
-        if(
-            link.textContent.trim()
-            .toLowerCase()
-            .includes("logo")
-        ){
-            link.remove();
-        }
-
-    });
-
-    /* ----------------------------------
-       ADD COLOURS NAV BUTTON
-    ---------------------------------- */
-
-    const navLinks =
-    document.getElementById("navLinks");
-
-    if(
-        navLinks &&
-        !document.querySelector(
-            'a[href="#team-colours"]'
-        )
-    ){
-
-        const coloursLink =
-        document.createElement("a");
-
-        coloursLink.href =
-        "#team-colours";
-
-        coloursLink.textContent =
-        "Colours";
-
-        const orbitLink =
-        navLinks.querySelector(
-        'a[href="#design"]'
-        );
-
-        if(orbitLink){
-            navLinks.insertBefore(
-                coloursLink,
-                orbitLink
-            );
-        }
-
-    }
-
-    /* ----------------------------------
-       TEAM COLOURS SECTION
-    ---------------------------------- */
-
-    if(
-        !document.getElementById(
-            "team-colours"
-        )
-    ){
-
-        const designSection =
-        document.getElementById(
-            "design"
-        );
-
-        const section =
-        document.createElement(
-            "section"
-        );
-
-        section.id =
-        "team-colours";
-
-        section.className =
-        "section dark-section";
-
-        section.innerHTML = `
-
+    const section = document.createElement("section");
+    section.id = "team-colours";
+    section.className = "section dark-section";
+    section.innerHTML = `
         <div class="minimal-container">
+            <h2 class="section-tag">03. Team Colours</h2>
 
-            <h2 class="section-tag">
-                03. Team Colours
-            </h2>
-
-            <p class="large-text">
-                Every colour serves a
-                <span class="pink">
-                purpose.
-                </span>
+            <p class="large-text colour-heading">
+                Every colour serves a <span class="pink">purpose.</span>
             </p>
 
             <div class="colour-story-grid">
-
                 <div class="colour-card">
-
-                    <div class="colour-swatch diva-pink"></div>
-
+                    <div class="colour-swatch" style="background:#F04F6A;"></div>
                     <h4>Diva Pink</h4>
-
-                    <p>
-                    Represents speed,
-                    ambition and energy.
-                    </p>
-
+                    <p>Represents speed, ambition and energy.</p>
                     <span>#F04F6A</span>
-
                 </div>
 
                 <div class="colour-card">
-
-                    <div class="colour-swatch nitro-navy"></div>
-
+                    <div class="colour-swatch navy-swatch"></div>
                     <h4>Navy</h4>
-
-                    <p>
-                    Represents precision,
-                    engineering and control.
-                    </p>
-
+                    <p>Represents precision, engineering and control.</p>
                     <span>#0B132B</span>
-
                 </div>
 
                 <div class="colour-card">
-
-                    <div class="colour-swatch vanilla"></div>
-
+                    <div class="colour-swatch" style="background:#FFFFE1;"></div>
                     <h4>Vanilla</h4>
-
-                    <p>
-                    Represents clarity,
-                    balance and contrast.
-                    </p>
-
+                    <p>Represents clarity, balance and contrast.</p>
                     <span>#FFFFE1</span>
-
                 </div>
 
                 <div class="colour-card">
-
-                    <div class="colour-swatch mint"></div>
-
+                    <div class="colour-swatch" style="background:#B7F1E6;"></div>
                     <h4>Grape Mint</h4>
-
-                    <p>
-                    Represents innovation
-                    and future thinking.
-                    </p>
-
+                    <p>Represents innovation and future thinking.</p>
                     <span>#B7F1E6</span>
-
                 </div>
-
             </div>
-
         </div>
-
-        `;
-
-        if(designSection){
-
-            designSection.parentNode
-            .insertBefore(
-                section,
-                designSection
-            );
-
-        }
-
-    }
-
-    /* ----------------------------------
-       COLOUR SECTION CSS
-    ---------------------------------- */
-
-    const style =
-    document.createElement("style");
-
-    style.innerHTML = `
-
-    .colour-story-grid{
-
-        display:grid;
-
-        grid-template-columns:
-        repeat(auto-fit,minmax(260px,1fr));
-
-        gap:24px;
-
-        margin-top:50px;
-
-    }
-
-    .colour-card{
-
-        padding:28px;
-
-        border-radius:24px;
-
-        background:
-        rgba(255,255,255,.03);
-
-        border:
-        1px solid rgba(255,255,255,.08);
-
-        text-align:center;
-
-        backdrop-filter:
-        blur(20px);
-
-    }
-
-    .colour-swatch{
-
-        width:100%;
-
-        height:120px;
-
-        border-radius:18px;
-
-        margin-bottom:20px;
-
-    }
-
-    .diva-pink{
-        background:#F04F6A;
-    }
-
-    .nitro-navy{
-        background:#0B132B;
-        border:1px solid rgba(255,255,255,.1);
-    }
-
-    .vanilla{
-        background:#FFFFE1;
-    }
-
-    .mint{
-        background:#B7F1E6;
-    }
-
-    .colour-card h4{
-
-        margin-bottom:12px;
-
-        text-transform:uppercase;
-
-        letter-spacing:1px;
-
-    }
-
-    .colour-card p{
-
-        color:
-        rgba(255,255,255,.7);
-
-        line-height:1.7;
-
-    }
-
-    .colour-card span{
-
-        display:block;
-
-        margin-top:12px;
-
-        color:#f04f6a;
-
-        font-family:
-        'JetBrains Mono',
-        monospace;
-
-    }
-
-    @media(max-width:768px){
-
-        .colour-story-grid{
-
-            grid-template-columns:
-            1fr;
-
-        }
-
-    }
-
     `;
 
-    document.head.appendChild(style);
+    if (designSection) {
+        designSection.parentNode.insertBefore(section, designSection);
+    }
 
+    const style = document.createElement("style");
+    style.textContent = `
+        #team-colours .colour-heading {
+            max-width: 780px;
+            margin-bottom: 55px;
+        }
+
+        #team-colours .colour-story-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 22px;
+            align-items: stretch;
+        }
+
+        #team-colours .colour-card {
+            min-height: 430px;
+            padding: 26px;
+            border-radius: 28px;
+            background: rgba(255,255,255,0.035);
+            border: 1px solid rgba(255,255,255,0.08);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            text-align: center;
+        }
+
+        #team-colours .colour-swatch {
+            width: 100%;
+            height: 150px;
+            border-radius: 22px;
+            margin-bottom: 28px;
+            border: 1px solid rgba(255,255,255,0.12);
+        }
+
+        #team-colours .navy-swatch {
+            background: #0B132B;
+            box-shadow: inset 0 0 0 1px rgba(183,241,230,0.16);
+        }
+
+        #team-colours .colour-card h4 {
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 16px;
+            color: white;
+        }
+
+        #team-colours .colour-card p {
+            color: rgba(255,255,255,0.66);
+            line-height: 1.55;
+            max-width: 220px;
+            margin: 0 auto;
+        }
+
+        #team-colours .colour-card span {
+            display: block;
+            margin-top: 22px;
+            color: #F04F6A;
+            font-family: 'JetBrains Mono', monospace;
+            letter-spacing: 2px;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 1000px) {
+            #team-colours .colour-story-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            #team-colours .colour-story-grid {
+                grid-template-columns: 1fr;
+            }
+
+            #team-colours .colour-card {
+                min-height: auto;
+            }
+        }
+    `;
+    document.head.appendChild(style);
 });
 </script>
 </body>
