@@ -766,79 +766,82 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    /* ---------------------------
-       ADD LOGO PACK SECTION
-    --------------------------- */
+<section id="team-colours" class="section dark-section">
 
-    if(!document.getElementById("logo-pack")){
+    <div class="minimal-container">
 
-        const enterprise =
-            document.getElementById("enterprise");
+        <h2 class="section-tag">
+            06. Team Colours
+        </h2>
 
-        const section =
-            document.createElement("section");
+        <p class="large-text split-text">
+            Every colour serves a
+            <span class="pink">purpose.</span>
+        </p>
 
-        section.id = "logo-pack";
-        section.className = "section dark-section";
+        <div class="colour-story-grid">
 
-        section.innerHTML = `
-        <div class="minimal-container">
+            <div class="colour-card">
 
-            <h2 class="section-tag">
-                06. Logo Pack
-            </h2>
+                <div class="colour-swatch diva-pink"></div>
 
-            <p class="large-text">
-                Built from speed.
-                Styled by
-                <span class="pink">identity.</span>
-            </p>
+                <h4>Diva Pink</h4>
 
-            <div class="logo-pack-grid">
+                <p>
+                    Represents speed, ambition and the relentless energy that drives Team N!TRO forward.
+                </p>
 
-                <div class="glass-card logo-card">
-                    <div class="card-num">01</div>
-                    <h4>Primary Logo</h4>
-                    <p>Main Team N!TRO wordmark used across all official branding.</p>
-                </div>
+                <span>#F04F6A</span>
 
-                <div class="glass-card logo-card">
-                    <div class="card-num">02</div>
-                    <h4>Primary Emblem</h4>
-                    <p>The compact N! symbol used on uniforms, social media and graphics.</p>
-                </div>
+            </div>
 
-                <div class="glass-card logo-card">
-                    <div class="card-num">03</div>
-                    <h4>Colour System</h4>
-                    <p>Diva Pink, Navy, Vanilla and Grape Mint define the N!TRO identity.</p>
-                </div>
+            <div class="colour-card">
 
-                <div class="glass-card logo-card">
-                    <div class="card-num">04</div>
-                    <h4>Motion Language</h4>
-                    <p>Inspired by racing lines, airflow and controlled movement.</p>
-                </div>
+                <div class="colour-swatch nitro-navy"></div>
 
-            </div>
+                <h4>Navy</h4>
 
-        </div>
-        `;
+                <p>
+                    Symbolises precision engineering, discipline and technical excellence.
+                </p>
 
-        enterprise.parentNode.insertBefore(
-            section,
-            enterprise
-        );
+                <span>#0B132B</span>
 
-        const enterpriseTag =
-            document.querySelector("#enterprise .section-tag");
+            </div>
 
-        if(enterpriseTag){
-            enterpriseTag.textContent =
-                "07. Enterprise";
-        }
-    }
+            <div class="colour-card">
 
+                <div class="colour-swatch vanilla"></div>
+
+                <h4>Vanilla</h4>
+
+                <p>
+                    Provides clarity, balance and contrast throughout the N!TRO visual system.
+                </p>
+
+                <span>#FFFFE1</span>
+
+            </div>
+
+            <div class="colour-card">
+
+                <div class="colour-swatch mint"></div>
+
+                <h4>Grape Mint</h4>
+
+                <p>
+                    Reflects innovation, fresh thinking and the future-focused mindset of our team.
+                </p>
+
+                <span>#B7F1E6</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
     /* ---------------------------
        NAV BUTTON
     --------------------------- */
