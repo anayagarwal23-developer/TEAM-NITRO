@@ -672,233 +672,311 @@
 <script>
 document.addEventListener("DOMContentLoaded", () => {
 
-    /* ---------------------------
-       UPDATE NAV TEXT
-    --------------------------- */
+    /* ----------------------------------
+       FORCE ORB!TUS NAMING
+    ---------------------------------- */
+
+    document.querySelectorAll("*").forEach(el => {
+
+        if(el.childNodes.length === 1 &&
+           el.childNodes[0].nodeType === 3){
+
+            el.textContent =
+            el.textContent
+            .replaceAll("Sapphire","ORB!TUS")
+            .replaceAll("SAPPHIRE","ORB!TUS")
+            .replaceAll("SAPPH!RE","ORB!TUS");
+
+        }
+
+    });
+
+    /* ----------------------------------
+       REMOVE LOGO PACK LINK
+    ---------------------------------- */
 
     document.querySelectorAll("#navLinks a").forEach(link => {
-        if(link.textContent.trim() === "Sapphire"){
-            link.textContent = "ORB!TUS";
+
+        if(
+            link.textContent.trim()
+            .toLowerCase()
+            .includes("logo")
+        ){
+            link.remove();
         }
+
     });
 
-    /* ---------------------------
-       UPDATE PRODUCT SECTION
-    --------------------------- */
+    /* ----------------------------------
+       ADD COLOURS NAV BUTTON
+    ---------------------------------- */
 
-    const productTitle = document.querySelector(".sapphire-title");
-    if(productTitle){
-        productTitle.textContent = "ORB!TUS.";
-    }
-
-    document.querySelectorAll(".marquee-track span").forEach(span => {
-        span.innerHTML = span.innerHTML.replace("SAPPHIRE 2026","ORB!TUS 2026");
-    });
-
-    /* ---------------------------
-       UPDATE WEIGHTS
-    --------------------------- */
-
-    document.querySelectorAll(".counter").forEach(counter => {
-        if(counter.dataset.target === "50.0"){
-            counter.dataset.target = "60.0";
-        }
-    });
-
-    document.querySelectorAll("li,strong,p,td,span").forEach(el => {
-        if(el.innerHTML.includes("50.0g")){
-            el.innerHTML = el.innerHTML.replaceAll("50.0g","60.0g");
-        }
-    });
-
-    /* ---------------------------
-       TEAM ROLE UPDATES
-    --------------------------- */
-
-    document.querySelectorAll(".team-card").forEach(card => {
-
-        const name =
-            card.querySelector(".member-name")?.textContent.trim();
-
-        const role = card.querySelector(".role");
-        const desc = card.querySelector("p");
-
-        if(!role || !desc) return;
-
-        if(name === "Aryeh"){
-            role.textContent =
-                "Lead Design & Manufacturing Engineer";
-
-            desc.textContent =
-                "Leads CAD development, testing, manufacturing and technical innovation.";
-        }
-
-        if(name === "Aariv"){
-            role.textContent =
-                "Enterprise & Marketing Manager";
-
-            desc.textContent =
-                "Leads enterprise strategy, sponsor communication and marketing initiatives.";
-        }
-
-        if(name === "Rishaan"){
-            role.textContent =
-                "Sponsorship Manager";
-
-            desc.textContent =
-                "Builds industry partnerships and secures resources for team growth.";
-        }
-
-        if(name === "Vansh"){
-            role.textContent =
-                "Project Manager";
-
-            desc.textContent =
-                "Coordinates timelines, documentation and project delivery.";
-        }
-
-        if(name === "Aryavardhan"){
-            role.textContent =
-                "Operations & Team Support";
-
-            desc.textContent =
-                "Supports logistics, operations and competition preparation.";
-        }
-    });
-
-<section id="team-colours" class="section dark-section">
-
-    <div class="minimal-container">
-
-        <h2 class="section-tag">
-            06. Team Colours
-        </h2>
-
-        <p class="large-text split-text">
-            Every colour serves a
-            <span class="pink">purpose.</span>
-        </p>
-
-        <div class="colour-story-grid">
-
-            <div class="colour-card">
-
-                <div class="colour-swatch diva-pink"></div>
-
-                <h4>Diva Pink</h4>
-
-                <p>
-                    Represents speed, ambition and the relentless energy that drives Team N!TRO forward.
-                </p>
-
-                <span>#F04F6A</span>
-
-            </div>
-
-            <div class="colour-card">
-
-                <div class="colour-swatch nitro-navy"></div>
-
-                <h4>Navy</h4>
-
-                <p>
-                    Symbolises precision engineering, discipline and technical excellence.
-                </p>
-
-                <span>#0B132B</span>
-
-            </div>
-
-            <div class="colour-card">
-
-                <div class="colour-swatch vanilla"></div>
-
-                <h4>Vanilla</h4>
-
-                <p>
-                    Provides clarity, balance and contrast throughout the N!TRO visual system.
-                </p>
-
-                <span>#FFFFE1</span>
-
-            </div>
-
-            <div class="colour-card">
-
-                <div class="colour-swatch mint"></div>
-
-                <h4>Grape Mint</h4>
-
-                <p>
-                    Reflects innovation, fresh thinking and the future-focused mindset of our team.
-                </p>
-
-                <span>#B7F1E6</span>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-    /* ---------------------------
-       NAV BUTTON
-    --------------------------- */
-
-    const nav =
-        document.getElementById("navLinks");
+    const navLinks =
+    document.getElementById("navLinks");
 
     if(
-        nav &&
-        !document.querySelector('a[href="#logo-pack"]')
+        navLinks &&
+        !document.querySelector(
+            'a[href="#team-colours"]'
+        )
     ){
 
-        const link =
-            document.createElement("a");
+        const coloursLink =
+        document.createElement("a");
 
-        link.href = "#logo-pack";
-        link.textContent = "Logo Pack";
+        coloursLink.href =
+        "#team-colours";
 
-        const partnerLink =
-            nav.querySelector('a[href="#enterprise"]');
+        coloursLink.textContent =
+        "Colours";
 
-        if(partnerLink){
-            nav.insertBefore(link, partnerLink);
+        const orbitLink =
+        navLinks.querySelector(
+        'a[href="#design"]'
+        );
+
+        if(orbitLink){
+            navLinks.insertBefore(
+                coloursLink,
+                orbitLink
+            );
         }
+
     }
 
-    /* ---------------------------
-       STYLES
-    --------------------------- */
+    /* ----------------------------------
+       TEAM COLOURS SECTION
+    ---------------------------------- */
+
+    if(
+        !document.getElementById(
+            "team-colours"
+        )
+    ){
+
+        const designSection =
+        document.getElementById(
+            "design"
+        );
+
+        const section =
+        document.createElement(
+            "section"
+        );
+
+        section.id =
+        "team-colours";
+
+        section.className =
+        "section dark-section";
+
+        section.innerHTML = `
+
+        <div class="minimal-container">
+
+            <h2 class="section-tag">
+                03. Team Colours
+            </h2>
+
+            <p class="large-text">
+                Every colour serves a
+                <span class="pink">
+                purpose.
+                </span>
+            </p>
+
+            <div class="colour-story-grid">
+
+                <div class="colour-card">
+
+                    <div class="colour-swatch diva-pink"></div>
+
+                    <h4>Diva Pink</h4>
+
+                    <p>
+                    Represents speed,
+                    ambition and energy.
+                    </p>
+
+                    <span>#F04F6A</span>
+
+                </div>
+
+                <div class="colour-card">
+
+                    <div class="colour-swatch nitro-navy"></div>
+
+                    <h4>Navy</h4>
+
+                    <p>
+                    Represents precision,
+                    engineering and control.
+                    </p>
+
+                    <span>#0B132B</span>
+
+                </div>
+
+                <div class="colour-card">
+
+                    <div class="colour-swatch vanilla"></div>
+
+                    <h4>Vanilla</h4>
+
+                    <p>
+                    Represents clarity,
+                    balance and contrast.
+                    </p>
+
+                    <span>#FFFFE1</span>
+
+                </div>
+
+                <div class="colour-card">
+
+                    <div class="colour-swatch mint"></div>
+
+                    <h4>Grape Mint</h4>
+
+                    <p>
+                    Represents innovation
+                    and future thinking.
+                    </p>
+
+                    <span>#B7F1E6</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        `;
+
+        if(designSection){
+
+            designSection.parentNode
+            .insertBefore(
+                section,
+                designSection
+            );
+
+        }
+
+    }
+
+    /* ----------------------------------
+       COLOUR SECTION CSS
+    ---------------------------------- */
 
     const style =
-        document.createElement("style");
+    document.createElement("style");
 
-    style.textContent = `
+    style.innerHTML = `
 
-    .logo-pack-grid{
+    .colour-story-grid{
+
         display:grid;
+
         grid-template-columns:
         repeat(auto-fit,minmax(260px,1fr));
+
         gap:24px;
+
         margin-top:50px;
+
     }
 
-    .logo-card{
-        padding:32px;
+    .colour-card{
+
+        padding:28px;
+
+        border-radius:24px;
+
+        background:
+        rgba(255,255,255,.03);
+
+        border:
+        1px solid rgba(255,255,255,.08);
+
+        text-align:center;
+
+        backdrop-filter:
+        blur(20px);
+
     }
 
-    .logo-card h4{
+    .colour-swatch{
+
+        width:100%;
+
+        height:120px;
+
+        border-radius:18px;
+
+        margin-bottom:20px;
+
+    }
+
+    .diva-pink{
+        background:#F04F6A;
+    }
+
+    .nitro-navy{
+        background:#0B132B;
+        border:1px solid rgba(255,255,255,.1);
+    }
+
+    .vanilla{
+        background:#FFFFE1;
+    }
+
+    .mint{
+        background:#B7F1E6;
+    }
+
+    .colour-card h4{
+
         margin-bottom:12px;
-        font-size:1rem;
+
         text-transform:uppercase;
+
         letter-spacing:1px;
+
     }
 
-    .logo-card p{
-        color:rgba(255,255,255,.7);
+    .colour-card p{
+
+        color:
+        rgba(255,255,255,.7);
+
         line-height:1.7;
+
+    }
+
+    .colour-card span{
+
+        display:block;
+
+        margin-top:12px;
+
+        color:#f04f6a;
+
+        font-family:
+        'JetBrains Mono',
+        monospace;
+
+    }
+
+    @media(max-width:768px){
+
+        .colour-story-grid{
+
+            grid-template-columns:
+            1fr;
+
+        }
+
     }
 
     `;
