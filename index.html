@@ -669,5 +669,240 @@
         };
     });
     </script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    /* ---------------------------
+       UPDATE NAV TEXT
+    --------------------------- */
+
+    document.querySelectorAll("#navLinks a").forEach(link => {
+        if(link.textContent.trim() === "Sapphire"){
+            link.textContent = "ORB!TUS";
+        }
+    });
+
+    /* ---------------------------
+       UPDATE PRODUCT SECTION
+    --------------------------- */
+
+    const productTitle = document.querySelector(".sapphire-title");
+    if(productTitle){
+        productTitle.textContent = "ORB!TUS.";
+    }
+
+    document.querySelectorAll(".marquee-track span").forEach(span => {
+        span.innerHTML = span.innerHTML.replace("SAPPHIRE 2026","ORB!TUS 2026");
+    });
+
+    /* ---------------------------
+       UPDATE WEIGHTS
+    --------------------------- */
+
+    document.querySelectorAll(".counter").forEach(counter => {
+        if(counter.dataset.target === "50.0"){
+            counter.dataset.target = "60.0";
+        }
+    });
+
+    document.querySelectorAll("li,strong,p,td,span").forEach(el => {
+        if(el.innerHTML.includes("50.0g")){
+            el.innerHTML = el.innerHTML.replaceAll("50.0g","60.0g");
+        }
+    });
+
+    /* ---------------------------
+       TEAM ROLE UPDATES
+    --------------------------- */
+
+    document.querySelectorAll(".team-card").forEach(card => {
+
+        const name =
+            card.querySelector(".member-name")?.textContent.trim();
+
+        const role = card.querySelector(".role");
+        const desc = card.querySelector("p");
+
+        if(!role || !desc) return;
+
+        if(name === "Aryeh"){
+            role.textContent =
+                "Lead Design & Manufacturing Engineer";
+
+            desc.textContent =
+                "Leads CAD development, testing, manufacturing and technical innovation.";
+        }
+
+        if(name === "Aariv"){
+            role.textContent =
+                "Enterprise & Marketing Manager";
+
+            desc.textContent =
+                "Leads enterprise strategy, sponsor communication and marketing initiatives.";
+        }
+
+        if(name === "Rishaan"){
+            role.textContent =
+                "Sponsorship Manager";
+
+            desc.textContent =
+                "Builds industry partnerships and secures resources for team growth.";
+        }
+
+        if(name === "Vansh"){
+            role.textContent =
+                "Project Manager";
+
+            desc.textContent =
+                "Coordinates timelines, documentation and project delivery.";
+        }
+
+        if(name === "Aryavardhan"){
+            role.textContent =
+                "Operations & Team Support";
+
+            desc.textContent =
+                "Supports logistics, operations and competition preparation.";
+        }
+    });
+
+    /* ---------------------------
+       ADD LOGO PACK SECTION
+    --------------------------- */
+
+    if(!document.getElementById("logo-pack")){
+
+        const enterprise =
+            document.getElementById("enterprise");
+
+        const section =
+            document.createElement("section");
+
+        section.id = "logo-pack";
+        section.className = "section dark-section";
+
+        section.innerHTML = `
+        <div class="minimal-container">
+
+            <h2 class="section-tag">
+                06. Logo Pack
+            </h2>
+
+            <p class="large-text">
+                Built from speed.
+                Styled by
+                <span class="pink">identity.</span>
+            </p>
+
+            <div class="logo-pack-grid">
+
+                <div class="glass-card logo-card">
+                    <div class="card-num">01</div>
+                    <h4>Primary Logo</h4>
+                    <p>Main Team N!TRO wordmark used across all official branding.</p>
+                </div>
+
+                <div class="glass-card logo-card">
+                    <div class="card-num">02</div>
+                    <h4>Primary Emblem</h4>
+                    <p>The compact N! symbol used on uniforms, social media and graphics.</p>
+                </div>
+
+                <div class="glass-card logo-card">
+                    <div class="card-num">03</div>
+                    <h4>Colour System</h4>
+                    <p>Diva Pink, Navy, Vanilla and Grape Mint define the N!TRO identity.</p>
+                </div>
+
+                <div class="glass-card logo-card">
+                    <div class="card-num">04</div>
+                    <h4>Motion Language</h4>
+                    <p>Inspired by racing lines, airflow and controlled movement.</p>
+                </div>
+
+            </div>
+
+        </div>
+        `;
+
+        enterprise.parentNode.insertBefore(
+            section,
+            enterprise
+        );
+
+        const enterpriseTag =
+            document.querySelector("#enterprise .section-tag");
+
+        if(enterpriseTag){
+            enterpriseTag.textContent =
+                "07. Enterprise";
+        }
+    }
+
+    /* ---------------------------
+       NAV BUTTON
+    --------------------------- */
+
+    const nav =
+        document.getElementById("navLinks");
+
+    if(
+        nav &&
+        !document.querySelector('a[href="#logo-pack"]')
+    ){
+
+        const link =
+            document.createElement("a");
+
+        link.href = "#logo-pack";
+        link.textContent = "Logo Pack";
+
+        const partnerLink =
+            nav.querySelector('a[href="#enterprise"]');
+
+        if(partnerLink){
+            nav.insertBefore(link, partnerLink);
+        }
+    }
+
+    /* ---------------------------
+       STYLES
+    --------------------------- */
+
+    const style =
+        document.createElement("style");
+
+    style.textContent = `
+
+    .logo-pack-grid{
+        display:grid;
+        grid-template-columns:
+        repeat(auto-fit,minmax(260px,1fr));
+        gap:24px;
+        margin-top:50px;
+    }
+
+    .logo-card{
+        padding:32px;
+    }
+
+    .logo-card h4{
+        margin-bottom:12px;
+        font-size:1rem;
+        text-transform:uppercase;
+        letter-spacing:1px;
+    }
+
+    .logo-card p{
+        color:rgba(255,255,255,.7);
+        line-height:1.7;
+    }
+
+    `;
+
+    document.head.appendChild(style);
+
+});
+</script>
 </body>
 </html>
