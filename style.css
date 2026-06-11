@@ -888,3 +888,79 @@ footer::before {
     .pink-info-box { padding: 24px; }
     .jobs-sponsor-hero { padding: 32px 20px; }
 }
+/* Keep custom cursor visible */
+body,
+a,
+button,
+.magnetic,
+.nav-cta,
+.hamburger {
+    cursor: none !important;
+}
+
+/* Main cursor dot */
+.cursor-dot {
+    display: block !important;
+    width: 9px !important;
+    height: 9px !important;
+    background: var(--pink) !important;
+    border-radius: 50% !important;
+    box-shadow:
+        0 0 14px var(--pink),
+        0 0 32px rgba(255, 20, 147, 0.65) !important;
+}
+
+/* Cursor bar inspired by N!TRO exclamation */
+.cursor-ring {
+    display: block !important;
+    width: 4px !important;
+    height: 42px !important;
+    border: none !important;
+    border-radius: 999px !important;
+    background: linear-gradient(
+        180deg,
+        var(--pink-light),
+        var(--pink)
+    ) !important;
+    box-shadow:
+        0 0 16px rgba(255, 20, 147, 0.75),
+        0 0 36px rgba(255, 20, 147, 0.35) !important;
+    transform: translate(-50%, -50%) rotate(12deg) !important;
+    opacity: 0.9;
+}
+
+/* Hide particles if they are messy */
+.cursor-particle {
+    display: none !important;
+}
+
+/* Hover state */
+.cursor-dot.hovering {
+    width: 13px !important;
+    height: 13px !important;
+    background: white !important;
+}
+
+.cursor-ring.hovering {
+    height: 56px !important;
+    width: 5px !important;
+    opacity: 1;
+}
+
+/* Mobile: normal cursor */
+@media (max-width: 768px) {
+    body,
+    a,
+    button,
+    .magnetic,
+    .nav-cta,
+    .hamburger {
+        cursor: auto !important;
+    }
+
+    .cursor-dot,
+    .cursor-ring,
+    .cursor-particle {
+        display: none !important;
+    }
+}
