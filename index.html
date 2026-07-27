@@ -22,7 +22,8 @@
 
     <nav id="mainNav">
         <div class="nav-container">
-            <img src="nitro-logo.png" alt="N!TRO Logo" class="nav-logo-ultra">
+            <img src="nitro-logo.png" alt="N!TRO Logo" class="nav-logo-ultra" onerror="this.style.display='none';document.getElementById('navLogoText').style.display='block';">
+            <div class="nav-logo-text" id="navLogoText">N<span class="pink">!</span>TRO</div>
             <div class="hamburger" id="hamburger" onclick="toggleMenu()">
                 <span></span>
                 <span></span>
@@ -34,6 +35,7 @@
                 <a href="#team" onclick="closeMenu()">Unity</a>
                 <a href="#design" onclick="closeMenu()">Orbitus</a>
                 <a href="#manufacturing" onclick="closeMenu()">Manufacturing</a>
+                <a href="#colours" onclick="closeMenu()">Palette</a>
                 <a href="#enterprise" onclick="closeMenu()">Partners</a>
                 <a href="mailto:anayagarwal23@gmail.com" class="nav-cta magnetic" onclick="closeMenu()">Connect</a>
             </div>
@@ -187,7 +189,7 @@
             <h2 class="section-tag" data-animate="tag">03. The Product</h2>
             <div class="philosophy-jobs-layout">
                 <div class="philosophy-hero-text">
-                    <p class="jobs-mega-text sapphire-title split-text">Orbitus.</p>
+                    <h2 class="orbitus-title">ORB<span class="pink">!</span>TUS</h2>
                     <div class="pink-info-box" data-animate="slide-up">
                         <h3>Technical DNA</h3>
                         <ul>
@@ -261,6 +263,59 @@
         </div>
     </section>
 
+    <!-- PALETTE -->
+    <section id="colours" class="section alt-section">
+        <div class="minimal-container">
+            <h2 class="section-tag" data-animate="tag">06. The Palette</h2>
+            <p class="large-text split-text">Two lead. Two <span class="pink">support.</span></p>
+            <p class="white-para" data-animate="fade" style="max-width:720px;">Diva Pink and N!TRO Navy are our primary colours &mdash; the voice of the brand. Olo and Vanilla form the secondary layer, appearing as accents across everything we build, from livery to this very page.</p>
+
+            <div class="palette-group" data-animate="fade">
+                <div class="palette-group-head">
+                    <span class="palette-group-label primary-label">Primary</span>
+                    <span class="palette-group-note">The voice of the brand</span>
+                </div>
+                <div class="colour-story-grid">
+                    <div class="colour-card featured" data-animate="slide-up">
+                        <div class="colour-swatch diva-pink"></div>
+                        <h4>Diva Pink</h4>
+                        <p>Our accent under track lights. High-visibility, high-intent &mdash; used sparingly so it always reads as a decision, never as decoration.</p>
+                        <span>#F04F6A</span>
+                    </div>
+
+                    <div class="colour-card featured" data-animate="slide-up">
+                        <div class="colour-swatch nitro-navy"></div>
+                        <h4>N!TRO Navy</h4>
+                        <p>The base layer of the brand. Depth, discipline, and the dark background every other colour has to earn its place against.</p>
+                        <span>#0B132B</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="palette-group" data-animate="fade">
+                <div class="palette-group-head">
+                    <span class="palette-group-label secondary-label">Secondary</span>
+                    <span class="palette-group-note">Accents across everything we build</span>
+                </div>
+                <div class="colour-story-grid">
+                    <div class="colour-card" data-animate="slide-up">
+                        <div class="colour-swatch olo"></div>
+                        <h4>Olo</h4>
+                        <p>A blue-green more saturated than anything the eye meets in daylight &mdash; reported in 2025 when researchers stimulated individual cone cells with precise laser pulses. It stands for the margin nobody has looked for yet.</p>
+                        <span>#00E0C6</span>
+                    </div>
+
+                    <div class="colour-card" data-animate="slide-up">
+                        <div class="colour-swatch vanilla"></div>
+                        <h4>Vanilla</h4>
+                        <p>The tone of raw polyurethane foam before the CNC touches it. Warm, quiet, unfinished &mdash; a reminder that every millisecond we win is carved out of something plain.</p>
+                        <span>#FFFFE1</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
 <!-- MARQUEE STRIP 3 -->
 <div class="marquee-strip">
     <div class="marquee-track">
@@ -284,7 +339,7 @@
 <!-- ENTERPRISE -->
 <section id="enterprise" class="section alt-section">
     <div class="minimal-container">
-        <h2 class="section-tag" data-animate="tag">06. Enterprise</h2>
+        <h2 class="section-tag" data-animate="tag">07. Enterprise</h2>
 
         <div class="sponsorship-showcase">
 
@@ -292,7 +347,7 @@
                 <div class="sponsor-bg-title">JAYPEE</div>
                 <div class="sponsor-info">
                     <h3>Jaypee Brothers</h3>
-                    <p class="sponsor-description">Commitment to precision medical publishing. Supporting Team N!TRO’s project development and competition preparation.</p>
+                    <p class="sponsor-description">Commitment to precision medical publishing. Supporting Team N!TRO's project development and competition preparation.</p>
                 </div>
                 <div class="sponsor-amount">&#8377;20,000</div>
             </div>
@@ -328,9 +383,9 @@
                 <div class="sponsor-bg-title">SAFE EXPRESS</div>
                 <div class="sponsor-info">
                     <h3>Safe Express</h3>
-                    <p class="sponsor-description">India’s trusted logistics partner, supporting Team N!TRO’s movement of materials, resources and race-ready ambition.</p>
+                    <p class="sponsor-description">India's trusted logistics partner, supporting Team N!TRO's movement of materials, resources and race-ready ambition.</p>
                 </div>
-                <div class="sponsor-amount">75,000</div>
+                <div class="sponsor-amount">&#8377;75,000</div>
             </div>
 
             <div class="jobs-sponsor-hero glass-card" data-animate="slide-up">
@@ -355,9 +410,9 @@
                 <div class="sponsor-bg-title">BETADINE</div>
                 <div class="sponsor-info">
                     <h3>Betadine</h3>
-                    <p class="sponsor-description">Supporting Team N!TRO’s focus on safety, preparation and reliability throughout the competition journey.</p>
+                    <p class="sponsor-description">Supporting Team N!TRO's focus on safety, preparation and reliability throughout the competition journey.</p>
                 </div>
-                <div class="sponsor-amount">1,00,000</div>
+                <div class="sponsor-amount">&#8377;1,00,000</div>
             </div>
 
         </div>
@@ -657,6 +712,32 @@
                 gsap.to(btn, { x: 0, y: 0, duration: 0.5, ease: 'elastic.out(1, 0.4)' });
             });
         });
+
+        /* ─── CURSOR GLOW ─── */
+        if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+            const dot  = document.createElement('div'); dot.className  = 'cursor-dot';
+            const ring = document.createElement('div'); ring.className = 'cursor-ring';
+            document.body.append(dot, ring);
+
+            let mx = -100, my = -100, rx = -100, ry = -100;
+            window.addEventListener('mousemove', e => {
+                mx = e.clientX; my = e.clientY;
+                dot.style.transform = `translate(${mx}px, ${my}px) translate(-50%, -50%)`;
+            }, { passive: true });
+
+            (function loop() {
+                rx += (mx - rx) * 0.15;
+                ry += (my - ry) * 0.15;
+                ring.style.transform = `translate(${rx}px, ${ry}px) translate(-50%, -50%)`;
+                requestAnimationFrame(loop);
+            })();
+
+            document.querySelectorAll('a, button, .magnetic, .glass-card, .hamburger, .evo-step, .detail-block, .colour-card')
+                .forEach(el => {
+                    el.addEventListener('mouseenter', () => { dot.classList.add('hovering'); ring.classList.add('hovering'); });
+                    el.addEventListener('mouseleave', () => { dot.classList.remove('hovering'); ring.classList.remove('hovering'); });
+                });
+        }
 
         /* ─── MOBILE MENU ─── */
         window.toggleMenu = function() {
