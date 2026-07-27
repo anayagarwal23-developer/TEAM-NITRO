@@ -11,6 +11,8 @@
     --glass-border: rgba(255, 255, 255, 0.18);
     --glass-white: rgba(255, 255, 255, 0.7);
     --glass-white-border: rgba(255, 255, 255, 0.5);
+    --olo: #00E0C6;
+    --vanilla: #FFFFE1;
 }
 
 /* RESET */
@@ -127,8 +129,8 @@ body {
 }
 
 /* ─── CUSTOM CURSOR ─── */
-body { cursor: none; }
-a, button, .magnetic, .nav-cta, .hamburger { cursor: none; }
+body { cursor: auto; }
+a, button, .magnetic, .nav-cta, .hamburger, .glass-card { cursor: pointer; }
 
 .cursor-dot {
     position: fixed;
@@ -255,7 +257,13 @@ nav.scrolled {
 .nav-logo-ultra {
     height: 50px;
     width: auto;
-    mix-blend-mode: lighten;
+}
+.nav-logo-text {
+    display: none;
+    font-weight: 800;
+    font-size: 1.5rem;
+    letter-spacing: -1px;
+    color: var(--white);
 }
 .nav-links { display: flex; align-items: center; gap: 4px; }
 .nav-links a {
@@ -985,4 +993,183 @@ footer::before {
 
     letter-spacing:1px;
 
+}
+
+/* ─── COLOUR CARD HIGHLIGHTS ─── */
+.colour-card { position: relative; transition: all .4s cubic-bezier(.2,0,.2,1); }
+.colour-card:hover { transform: translateY(-6px); border-color: rgba(255,20,147,.25); }
+.colour-card.featured {
+    background: linear-gradient(135deg, rgba(255,20,147,.10), rgba(255,255,255,.03));
+    border: 1px solid rgba(255,20,147,.28);
+    box-shadow: 0 0 40px rgba(255,20,147,.10);
+}
+.colour-flag {
+    position: absolute; top: 16px; right: 16px;
+    font-family: var(--mono); font-size: 9px; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase;
+    padding: 4px 10px; border-radius: 100px;
+    background: linear-gradient(135deg, var(--pink), #e0117f);
+    color: var(--white) !important;
+}
+.colour-flag.secondary {
+    background: linear-gradient(135deg, var(--olo), #00b8a5);
+    color: #00221e !important;
+}
+.colour-swatch { border: 1px solid rgba(255,255,255,.08); }
+.olo {
+    background: linear-gradient(135deg, #00F0D0 0%, #00C2B8 45%, #14E0FF 100%);
+    box-shadow: inset 0 0 40px rgba(255,255,255,.28), 0 0 30px rgba(0,224,198,.25);
+}
+.vanilla { background: #FFFFE1; box-shadow: 0 0 30px rgba(255,255,225,.15); }
+
+/* ===================================================
+   OLO & VANILLA ACCENTS (site-wide, secondary layer)
+=================================================== */
+
+/* Vanilla: warm the big headlines (was pure white) */
+.hero h1,
+.large-text,
+.mega-minimal-text,
+.jobs-mega-text {
+    color: var(--vanilla);
+}
+.sapphire-title {
+    background: linear-gradient(135deg, var(--vanilla) 0%, rgba(255, 255, 225, 0.55) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+.pink-info-box li strong { color: var(--vanilla); }
+.evo-step p strong { color: var(--vanilla); }
+.marquee-track span { color: rgba(255, 255, 225, 0.22); }
+
+/* Olo: technical / data accents */
+.scroll-progress {
+    background: linear-gradient(90deg, var(--pink), var(--pink-light), var(--olo));
+}
+.counter { color: var(--olo); font-weight: 700; }
+.status-badge {
+    background: rgba(0, 224, 198, 0.08);
+    color: var(--olo);
+    border-color: rgba(0, 224, 198, 0.25);
+}
+.scroll-arrow {
+    border-right-color: rgba(0, 224, 198, 0.45);
+    border-bottom-color: rgba(0, 224, 198, 0.45);
+}
+.m-card:hover { border-color: rgba(0, 224, 198, 0.3); }
+.footer-email:hover {
+    background: linear-gradient(135deg, var(--pink), var(--olo));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ===================================================
+   PALETTE GROUPS (Primary / Secondary labelling)
+=================================================== */
+.palette-group { margin-top: 56px; }
+.palette-group-head {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 8px;
+}
+.palette-group-head::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(255,255,255,.12), transparent);
+}
+.palette-group-label {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 100px;
+}
+.palette-group-label.primary-label {
+    background: linear-gradient(135deg, var(--pink), #e0117f);
+    color: var(--white);
+    box-shadow: 0 4px 18px rgba(255,20,147,.28);
+}
+.palette-group-label.secondary-label {
+    background: linear-gradient(135deg, var(--olo), #00b8a5);
+    color: #00221e;
+    box-shadow: 0 4px 18px rgba(0,224,198,.25);
+}
+.palette-group-note {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: rgba(255,255,255,.4);
+    text-transform: uppercase;
+}
+.palette-group .colour-story-grid { margin-top: 28px; }
+
+/* ===================================================
+   STRONGER SECONDARY ACCENTS (site-wide)
+=================================================== */
+/* Olo underline the pink highlight words for a two-tone brand read */
+.pink { text-shadow: 0 0 24px rgba(0,224,198,.18); }
+
+/* Section tags: olo dot before the number */
+.section-tag { position: relative; }
+
+/* Olo glow on nav CTA hover ring */
+.nav-cta:hover { box-shadow: 0 8px 30px rgba(255,20,147,.5), 0 0 0 1px rgba(0,224,198,.4) !important; }
+
+/* Genesis timeline nodes: olo instead of flat pink for the dots */
+.evo-step::before {
+    background: var(--olo);
+    box-shadow: 0 0 12px rgba(0,224,198,.6);
+}
+
+/* Team role pills: vanilla text warmth */
+.role { color: rgba(255,255,225,.75); }
+
+/* Manufacturing step numbers keep pink; add olo edge */
+.m-num { box-shadow: 0 4px 16px rgba(255,20,147,.3), 0 0 0 1px rgba(0,224,198,.25); }
+
+/* Engineering table header underline in olo */
+.engineering-table th { border-bottom-color: rgba(0,224,198,.3); }
+
+/* Sponsor amounts: pink → vanilla gradient for warmth */
+.sponsor-amount {
+    background: linear-gradient(135deg, var(--pink), var(--vanilla));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Detail block hover: olo edge */
+.detail-block:hover { border-color: rgba(0,224,198,.2); }
+
+/* Glass card hover: subtle olo in the glow */
+.glass-card:hover {
+    box-shadow: 0 24px 64px rgba(0,0,0,.35), 0 0 50px rgba(0,224,198,.12);
+}
+
+/* Hero tag: olo left accent */
+.hero-tag { border-color: rgba(0,224,198,.35); }
+
+/* ===================================================
+   ORB!TUS SECTION HEADING (above Technical DNA)
+=================================================== */
+.orbitus-title {
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    font-size: clamp(3rem, 7vw, 5rem);
+    letter-spacing: -3px;
+    line-height: 1;
+    margin-bottom: 36px;
+    color: var(--vanilla);
+    text-transform: uppercase;
+}
+.orbitus-title .pink {
+    display: inline-block;
+    transform: translateY(-2px);
+    text-shadow: 0 0 20px rgba(255,20,147,.5), 0 0 40px rgba(255,20,147,.25);
 }
