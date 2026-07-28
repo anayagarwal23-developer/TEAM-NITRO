@@ -1508,6 +1508,16 @@ footer::before {
     box-shadow: 0 24px 64px rgba(0, 0, 0, .4), 0 0 54px rgba(0, 224, 198, .14);
 }
 
+
+/* ---- secret logo link ---- */
+.nav-logo-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    -webkit-tap-highlight-color: transparent;
+}
+
 /* ---- hint ---- */
 .tl-hint {
     margin-top: 26px;
