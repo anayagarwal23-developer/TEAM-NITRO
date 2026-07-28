@@ -269,101 +269,135 @@
         <div class="minimal-container">
             <h2 class="section-tag" data-animate="tag">06. The Timeline</h2>
             <p class="large-text split-text">Nine stages from blank file to <span class="pink">51 grams.</span></p>
-            <p class="white-para" data-animate="fade" style="max-width:720px;">Every stage below fed the next. Nothing was signed off until the race model, the CFD and the scrutineering gauge all agreed.</p>
+            <p class="white-para" data-animate="fade" style="max-width:720px;">Scrub it, step through it, or let it play. Every stage below fed the next &mdash; nothing was signed off until the race model, the CFD and the scrutineering gauge all agreed.</p>
 
-            <div class="tl-track">
+            <div class="tl-hud" id="tlHud">
+                <div class="tl-hud-row">
+                    <div class="tl-readout">
+                        <span class="tl-counter"><b id="tlCurrent">01</b><i>/</i>09</span>
+                        <span class="tl-label" id="tlLabel">ORB!TUS Kick-Off</span>
+                    </div>
+                    <div class="tl-controls">
+                        <button class="tl-btn tl-btn-play" id="tlPlay" aria-label="Play timeline">&#9654;&nbsp; Play</button>
+                    </div>
+                </div>
+                <div class="tl-progress"><span id="tlProgress"></span></div>
+            </div>
 
-                <div class="tl-item" data-animate="slide-up">
-                    <div class="tl-node">01</div>
+            <div class="tl-track" id="tlTrack">
+                <i class="tl-spine"><span id="tlFill"></span></i>
+
+                <div class="tl-item" data-label="ORB!TUS Kick-Off">
+                    <button class="tl-node">01</button>
                     <div class="tl-card glass-card">
                         <span class="tl-stage">Project Management</span>
                         <h4>ORB<span class="pink">!</span>TUS Kick-Off</h4>
                         <p>Roles assigned and the development calendar built backwards from Nationals.</p>
                         <div class="tl-chips"><span>6 Engineers</span><span>4 Core Goals</span></div>
+                        <div class="tl-detail"><p>Every component was given a named owner, and four goals &mdash; reduce drag, stay consistent, stay compliant, build quality &mdash; became the bar every later decision had to clear.</p></div>
+                        <button class="tl-expand">Details</button>
                     </div>
                 </div>
 
-                <div class="tl-item" data-animate="slide-up">
-                    <div class="tl-node">02</div>
+                <div class="tl-item" data-label="Engineering Targets">
+                    <button class="tl-node">02</button>
                     <div class="tl-card glass-card">
                         <span class="tl-stage">Design &amp; Engineering</span>
                         <h4>Engineering Targets</h4>
-                        <p>Every force on the car split into three groups &mdash; thrust, constant resistive, variable resistive &mdash; then coded into a Python race model.</p>
+                        <p>Every force on the car split into three groups, then coded into a Python race model.</p>
                         <div class="tl-chips"><span>Reduce Drag</span><span>Stay Compliant</span><span>Build Quality</span></div>
+                        <div class="tl-detail"><p>Thrust from the CO&#8322; canister, constant resistive forces (weight, wheel and tether friction) and variable resistive forces (drag, canister mass loss) were modelled separately. A purpose-built canister force jig measured real thrust curves &mdash; most of the thrust arrives inside the first 0.5 seconds.</p></div>
+                        <button class="tl-expand">Details</button>
                     </div>
                 </div>
 
-                <div class="tl-item" data-animate="slide-up">
-                    <div class="tl-node">03</div>
+                <div class="tl-item" data-label="CAD Development">
+                    <button class="tl-node">03</button>
                     <div class="tl-card glass-card">
                         <span class="tl-stage">Design &amp; Engineering</span>
                         <h4>CAD Development</h4>
-                        <p>Every dimension parameterised in Fusion and modelled in-situ inside one file, so a single value could redraw the whole car.</p>
+                        <p>Every dimension parameterised in Fusion and modelled in-situ inside one file.</p>
                         <div class="tl-chips"><span>Autodesk Fusion</span><span>G1 / G2 Continuity</span></div>
+                        <div class="tl-detail"><p>Dozens of base parameters drove hundreds of derived values, shared through Fusion's cloud into manufacturing jigs and test parts. Master sketches fixed wheelbase, no-go zones, canister position and wing heights before any solid geometry existed.</p></div>
+                        <button class="tl-expand">Details</button>
                     </div>
                 </div>
 
-                <div class="tl-item" data-animate="slide-up">
-                    <div class="tl-node">04</div>
+                <div class="tl-item" data-label="CFD &amp; Performance Analysis">
+                    <button class="tl-node">04</button>
                     <div class="tl-card glass-card">
                         <span class="tl-stage">Design &amp; Engineering</span>
                         <h4>CFD &amp; Performance Analysis</h4>
-                        <p>k-&omega; SST simulations at a 20 m/s inlet, meshed to hold a low y+ so turbulent behaviour was captured properly.</p>
+                        <p>k-&omega; SST simulations at a 20 m/s inlet, meshed to hold a low y+ value.</p>
                         <div class="tl-chips"><span>1500 mm&sup2; FSA</span><span>1416 rad/s Wheels</span><span>500 Timesteps</span></div>
+                        <div class="tl-detail"><p>Flow volume 0&ndash;0.3 m in X and Z, &minus;0.5&ndash;3 m in Y. Moving wall at 20 m/s, rotating wall at 1416 rad/s on the wheels, symmetry at X min. Results converged by 500 timesteps, so runtime was capped at 1000 seconds to save core hours.</p></div>
+                        <button class="tl-expand">Details</button>
                     </div>
                 </div>
 
-                <div class="tl-item" data-animate="slide-up">
-                    <div class="tl-node">05</div>
+                <div class="tl-item" data-label="Design Refinement">
+                    <button class="tl-node">05</button>
                     <div class="tl-card glass-card">
                         <span class="tl-stage">Design &amp; Engineering</span>
                         <h4>Design Refinement</h4>
-                        <p>The ogive nose was iterated until peak pressure fell from over 500 Pa to 200 Pa &mdash; an effect we named flow conditioning.</p>
+                        <p>The ogive nose iterated until peak pressure fell from over 500 Pa to 200 Pa.</p>
                         <div class="tl-chips"><span>500 Pa &rarr; 200 Pa</span><span>Single-Element Wing</span></div>
+                        <div class="tl-detail"><p>Four nose concepts were tested: RF22 sharp leading edge (over 500 Pa), NF23 blunt (350 Pa), a tangent-ogive neutral profile (350 Pa) and the final flow-conditioned sharp nose (200 Pa). One front wing element beat both two and three on drag and on manufacturability.</p></div>
+                        <button class="tl-expand">Details</button>
                     </div>
                 </div>
 
-                <div class="tl-item" data-animate="slide-up">
-                    <div class="tl-node">06</div>
+                <div class="tl-item" data-label="Manufacturing">
+                    <button class="tl-node">06</button>
                     <div class="tl-card glass-card">
                         <span class="tl-stage">Design &amp; Engineering</span>
                         <h4>Manufacturing</h4>
-                        <p>Polyurethane foam body milled on a 3-axis Denford MRC 40; every other component printed in PA12 nylon on an HP Jet Fusion 5200.</p>
+                        <p>Foam body milled on a 3-axis Denford MRC 40; every other part printed in PA12 nylon.</p>
                         <div class="tl-chips"><span>CNC + MJF</span><span>SLS PA12</span><span>&plusmn;0.05 mm</span></div>
+                        <div class="tl-detail"><p>The polyurethane body was cut with a 3 mm ball-nose endmill, so every internal edge carried a 1.5 mm minimum fillet. Wheel supports, caps and pins were printed on an HP Jet Fusion 5200 at 80 &micro;m layers, and the tether eyelet was cut from aluminium on a 3-axis laser CNC.</p></div>
+                        <button class="tl-expand">Details</button>
                     </div>
                 </div>
 
-                <div class="tl-item" data-animate="slide-up">
-                    <div class="tl-node">07</div>
+                <div class="tl-item" data-label="Drawing Set Released">
+                    <button class="tl-node">07</button>
                     <div class="tl-card glass-card">
                         <span class="tl-stage">Engineering Drawings</span>
                         <h4>Drawing Set Released</h4>
-                        <p>A full set of assemblies, sections and tolerances pulled straight from the parametric model and checked against every regulation.</p>
+                        <p>Assemblies, sections and tolerances pulled straight from the parametric model.</p>
                         <div class="tl-chips"><span>Assemblies</span><span>Sections</span><span>Tolerances</span></div>
+                        <div class="tl-detail"><p>Because the drawings were generated from the same parameter set that drove the CAD, a single dimension change propagated through the whole pack &mdash; keeping every sheet regulation-checked and in sync with the built car.</p></div>
+                        <button class="tl-expand">Details</button>
                     </div>
                 </div>
 
-                <div class="tl-item" data-animate="slide-up">
-                    <div class="tl-node">08</div>
+                <div class="tl-item" data-label="Final Validation &amp; Assembly">
+                    <button class="tl-node">08</button>
                     <div class="tl-card glass-card">
                         <span class="tl-stage">Design &amp; Engineering</span>
                         <h4>Final Validation &amp; Assembly</h4>
-                        <p>FEA to a 2.5 safety factor, halo impact-jig testing, then jig-aligned bonding and a controlled paint schedule.</p>
+                        <p>FEA to a 2.5 safety factor, halo impact testing, then jig-aligned bonding and paint.</p>
                         <div class="tl-chips"><span>Safety Factor 2.5</span><span>2 Primer / 3 Paint</span></div>
+                        <div class="tl-detail"><p>Wheels were loaded at 1416 rad/s and 35 N with a 0.15 mm maximum deformation. The halo impact jig's drop height came from the race model's final velocity. A negative of the car's floor held body and wings square during bonding, and wheel supports went on after painting to protect thread tolerance.</p></div>
+                        <button class="tl-expand">Details</button>
                     </div>
                 </div>
 
-                <div class="tl-item tl-item-final" data-animate="slide-up">
-                    <div class="tl-node tl-node-final">09</div>
+                <div class="tl-item tl-item-final" data-label="Final ORB!TUS">
+                    <button class="tl-node tl-node-final">09</button>
                     <div class="tl-card glass-card tl-card-final">
                         <span class="tl-stage tl-stage-final">Final Build</span>
                         <h4>Final ORB<span class="pink">!</span>TUS</h4>
-                        <p>Boca ceramic bearings, 7-spoke SLS nylon wheels and a machined aluminium tether eyelet &mdash; signed off at race weight.</p>
+                        <p>Ceramic bearings, 7-spoke SLS nylon wheels and a machined aluminium tether eyelet.</p>
                         <div class="tl-chips"><span class="tl-chip-hero">51 g</span><span class="tl-chip-hero">1.088 s</span></div>
+                        <div class="tl-detail"><p>Wheels run on 10 &times; 4 &times; 4 mm Boca ceramic bearings, friction-fit to a 0.042 mm offset for minimal axial play and clear access to the races for lubrication. Final correlation-adjusted race model time: 1.088 seconds.</p></div>
+                        <button class="tl-expand">Details</button>
                     </div>
                 </div>
 
             </div>
+
+            <p class="tl-hint">Scroll to drive the story &mdash; or press play and watch it unfold</p>
         </div>
     </section>
 
@@ -842,6 +876,163 @@
                     el.addEventListener('mouseleave', () => { dot.classList.remove('hovering'); ring.classList.remove('hovering'); });
                 });
         }
+
+        /* ─── TIMELINE INTERACTION (scroll-driven) ─── */
+        (function () {
+            const track = document.getElementById('tlTrack');
+            if (!track) return;
+
+            const items    = gsap.utils.toArray('.tl-item');
+            const fill     = document.getElementById('tlFill');
+            const progress = document.getElementById('tlProgress');
+            const curEl    = document.getElementById('tlCurrent');
+            const labelEl  = document.getElementById('tlLabel');
+            const playBtn  = document.getElementById('tlPlay');
+
+            /* spine + HUD progress, scrubbed to scroll */
+            gsap.fromTo(fill, { height: '0%' }, {
+                height: '100%', ease: 'none',
+                scrollTrigger: { trigger: track, start: 'top 60%', end: 'bottom 55%', scrub: 0.4 }
+            });
+            gsap.fromTo(progress, { width: '0%' }, {
+                width: '100%', ease: 'none',
+                scrollTrigger: { trigger: track, start: 'top 60%', end: 'bottom 55%', scrub: 0.4 }
+            });
+
+            /* cinematic card scrub: rise + sharpen into focus, then recede */
+            items.forEach(function (it) {
+                const card = it.querySelector('.tl-card');
+                const node = it.querySelector('.tl-node');
+
+                gsap.fromTo(card,
+                    { y: 110, opacity: 0.08, scale: 0.9, filter: 'blur(6px)' },
+                    { y: 0, opacity: 1, scale: 1, filter: 'blur(0px)', ease: 'none',
+                      scrollTrigger: { trigger: it, start: 'top 96%', end: 'top 58%', scrub: 0.35 } }
+                );
+                gsap.fromTo(card,
+                    { opacity: 1, scale: 1, filter: 'blur(0px)' },
+                    { opacity: 0.3, scale: 0.94, filter: 'blur(3px)', ease: 'none', immediateRender: false,
+                      scrollTrigger: { trigger: it, start: 'bottom 40%', end: 'bottom 12%', scrub: 0.35 } }
+                );
+                gsap.fromTo(node,
+                    { scale: 0.5, opacity: 0 },
+                    { scale: 1, opacity: 1, ease: 'none',
+                      scrollTrigger: { trigger: it, start: 'top 95%', end: 'top 72%', scrub: 0.3 } }
+                );
+            });
+
+            /* focus logic: item whose card centre is nearest the focus line is active */
+            let current = -1, ticking = false;
+
+            function setActive(i) {
+                if (i === current) return;
+                current = i;
+                items.forEach(function (it, n) {
+                    it.classList.toggle('active', n === i);
+                    it.classList.toggle('passed', n < i);
+                });
+                if (curEl) {
+                    curEl.textContent = ('0' + (i + 1)).slice(-2);
+                    curEl.classList.remove('tl-tick');
+                    void curEl.offsetWidth;
+                    curEl.classList.add('tl-tick');
+                }
+                if (labelEl) labelEl.textContent = items[i].getAttribute('data-label') || '';
+            }
+
+            function focusUpdate() {
+                const line = window.innerHeight * 0.5;
+                let best = 0, bestDist = Infinity;
+                items.forEach(function (it, n) {
+                    const r = it.getBoundingClientRect();
+                    const mid = r.top + r.height * 0.42;
+                    const d = Math.abs(mid - line);
+                    if (d < bestDist) { bestDist = d; best = n; }
+                });
+                setActive(best);
+                ticking = false;
+            }
+            window.addEventListener('scroll', function () {
+                if (!ticking) { ticking = true; requestAnimationFrame(focusUpdate); }
+            }, { passive: true });
+            window.addEventListener('resize', focusUpdate, { passive: true });
+            focusUpdate();
+
+            /* node click = glide to that stage */
+            function glideToItem(i) {
+                const y = items[i].getBoundingClientRect().top + window.pageYOffset - window.innerHeight * 0.34;
+                glideTo(y, 900);
+            }
+            items.forEach(function (it, n) {
+                const nodeBtn = it.querySelector('.tl-node');
+                if (nodeBtn) nodeBtn.addEventListener('click', function () { stopPlay(); glideToItem(n); });
+                const btn = it.querySelector('.tl-expand');
+                const card = it.querySelector('.tl-card');
+                if (btn) btn.addEventListener('click', function () {
+                    const open = card.classList.toggle('open');
+                    btn.textContent = open ? 'Close' : 'Details';
+                    ScrollTrigger.refresh();
+                });
+            });
+
+            /* smooth window glide (no plugins) */
+            let glideRAF = null;
+            function glideTo(targetY, dur) {
+                if (glideRAF) cancelAnimationFrame(glideRAF);
+                const startY = window.pageYOffset;
+                const dist = targetY - startY;
+                const t0 = performance.now();
+                function ease(t) { return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2; }
+                function step(now) {
+                    const p = Math.min((now - t0) / dur, 1);
+                    window.scrollTo(0, startY + dist * ease(p));
+                    if (p < 1) glideRAF = requestAnimationFrame(step);
+                    else glideRAF = null;
+                }
+                glideRAF = requestAnimationFrame(step);
+            }
+
+            /* play: one continuous cinematic glide through all nine stages */
+            let playing = false, playRAF = null;
+            function stopPlay() {
+                if (!playing) return;
+                playing = false;
+                if (playRAF) cancelAnimationFrame(playRAF);
+                playRAF = null;
+                playBtn.classList.remove('playing');
+                playBtn.innerHTML = '&#9654;&nbsp; Play';
+            }
+            if (playBtn) {
+                playBtn.addEventListener('click', function () {
+                    if (playing) { stopPlay(); return; }
+                    playing = true;
+                    playBtn.classList.add('playing');
+                    playBtn.innerHTML = '&#10074;&#10074;&nbsp; Pause';
+
+                    const first = items[0].getBoundingClientRect().top + window.pageYOffset - window.innerHeight * 0.34;
+                    const last  = items[items.length - 1].getBoundingClientRect().top + window.pageYOffset - window.innerHeight * 0.34;
+                    let from = window.pageYOffset;
+                    if (from > last - 10) from = first;                 /* restart from top if finished */
+                    const speed = 0.14;                                 /* px per ms — slow cinematic drift */
+                    let pos = from, t0 = null;
+                    window.scrollTo(0, pos);
+
+                    function drift(now) {
+                        if (!playing) return;
+                        if (t0 === null) t0 = now;
+                        pos = from + (now - t0) * speed;
+                        if (pos >= last) { window.scrollTo(0, last); stopPlay(); return; }
+                        window.scrollTo(0, pos);
+                        playRAF = requestAnimationFrame(drift);
+                    }
+                    playRAF = requestAnimationFrame(drift);
+                });
+            }
+            /* any manual input cancels the drift */
+            ['wheel', 'touchstart', 'keydown'].forEach(function (ev) {
+                window.addEventListener(ev, stopPlay, { passive: true });
+            });
+        })();
 
         /* ─── MOBILE MENU ─── */
         window.toggleMenu = function() {
