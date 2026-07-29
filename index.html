@@ -23,7 +23,6 @@
     <nav id="mainNav">
         <div class="nav-container">
             <a href="https://orbitus-digital-twin.vercel.app/" class="nav-logo-link" aria-label="N!TRO">
-                <img src="nitro-logo.png" alt="N!TRO Logo" class="nav-logo-ultra" onerror="this.style.display='none';document.getElementById('navLogoText').style.display='block';">
                 <div class="nav-logo-text" id="navLogoText">N<span class="pink">!</span>TRO</div>
             </a>
             <div class="hamburger" id="hamburger" onclick="toggleMenu()">
@@ -297,7 +296,7 @@
                         <p>Roles assigned and the development calendar built backwards from Nationals.</p>
                         <div class="tl-chips"><span>6 Engineers</span><span>4 Core Goals</span></div>
                         <div class="tl-detail"><p>Every component was given a named owner, and four goals &mdash; reduce drag, stay consistent, stay compliant, build quality &mdash; became the bar every later decision had to clear.</p></div>
-                        <button class="tl-expand">Details</button>
+                        <button class="tl-expand">Details &#9662;</button>
                     </div>
                 </div>
 
@@ -309,7 +308,7 @@
                         <p>Every force on the car split into three groups, then coded into a Python race model.</p>
                         <div class="tl-chips"><span>Reduce Drag</span><span>Stay Compliant</span><span>Build Quality</span></div>
                         <div class="tl-detail"><p>Thrust from the CO&#8322; canister, constant resistive forces (weight, wheel and tether friction) and variable resistive forces (drag, canister mass loss) were modelled separately. A purpose-built canister force jig measured real thrust curves &mdash; most of the thrust arrives inside the first 0.5 seconds.</p></div>
-                        <button class="tl-expand">Details</button>
+                        <button class="tl-expand">Details &#9662;</button>
                     </div>
                 </div>
 
@@ -321,7 +320,7 @@
                         <p>Every dimension parameterised in Fusion and modelled in-situ inside one file.</p>
                         <div class="tl-chips"><span>Autodesk Fusion</span><span>G1 / G2 Continuity</span></div>
                         <div class="tl-detail"><p>Dozens of base parameters drove hundreds of derived values, shared through Fusion's cloud into manufacturing jigs and test parts. Master sketches fixed wheelbase, no-go zones, canister position and wing heights before any solid geometry existed.</p></div>
-                        <button class="tl-expand">Details</button>
+                        <button class="tl-expand">Details &#9662;</button>
                     </div>
                 </div>
 
@@ -333,7 +332,7 @@
                         <p>k-&omega; SST simulations at a 20 m/s inlet, meshed to hold a low y+ value.</p>
                         <div class="tl-chips"><span>1500 mm&sup2; FSA</span><span>1416 rad/s Wheels</span><span>500 Timesteps</span></div>
                         <div class="tl-detail"><p>Flow volume 0&ndash;0.3 m in X and Z, &minus;0.5&ndash;3 m in Y. Moving wall at 20 m/s, rotating wall at 1416 rad/s on the wheels, symmetry at X min. Results converged by 500 timesteps, so runtime was capped at 1000 seconds to save core hours.</p></div>
-                        <button class="tl-expand">Details</button>
+                        <button class="tl-expand">Details &#9662;</button>
                     </div>
                 </div>
 
@@ -345,7 +344,7 @@
                         <p>The ogive nose iterated until peak pressure fell from over 500 Pa to 200 Pa.</p>
                         <div class="tl-chips"><span>500 Pa &rarr; 200 Pa</span><span>Single-Element Wing</span></div>
                         <div class="tl-detail"><p>Four nose concepts were tested: RF22 sharp leading edge (over 500 Pa), NF23 blunt (350 Pa), a tangent-ogive neutral profile (350 Pa) and the final flow-conditioned sharp nose (200 Pa). One front wing element beat both two and three on drag and on manufacturability.</p></div>
-                        <button class="tl-expand">Details</button>
+                        <button class="tl-expand">Details &#9662;</button>
                     </div>
                 </div>
 
@@ -357,7 +356,7 @@
                         <p>Foam body milled on a 3-axis Denford MRC 40; every other part printed in PA12 nylon.</p>
                         <div class="tl-chips"><span>CNC + MJF</span><span>SLS PA12</span><span>&plusmn;0.05 mm</span></div>
                         <div class="tl-detail"><p>The polyurethane body was cut with a 3 mm ball-nose endmill, so every internal edge carried a 1.5 mm minimum fillet. Wheel supports, caps and pins were printed on an HP Jet Fusion 5200 at 80 &micro;m layers, and the tether eyelet was cut from aluminium on a 3-axis laser CNC.</p></div>
-                        <button class="tl-expand">Details</button>
+                        <button class="tl-expand">Details &#9662;</button>
                     </div>
                 </div>
 
@@ -369,7 +368,7 @@
                         <p>Assemblies, sections and tolerances pulled straight from the parametric model.</p>
                         <div class="tl-chips"><span>Assemblies</span><span>Sections</span><span>Tolerances</span></div>
                         <div class="tl-detail"><p>Because the drawings were generated from the same parameter set that drove the CAD, a single dimension change propagated through the whole pack &mdash; keeping every sheet regulation-checked and in sync with the built car.</p></div>
-                        <button class="tl-expand">Details</button>
+                        <button class="tl-expand">Details &#9662;</button>
                     </div>
                 </div>
 
@@ -381,7 +380,7 @@
                         <p>FEA to a 2.5 safety factor, halo impact testing, then jig-aligned bonding and paint.</p>
                         <div class="tl-chips"><span>Safety Factor 2.5</span><span>2 Primer / 3 Paint</span></div>
                         <div class="tl-detail"><p>Wheels were loaded at 1416 rad/s and 35 N with a 0.15 mm maximum deformation. The halo impact jig's drop height came from the race model's final velocity. A negative of the car's floor held body and wings square during bonding, and wheel supports went on after painting to protect thread tolerance.</p></div>
-                        <button class="tl-expand">Details</button>
+                        <button class="tl-expand">Details &#9662;</button>
                     </div>
                 </div>
 
@@ -393,7 +392,7 @@
                         <p>Ceramic bearings, 7-spoke SLS nylon wheels and a machined aluminium tether eyelet.</p>
                         <div class="tl-chips"><span class="tl-chip-hero">51 g</span><span class="tl-chip-hero">1.088 s</span></div>
                         <div class="tl-detail"><p>Wheels run on 10 &times; 4 &times; 4 mm Boca ceramic bearings, friction-fit to a 0.042 mm offset for minimal axial play and clear access to the races for lubrication. Final correlation-adjusted race model time: 1.088 seconds.</p></div>
-                        <button class="tl-expand">Details</button>
+                        <button class="tl-expand">Details &#9662;</button>
                     </div>
                 </div>
 
@@ -879,7 +878,7 @@
                 });
         }
 
-        /* ─── TIMELINE INTERACTION (scroll-driven) ─── */
+        /* ─── TIMELINE INTERACTION (cinematic scroll engine) ─── */
         (function () {
             const track = document.getElementById('tlTrack');
             if (!track) return;
@@ -891,41 +890,69 @@
             const labelEl  = document.getElementById('tlLabel');
             const playBtn  = document.getElementById('tlPlay');
 
-            /* spine + HUD progress, scrubbed to scroll */
-            gsap.fromTo(fill, { height: '0%' }, {
-                height: '100%', ease: 'none',
-                scrollTrigger: { trigger: track, start: 'top 60%', end: 'bottom 55%', scrub: 0.4 }
-            });
-            gsap.fromTo(progress, { width: '0%' }, {
-                width: '100%', ease: 'none',
-                scrollTrigger: { trigger: track, start: 'top 60%', end: 'bottom 55%', scrub: 0.4 }
-            });
+            const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const allowFx = !reduced && window.matchMedia('(min-width: 861px)').matches; /* blur only on desktop */
+            let openCount = 0;
 
-            /* cinematic card scrub: rise + sharpen into focus, then recede */
-            items.forEach(function (it) {
-                const card = it.querySelector('.tl-card');
-                const node = it.querySelector('.tl-node');
+            /* the scroll position at which a given stage sits on the focus line */
+            function focusScrollFor(it) {
+                const top = it.getBoundingClientRect().top + window.pageYOffset;
+                return Math.max(0, top + it.offsetHeight * 0.42 - window.innerHeight * 0.5);
+            }
 
-                gsap.fromTo(card,
-                    { y: 110, opacity: 0.08, scale: 0.9, filter: 'blur(6px)' },
-                    { y: 0, opacity: 1, scale: 1, filter: 'blur(0px)', ease: 'none',
-                      scrollTrigger: { trigger: it, start: 'top 96%', end: 'top 58%', scrub: 0.35 } }
-                );
-                gsap.fromTo(card,
-                    { opacity: 1, scale: 1, filter: 'blur(0px)' },
-                    { opacity: 0.3, scale: 0.94, filter: 'blur(3px)', ease: 'none', immediateRender: false,
-                      scrollTrigger: { trigger: it, start: 'bottom 40%', end: 'bottom 12%', scrub: 0.35 } }
-                );
-                gsap.fromTo(node,
-                    { scale: 0.5, opacity: 0 },
-                    { scale: 1, opacity: 1, ease: 'none',
-                      scrollTrigger: { trigger: it, start: 'top 95%', end: 'top 72%', scrub: 0.3 } }
-                );
-            });
+            /* ---- spine + HUD progress, scrubbed ---- */
+            if (!reduced) {
+                gsap.fromTo(fill, { height: '0%' }, {
+                    height: '100%', ease: 'none',
+                    scrollTrigger: { trigger: track, start: 'top 60%', end: 'bottom 55%', scrub: 0.4 }
+                });
+                gsap.fromTo(progress, { width: '0%' }, {
+                    width: '100%', ease: 'none',
+                    scrollTrigger: { trigger: track, start: 'top 60%', end: 'bottom 55%', scrub: 0.4 }
+                });
+            } else {
+                if (fill) fill.style.height = '100%';
+                if (progress) progress.style.width = '100%';
+            }
 
-            /* focus logic: item whose card centre is nearest the focus line is active */
+            /* ---- one master timeline per stage: enter, hold in focus, recede ----
+               A single ScrollTrigger owns each card, so entrance and exit can
+               never fight over the same properties (the old flicker source).   */
+            if (!reduced) {
+                items.forEach(function (it) {
+                    const card  = it.querySelector('.tl-card');
+                    const node  = it.querySelector('.tl-node');
+                    const chips = it.querySelectorAll('.tl-chips span');
+
+                    const inFrom  = { y: 120, opacity: 0.05, scale: 0.9 };
+                    const inTo    = { y: 0, opacity: 1, scale: 1, ease: 'none', duration: 0.32 };
+                    const outTo   = { opacity: 0.28, scale: 0.94, ease: 'none', duration: 0.3 };
+                    if (allowFx) {
+                        inFrom.filter = 'blur(6px)';
+                        inTo.filter   = 'blur(0px)';
+                        outTo.filter  = 'blur(3px)';
+                    }
+
+                    const tl = gsap.timeline({
+                        defaults: { ease: 'none' },
+                        scrollTrigger: { trigger: it, start: 'top 98%', end: 'bottom 8%', scrub: 0.45 }
+                    });
+                    tl.fromTo(card, inFrom, inTo, 0)
+                      .fromTo(node, { scale: 0.4, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.18 }, 0.04)
+                      .fromTo(chips, { y: 26, opacity: 0 }, { y: 0, opacity: 1, duration: 0.2, stagger: 0.035 }, 0.1)
+                      .to(card, outTo, 0.7); /* 0.32 → 0.7 is the held-in-focus window */
+                });
+            }
+
+            /* ---- focus logic: stage nearest the focus line drives the HUD ---- */
             let current = -1, ticking = false;
 
+            function tick(el) {
+                if (!el) return;
+                el.classList.remove('tl-tick');
+                void el.offsetWidth;
+                el.classList.add('tl-tick');
+            }
             function setActive(i) {
                 if (i === current) return;
                 current = i;
@@ -933,22 +960,15 @@
                     it.classList.toggle('active', n === i);
                     it.classList.toggle('passed', n < i);
                 });
-                if (curEl) {
-                    curEl.textContent = ('0' + (i + 1)).slice(-2);
-                    curEl.classList.remove('tl-tick');
-                    void curEl.offsetWidth;
-                    curEl.classList.add('tl-tick');
-                }
-                if (labelEl) labelEl.textContent = items[i].getAttribute('data-label') || '';
+                if (curEl) { curEl.textContent = ('0' + (i + 1)).slice(-2); tick(curEl); }
+                if (labelEl) { labelEl.textContent = items[i].getAttribute('data-label') || ''; tick(labelEl); }
             }
-
             function focusUpdate() {
                 const line = window.innerHeight * 0.5;
                 let best = 0, bestDist = Infinity;
                 items.forEach(function (it, n) {
                     const r = it.getBoundingClientRect();
-                    const mid = r.top + r.height * 0.42;
-                    const d = Math.abs(mid - line);
+                    const d = Math.abs(r.top + r.height * 0.42 - line);
                     if (d < bestDist) { bestDist = d; best = n; }
                 });
                 setActive(best);
@@ -960,24 +980,7 @@
             window.addEventListener('resize', focusUpdate, { passive: true });
             focusUpdate();
 
-            /* node click = glide to that stage */
-            function glideToItem(i) {
-                const y = items[i].getBoundingClientRect().top + window.pageYOffset - window.innerHeight * 0.34;
-                glideTo(y, 900);
-            }
-            items.forEach(function (it, n) {
-                const nodeBtn = it.querySelector('.tl-node');
-                if (nodeBtn) nodeBtn.addEventListener('click', function () { stopPlay(); glideToItem(n); });
-                const btn = it.querySelector('.tl-expand');
-                const card = it.querySelector('.tl-card');
-                if (btn) btn.addEventListener('click', function () {
-                    const open = card.classList.toggle('open');
-                    btn.textContent = open ? 'Close' : 'Details';
-                    ScrollTrigger.refresh();
-                });
-            });
-
-            /* smooth window glide (no plugins) */
+            /* ---- smooth window glide (no plugins) ---- */
             let glideRAF = null;
             function glideTo(targetY, dur) {
                 if (glideRAF) cancelAnimationFrame(glideRAF);
@@ -994,7 +997,78 @@
                 glideRAF = requestAnimationFrame(step);
             }
 
-            /* play: one continuous cinematic glide through all nine stages */
+            /* ---- gentle magnetic snap: stages settle on the focus line ----
+               Uses the same position math as everything else, pauses while a
+               detail panel is open so reading is never tugged around.         */
+            let posCache = null;
+            const snapST = reduced ? null : ScrollTrigger.create({
+                trigger: track, start: 'top 60%', end: 'bottom 55%',
+                snap: {
+                    snapTo: function (value) {
+                        if (openCount > 0) return value;
+                        if (!posCache) {
+                            const s = snapST.start, e = snapST.end;
+                            posCache = items.map(function (it) {
+                                return gsap.utils.clamp(0, 1, (focusScrollFor(it) - s) / (e - s));
+                            });
+                        }
+                        let best = posCache[0];
+                        for (let i = 1; i < posCache.length; i++) {
+                            if (Math.abs(posCache[i] - value) < Math.abs(best - value)) best = posCache[i];
+                        }
+                        return best;
+                    },
+                    duration: { min: 0.25, max: 0.6 },
+                    delay: 0.14,
+                    ease: 'power2.inOut'
+                }
+            });
+            ScrollTrigger.addEventListener('refresh', function () { posCache = null; });
+
+            /* ---- node click + expandable detail ---- */
+            items.forEach(function (it) {
+                const nodeBtn = it.querySelector('.tl-node');
+                const btn     = it.querySelector('.tl-expand');
+                const card    = it.querySelector('.tl-card');
+                const detail  = it.querySelector('.tl-detail');
+
+                if (nodeBtn) nodeBtn.addEventListener('click', function () {
+                    stopPlay();
+                    glideTo(focusScrollFor(it), 850);
+                });
+
+                if (btn) btn.addEventListener('click', function () {
+                    const opening = !card.classList.contains('open');
+                    if (opening) {
+                        openCount++;
+                        card.classList.add('open');
+                        btn.innerHTML = 'Close &#9652;';
+                        gsap.fromTo(card, { scale: 1 }, { scale: 1.025, duration: 0.16, yoyo: true, repeat: 1, ease: 'power2.out' });
+                        gsap.set(detail, { height: 'auto', opacity: 1 });
+                        gsap.from(detail, { height: 0, opacity: 0, duration: 0.6, ease: 'back.out(1.2)',
+                            onComplete: function () { ScrollTrigger.refresh(); } });
+                        gsap.fromTo(detail.querySelectorAll('p'),
+                            { y: 16, opacity: 0 },
+                            { y: 0, opacity: 1, duration: 0.5, delay: 0.12, ease: 'power3.out' });
+                        requestAnimationFrame(function () {
+                            const r = card.getBoundingClientRect();
+                            if (r.bottom > window.innerHeight - 60 || r.top < 100) {
+                                glideTo(window.pageYOffset + r.top - 110, 650);
+                            }
+                        });
+                    } else {
+                        gsap.to(detail, { height: 0, opacity: 0, duration: 0.42, ease: 'power3.inOut',
+                            onComplete: function () {
+                                card.classList.remove('open');
+                                btn.innerHTML = 'Details &#9662;';
+                                openCount = Math.max(0, openCount - 1);
+                                ScrollTrigger.refresh();
+                            } });
+                    }
+                });
+            });
+
+            /* ---- play: continuous cinematic drift with soft start ---- */
             let playing = false, playRAF = null;
             function stopPlay() {
                 if (!playing) return;
@@ -1011,18 +1085,19 @@
                     playBtn.classList.add('playing');
                     playBtn.innerHTML = '&#10074;&#10074;&nbsp; Pause';
 
-                    const first = items[0].getBoundingClientRect().top + window.pageYOffset - window.innerHeight * 0.34;
-                    const last  = items[items.length - 1].getBoundingClientRect().top + window.pageYOffset - window.innerHeight * 0.34;
+                    const first = focusScrollFor(items[0]);
+                    const last  = focusScrollFor(items[items.length - 1]);
                     let from = window.pageYOffset;
-                    if (from > last - 10) from = first;                 /* restart from top if finished */
-                    const speed = 0.14;                                 /* px per ms — slow cinematic drift */
-                    let pos = from, t0 = null;
-                    window.scrollTo(0, pos);
+                    if (from > last - 10 || from < first - window.innerHeight) from = first;
 
+                    const speed = 0.14, ramp = 700; /* px/ms, ms ease-in */
+                    let t0 = null;
                     function drift(now) {
                         if (!playing) return;
                         if (t0 === null) t0 = now;
-                        pos = from + (now - t0) * speed;
+                        const t = now - t0;
+                        const eased = t < ramp ? (t * t) / (2 * ramp) : t - ramp / 2; /* soft launch, then constant */
+                        const pos = from + eased * speed;
                         if (pos >= last) { window.scrollTo(0, last); stopPlay(); return; }
                         window.scrollTo(0, pos);
                         playRAF = requestAnimationFrame(drift);
@@ -1030,7 +1105,6 @@
                     playRAF = requestAnimationFrame(drift);
                 });
             }
-            /* any manual input cancels the drift */
             ['wheel', 'touchstart', 'keydown'].forEach(function (ev) {
                 window.addEventListener(ev, stopPlay, { passive: true });
             });
