@@ -594,6 +594,8 @@
 
         /* ─── REGISTER GSAP ─── */
         gsap.registerPlugin(ScrollTrigger);
+        const isDesktopPin = window.matchMedia('(min-width: 861px)').matches
+            && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
         /* ─── SPLIT TEXT UTILITY ─── */
         function splitTextIntoWords(el) {
@@ -640,18 +642,7 @@
                 opacity: 0, y: 30, duration: 1, ease: 'power3.out', stagger: 0.15, delay: 0.5
             });
 
-            // Hero parallax on scroll
-            gsap.to('.hero-content', {
-                yPercent: -30,
-                opacity: 0,
-                ease: 'none',
-                scrollTrigger: {
-                    trigger: '.hero',
-                    start: 'top top',
-                    end: 'bottom top',
-                    scrub: 0.5,
-                }
-            });
+            // Scroll exit is owned by the cinematic scene engine below.
         }
 
         /* ─── NAV SCROLL ─── */
@@ -707,7 +698,7 @@
         });
 
         /* ─── SLIDE ANIMATIONS ─── */
-        document.querySelectorAll('[data-animate="slide-right"]').forEach((el, i) => {
+        if (!isDesktopPin) document.querySelectorAll('[data-animate="slide-right"]').forEach((el, i) => {
             gsap.from(el, {
                 x: -80,
                 opacity: 0,
@@ -723,6 +714,7 @@
         });
 
         document.querySelectorAll('[data-animate="slide-up"]').forEach((el, i) => {
+            if (isDesktopPin && el.closest('#design, #engineering')) return;
             gsap.from(el, {
                 y: 60,
                 opacity: 0,
@@ -738,6 +730,7 @@
 
         document.querySelectorAll('[data-animate="fade"]').forEach(el => {
             if (el.closest('.hero')) return; // skip hero, already animated
+            if (isDesktopPin && el.closest('#design, #engineering')) return; // pinned scenes own these
             gsap.from(el, {
                 opacity: 0,
                 y: 25,
@@ -826,7 +819,7 @@
 
         /* ─── TABLE ROW STAGGER ─── */
         const tableRows = document.querySelectorAll('.engineering-table tbody tr');
-        gsap.from(tableRows, {
+        if (!isDesktopPin) gsap.from(tableRows, {
             x: -40,
             opacity: 0,
             duration: 0.6,
@@ -878,12 +871,11 @@
                 });
         }
 
-        /* ─── SITE SCROLL EXPERIENCE (Apple page rhythm) ─── */
+        /* ─── SITE SCROLL EXPERIENCE v2 — pinned cinematic scenes ─── */
         (function () {
             const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            const desktop = window.matchMedia('(min-width: 861px)').matches;
 
-            /* eased anchor navigation with nav offset — replaces native smooth scroll */
+            /* eased anchor navigation with nav offset */
             let navRAF = null;
             function navGlide(targetY, dur) {
                 if (navRAF) cancelAnimationFrame(navRAF);
@@ -901,64 +893,164 @@
             }
             document.querySelectorAll('.nav-links a[href^="#"]').forEach(function (a) {
                 a.addEventListener('click', function (e) {
-                    const id = a.getAttribute('href');
-                    const t = document.querySelector(id);
+                    const t = document.querySelector(a.getAttribute('href'));
                     if (!t) return;
                     e.preventDefault();
-                    if (reduced) { window.scrollTo(0, t.getBoundingClientRect().top + window.pageYOffset - 92); }
-                    else { navGlide(t.getBoundingClientRect().top + window.pageYOffset - 92, 1000); }
-                    if (history.replaceState) history.replaceState(null, '', id);
+                    const y = t.getBoundingClientRect().top + window.pageYOffset - 92;
+                    if (reduced) window.scrollTo(0, y); else navGlide(y, 1000);
+                    if (history.replaceState) history.replaceState(null, '', a.getAttribute('href'));
                 });
             });
-            window.addEventListener('wheel', function () { if (navRAF) { cancelAnimationFrame(navRAF); navRAF = null; } }, { passive: true });
-            window.addEventListener('touchstart', function () { if (navRAF) { cancelAnimationFrame(navRAF); navRAF = null; } }, { passive: true });
+            ['wheel', 'touchstart'].forEach(function (ev) {
+                window.addEventListener(ev, function () { if (navRAF) { cancelAnimationFrame(navRAF); navRAF = null; } }, { passive: true });
+            });
+
+            /* nav spy: the link for the section on screen lights up */
+            const spyLinks = Array.prototype.slice.call(document.querySelectorAll('.nav-links a[href^="#"]'));
+            const spyTargets = spyLinks.map(function (a) { return document.querySelector(a.getAttribute('href')); });
+            let spyTick = false;
+            function spy() {
+                const line = window.innerHeight * 0.42;
+                let idx = -1;
+                spyTargets.forEach(function (t, n) {
+                    if (t && t.getBoundingClientRect().top <= line) idx = n;
+                });
+                spyLinks.forEach(function (a, n) { a.classList.toggle('nav-active', n === idx); });
+                spyTick = false;
+            }
+            window.addEventListener('scroll', function () {
+                if (!spyTick) { spyTick = true; requestAnimationFrame(spy); }
+            }, { passive: true });
+            spy();
 
             if (reduced) return;
-            const amp = desktop ? 70 : 30;
-            const dimIn  = desktop ? 0.42 : 0.68;
-            const dimOut = desktop ? 0.45 : 0.68;
-            const driftK = desktop ? 1 : 0.55;
 
-            /* section passage: rise in, hold, dim + drift out.
-               One timeline per container = no property conflicts.
-               #timeline excluded: transforms on an ancestor would break its sticky HUD. */
-            gsap.utils.toArray('section:not(#timeline) > .minimal-container, footer > .minimal-container').forEach(function (el) {
-                const tl = gsap.timeline({
-                    defaults: { ease: 'none' },
-                    scrollTrigger: { trigger: el.parentElement, start: 'top bottom', end: 'bottom top', scrub: 0.5 }
+            const mm = gsap.matchMedia();
+
+            /* ================= DESKTOP: pinned scenes ================= */
+            mm.add('(min-width: 861px)', function () {
+
+                /* HERO — pinned opening: the headline holds, then recedes like a title card */
+                gsap.timeline({
+                    scrollTrigger: { trigger: '.hero', start: 'top top', end: '+=100%', scrub: 0.5, pin: true, anticipatePin: 1 }
+                })
+                .to('.hero-scroll-hint', { opacity: 0, duration: 0.12 }, 0)
+                .to('.hero-content', { scale: 0.88, y: -60, opacity: 0, ease: 'none', duration: 0.82 }, 0.12);
+
+                /* GENESIS — pinned: the three evolution steps light up one at a time */
+                const steps = gsap.utils.toArray('#genesis .evo-step');
+                const gtl = gsap.timeline({
+                    scrollTrigger: { trigger: '#genesis', start: 'top top', end: '+=160%', scrub: 0.5, pin: true, anticipatePin: 1 }
                 });
-                tl.fromTo(el, { y: amp, opacity: dimIn, scale: 0.985 }, { y: 0, opacity: 1, scale: 1, duration: 0.24 }, 0)
-                  .to(el, { y: -amp, opacity: dimOut, scale: 0.985, duration: 0.24 }, 0.76);
-            });
+                steps.forEach(function (s, i) {
+                    const t = 0.08 + i * 0.28;
+                    gtl.fromTo(s, { opacity: 0.1, x: -46 }, { opacity: 1, x: 0, duration: 0.18 }, t);
+                    if (i > 0) gtl.to(steps[i - 1], { opacity: 0.3, duration: 0.16 }, t);
+                });
+                gtl.to({}, { duration: 0.1 }); /* breathing room before release */
 
-            /* hero: cinematic settle-back (scale joins the existing lift + fade) */
-            gsap.to('.hero-content', {
-                scale: 0.93, ease: 'none',
-                scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 0.5 }
-            });
+                /* ORB!TUS — pinned product reveal: title lands, specs cascade */
+                gsap.timeline({
+                    scrollTrigger: { trigger: '#design', start: 'top top', end: '+=150%', scrub: 0.5, pin: true, anticipatePin: 1 }
+                })
+                .fromTo('.orbitus-title', { scale: 1.45, y: 90 }, { scale: 1, y: 0, ease: 'none', duration: 0.3 }, 0)
+                .fromTo('.pink-info-box', { y: 110, opacity: 0 }, { y: 0, opacity: 1, duration: 0.22 }, 0.24)
+                .fromTo('#design .design-jobs-content > *', { y: 80, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.1, duration: 0.22 }, 0.42)
+                .to({}, { duration: 0.14 });
 
-            /* depth drift: key blocks travel at their own speed inside their section.
-               Only elements with no one-shot animation of their own — no conflicts. */
-            [
-                ['.team-grid', 1],
-                ['.manufacturing-grid', 1],
-                ['.sponsorship-showcase', 0.7],
-                ['.evolution-flow', 0.6],
-                ['.colour-story-grid', 0.8]
-            ].forEach(function (pair) {
-                gsap.utils.toArray(pair[0]).forEach(function (el) {
-                    const a = 26 * pair[1] * driftK;
-                    gsap.fromTo(el, { y: a }, {
-                        y: -a, ease: 'none',
-                        scrollTrigger: { trigger: el, start: 'top bottom', end: 'bottom top', scrub: 0.6 }
+                /* ENGINEERING — pinned: the table builds row by row, badges pop */
+                const rows = gsap.utils.toArray('.engineering-table tbody tr');
+                const etl = gsap.timeline({
+                    scrollTrigger: { trigger: '#engineering', start: 'top top', end: '+=150%', scrub: 0.5, pin: true, anticipatePin: 1 }
+                });
+                etl.fromTo('#engineering .center-text', { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 0.14 }, 0)
+                   .fromTo('.table-container', { y: 90, opacity: 0 }, { y: 0, opacity: 1, duration: 0.16 }, 0.1);
+                rows.forEach(function (r, i) {
+                    const t = 0.28 + i * 0.13;
+                    etl.fromTo(r, { x: -46, opacity: 0 }, { x: 0, opacity: 1, duration: 0.1 }, t);
+                    const badge = r.querySelector('.status-badge');
+                    if (badge) etl.fromTo(badge, { scale: 0 }, { scale: 1, ease: 'back.out(2.2)', duration: 0.08 }, t + 0.05);
+                });
+                etl.to({}, { duration: 0.1 });
+
+                /* passage rhythm for the flowing (non-pinned) sections */
+                ['#philosophy', '#team', '#manufacturing', '#colours', '#enterprise'].forEach(function (sel) {
+                    const el = document.querySelector(sel + ' > .minimal-container');
+                    if (!el) return;
+                    gsap.timeline({
+                        defaults: { ease: 'none' },
+                        scrollTrigger: { trigger: el.parentElement, start: 'top bottom', end: 'bottom top', scrub: 0.5 }
+                    })
+                    .fromTo(el, { y: 70, opacity: 0.42, scale: 0.985 }, { y: 0, opacity: 1, scale: 1, duration: 0.24 }, 0)
+                    .to(el, { y: -70, opacity: 0.45, scale: 0.985, duration: 0.24 }, 0.76);
+                });
+                const footEl = document.querySelector('footer > .minimal-container');
+                if (footEl) gsap.fromTo(footEl, { y: 70, opacity: 0.42 }, { y: 0, opacity: 1, ease: 'none',
+                    scrollTrigger: { trigger: 'footer', start: 'top bottom', end: 'top 40%', scrub: 0.5 } });
+
+                /* depth drift */
+                [['.team-grid', 1], ['.manufacturing-grid', 1], ['.sponsorship-showcase', 0.7], ['.colour-story-grid', 0.8]].forEach(function (pair) {
+                    gsap.utils.toArray(pair[0]).forEach(function (el) {
+                        const a = 26 * pair[1];
+                        gsap.fromTo(el, { y: a }, { y: -a, ease: 'none',
+                            scrollTrigger: { trigger: el, start: 'top bottom', end: 'bottom top', scrub: 0.6 } });
                     });
                 });
+
+                gsap.fromTo('.footer-email', { scale: 0.9, opacity: 0.3 }, { scale: 1, opacity: 1, ease: 'none',
+                    scrollTrigger: { trigger: 'footer', start: 'top 96%', end: 'top 55%', scrub: 0.4 } });
+
+                /* physical pointer tilt on cards (Apple product-card feel) */
+                function attachTilt(sel, rot) {
+                    document.querySelectorAll(sel).forEach(function (card) {
+                        gsap.set(card, { transformPerspective: 900 });
+                        const rx = gsap.quickTo(card, 'rotationX', { duration: 0.5, ease: 'power3' });
+                        const ry = gsap.quickTo(card, 'rotationY', { duration: 0.5, ease: 'power3' });
+                        card.addEventListener('mouseenter', function () {
+                            gsap.to(card, { y: -6, scale: 1.015, duration: 0.4, ease: 'power3' });
+                        });
+                        card.addEventListener('mousemove', function (e) {
+                            const r = card.getBoundingClientRect();
+                            ry(((e.clientX - r.left) / r.width - 0.5) * rot);
+                            rx(-((e.clientY - r.top) / r.height - 0.5) * rot);
+                        });
+                        card.addEventListener('mouseleave', function () {
+                            rx(0); ry(0);
+                            gsap.to(card, { y: 0, scale: 1, duration: 0.6, ease: 'power3' });
+                        });
+                    });
+                }
+                attachTilt('.team-card', 7);
+                attachTilt('.m-card', 7);
+                attachTilt('.jobs-sponsor-hero', 4);
+                attachTilt('.colour-card', 7);
+                attachTilt('.detail-block', 6);
             });
 
-            /* footer sign-off settles up to full size */
-            gsap.fromTo('.footer-email', { scale: 0.9, opacity: 0.3 }, {
-                scale: 1, opacity: 1, ease: 'none',
-                scrollTrigger: { trigger: 'footer', start: 'top 96%', end: 'top 55%', scrub: 0.4 }
+            /* ================= MOBILE / TABLET: flowing rhythm, no pins ================= */
+            mm.add('(max-width: 860px)', function () {
+                gsap.to('.hero-content', { yPercent: -30, opacity: 0, ease: 'none',
+                    scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 0.5 } });
+
+                gsap.utils.toArray('section:not(#timeline) > .minimal-container, footer > .minimal-container').forEach(function (el) {
+                    gsap.timeline({
+                        defaults: { ease: 'none' },
+                        scrollTrigger: { trigger: el.parentElement, start: 'top bottom', end: 'bottom top', scrub: 0.5 }
+                    })
+                    .fromTo(el, { y: 30, opacity: 0.68 }, { y: 0, opacity: 1, duration: 0.24 }, 0)
+                    .to(el, { y: -30, opacity: 0.68, duration: 0.24 }, 0.76);
+                });
+
+                [['.team-grid', 1], ['.manufacturing-grid', 1], ['.sponsorship-showcase', 0.7], ['.colour-story-grid', 0.8]].forEach(function (pair) {
+                    gsap.utils.toArray(pair[0]).forEach(function (el) {
+                        const a = 26 * pair[1] * 0.55;
+                        gsap.fromTo(el, { y: a }, { y: -a, ease: 'none',
+                            scrollTrigger: { trigger: el, start: 'top bottom', end: 'bottom top', scrub: 0.6 } });
+                    });
+                });
+
+                gsap.fromTo('.footer-email', { scale: 0.92, opacity: 0.35 }, { scale: 1, opacity: 1, ease: 'none',
+                    scrollTrigger: { trigger: 'footer', start: 'top 96%', end: 'top 55%', scrub: 0.4 } });
             });
         })();
 
