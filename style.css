@@ -17,7 +17,7 @@
 
 /* RESET */
 * { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: auto; } /* JS-eased anchors; native smooth fights the scroll engine */
 body {
     background: var(--dark-navy);
     color: var(--white);
@@ -1570,4 +1570,45 @@ footer::before {
     .tl-hud-row { flex-direction: column; align-items: flex-start; gap: 12px; }
     .tl-controls { width: 100%; }
     .tl-btn-play { flex: 1; }
+}
+
+/* ===================================================
+   TABLET & PHONE VISIBILITY FIXES
+=================================================== */
+
+/* engineering table: was clipped by overflow:hidden — now swipes sideways */
+@media (max-width: 992px) {
+    .table-container {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+    }
+    .engineering-table { min-width: 620px; }
+    .palette-group-head { flex-wrap: wrap; row-gap: 6px; }
+}
+
+@media (max-width: 768px) {
+    .engineering-table th,
+    .engineering-table td { padding: 12px 14px; font-size: .8rem; }
+    .engineering-table th { letter-spacing: 1px; }
+    .engineering-table { min-width: 560px; }
+
+    /* iOS URL bar: hero fills the real visible height */
+    .hero { min-height: 100svh; }
+
+    .orbitus-title { letter-spacing: -2px; }
+    .pink-info-box li { font-size: .85rem; }
+    .sponsor-bg-title { font-size: 6rem; }
+    .tl-hud { border-radius: 16px; }
+    .tl-chips span { font-size: 9px; padding: 4px 10px; }
+    .palette-group-note { font-size: 10px; }
+}
+
+@media (max-width: 480px) {
+    .engineering-table { min-width: 520px; }
+    .engineering-table th,
+    .engineering-table td { padding: 10px 12px; font-size: .75rem; }
+    .tl-card h4 { font-size: 1.05rem; }
+    .tl-detail p { font-size: .82rem; }
+    .large-text { letter-spacing: -1px; }
 }
