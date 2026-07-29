@@ -259,11 +259,16 @@ nav.scrolled {
     width: auto;
 }
 .nav-logo-text {
-    display: none;
+    display: block;
     font-weight: 800;
     font-size: 1.5rem;
     letter-spacing: -1px;
     color: var(--white);
+    transition: transform .3s ease, text-shadow .3s ease;
+}
+.nav-logo-link:hover .nav-logo-text {
+    transform: translateY(-1px);
+    text-shadow: 0 0 22px rgba(255, 20, 147, .45);
 }
 .nav-links { display: flex; align-items: center; gap: 4px; }
 .nav-links a {
@@ -1451,15 +1456,20 @@ footer::before {
 
 /* ---- expandable detail ---- */
 .tl-detail {
-    max-height: 0;
+    height: 0;
     opacity: 0;
     overflow: hidden;
-    transition: max-height .55s cubic-bezier(.2, 0, .2, 1), opacity .4s ease, margin-top .55s ease;
 }
-.tl-card.open .tl-detail {
-    max-height: 420px;
-    opacity: 1;
-    margin-top: 16px;
+.tl-card.open .tl-detail { margin-top: 16px; }
+
+/* an open card always snaps into full focus — no scrub blur while reading */
+.tl-card.open {
+    filter: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    border-color: rgba(0, 224, 198, .45);
+    background: rgba(0, 224, 198, .06);
+    box-shadow: 0 28px 70px rgba(0, 0, 0, .45), 0 0 60px rgba(0, 224, 198, .2);
 }
 .tl-detail p {
     margin: 0;
@@ -1493,13 +1503,20 @@ footer::before {
 }
 
 
-/* ---- HUD counter tick ---- */
-.tl-counter b.tl-tick { animation: tl-tick .45s cubic-bezier(.2,0,.2,1); }
+/* ---- HUD counter + label tick ---- */
+.tl-counter b.tl-tick,
+.tl-label.tl-tick { animation: tl-tick .45s cubic-bezier(.2,0,.2,1); }
 @keyframes tl-tick {
     0%   { transform: translateY(8px); opacity: 0; }
     100% { transform: translateY(0); opacity: 1; }
 }
 .tl-counter b { display: inline-block; }
+.tl-chips span { will-change: transform, opacity; }
+
+@media (prefers-reduced-motion: reduce) {
+    .tl-item.active .tl-node::after { animation: none; }
+    .tl-counter b.tl-tick, .tl-label.tl-tick { animation: none; }
+}
 
 /* ---- focused card lift ---- */
 .tl-item.active .tl-card {
