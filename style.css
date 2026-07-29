@@ -183,9 +183,9 @@ a, button, .magnetic, .nav-cta, .hamburger, .glass-card { cursor: pointer; }
     transform: translateY(60px) scale(0.95);
 }
 .card-visible {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-    transition: opacity 0.8s cubic-bezier(0.2, 0, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0, 0.2, 1);
+    opacity: 1 !important;
+    transform: translateY(0) scale(1) !important;
+    transition: opacity 0.8s cubic-bezier(0.2, 0, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0, 0.2, 1) !important;
 }
 
 /* ─── SPLIT TEXT ─── */
@@ -505,6 +505,7 @@ nav.scrolled {
     background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
 }
 .glass-card:hover {
+    transform: translateY(-8px) scale(1.02);
     background: rgba(255, 255, 255, 0.1);
     border-color: rgba(255, 20, 147, 0.3);
     box-shadow: 0 24px 64px rgba(0, 0, 0, 0.35), 0 0 50px rgba(255, 20, 147, 0.12);
@@ -572,6 +573,7 @@ nav.scrolled {
 .detail-block:hover {
     background: rgba(255, 255, 255, 0.06);
     border-color: rgba(255, 20, 147, 0.15);
+    transform: translateY(-3px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
 }
 .detail-block h3 {
     font-size: 0.95rem;
@@ -606,7 +608,9 @@ nav.scrolled {
     transform-style: preserve-3d;
     transition: all 0.5s cubic-bezier(0.2, 0, 0.2, 1);
 }
-.team-card:hover { }
+.team-card:hover {
+    transform: translateY(-8px) rotateX(calc(2deg + var(--rx, 0deg))) rotateY(calc(-1deg + var(--ry, 0deg))) scale(1.02);
+}
 .team-card::after {
     content: '';
     position: absolute;
@@ -705,7 +709,9 @@ nav.scrolled {
     transition: all 0.5s cubic-bezier(0.2, 0, 0.2, 1);
     transform-style: preserve-3d;
 }
-.m-card:hover { }
+.m-card:hover {
+    transform: translateY(-8px) rotateX(var(--rx, 0deg)) rotateY(calc(-2deg + var(--ry, 0deg))) scale(1.02);
+}
 .m-num {
     font-family: var(--mono);
     font-size: 11px;
@@ -780,7 +786,9 @@ nav.scrolled {
     transition: all 0.5s cubic-bezier(0.2, 0, 0.2, 1);
     transform-style: preserve-3d;
 }
-.jobs-sponsor-hero:hover { }
+.jobs-sponsor-hero:hover {
+    transform: translateY(-4px) rotateX(calc(1deg + var(--rx, 0deg))) rotateY(var(--ry, 0deg)) scale(1.01);
+}
 .sponsor-bg-title {
     position: absolute;
     font-size: 10rem;
@@ -994,7 +1002,10 @@ footer::before {
 
 /* ─── COLOUR CARD HIGHLIGHTS ─── */
 .colour-card { position: relative; transition: all .4s cubic-bezier(.2,0,.2,1); }
-.colour-card:hover { border-color: rgba(255,20,147,.25); }
+.colour-card:hover {
+    transform: translateY(-6px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+    border-color: rgba(255,20,147,.25);
+}
 .colour-card.featured {
     background: linear-gradient(135deg, rgba(255,20,147,.10), rgba(255,255,255,.03));
     border: 1px solid rgba(255,20,147,.28);
