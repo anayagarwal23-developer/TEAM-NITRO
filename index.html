@@ -1102,23 +1102,18 @@
                 gsap.fromTo('.footer-email', { scale: 0.9, opacity: 0.3 }, { scale: 1, opacity: 1, ease: 'none',
                     scrollTrigger: { trigger: 'footer', start: 'top 96%', end: 'top 55%', scrub: 0.4 } });
 
-                /* physical pointer tilt on cards (Apple product-card feel) */
+                /* pointer tilt feeds CSS vars into the existing hover transitions —
+                   the CSS lift stays intact, the tilt rides on top of it */
                 function attachTilt(sel, rot) {
                     document.querySelectorAll(sel).forEach(function (card) {
-                        gsap.set(card, { transformPerspective: 900 });
-                        const rx = gsap.quickTo(card, 'rotationX', { duration: 0.5, ease: 'power3' });
-                        const ry = gsap.quickTo(card, 'rotationY', { duration: 0.5, ease: 'power3' });
-                        card.addEventListener('mouseenter', function () {
-                            gsap.to(card, { y: -6, scale: 1.015, duration: 0.4, ease: 'power3' });
-                        });
                         card.addEventListener('mousemove', function (e) {
                             const r = card.getBoundingClientRect();
-                            ry(((e.clientX - r.left) / r.width - 0.5) * rot);
-                            rx(-((e.clientY - r.top) / r.height - 0.5) * rot);
+                            card.style.setProperty('--ry', (((e.clientX - r.left) / r.width - 0.5) * rot).toFixed(2) + 'deg');
+                            card.style.setProperty('--rx', (-((e.clientY - r.top) / r.height - 0.5) * rot).toFixed(2) + 'deg');
                         });
                         card.addEventListener('mouseleave', function () {
-                            rx(0); ry(0);
-                            gsap.to(card, { y: 0, scale: 1, duration: 0.6, ease: 'power3' });
+                            card.style.setProperty('--rx', '0deg');
+                            card.style.setProperty('--ry', '0deg');
                         });
                     });
                 }
