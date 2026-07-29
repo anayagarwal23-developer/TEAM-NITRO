@@ -599,7 +599,7 @@
 
         /* ─── REGISTER GSAP ─── */
         gsap.registerPlugin(ScrollTrigger);
-        const isDesktopPin = window.matchMedia('(min-width: 861px)').matches
+        const isDesktopPin = window.matchMedia('(min-width: 861px) and (min-height: 641px)').matches
             && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
         /* ─── SPLIT TEXT UTILITY ─── */
@@ -856,15 +856,19 @@
             const ring = document.createElement('div'); ring.className = 'cursor-ring';
             document.body.append(dot, ring);
 
-            let mx = -100, my = -100, rx = -100, ry = -100, pmx = -100, pmy = -100;
+            let mx = -100, my = -100, rx = -100, ry = -100, ang = 0, st = 0;
             window.addEventListener('mousemove', e => {
-                pmx = mx; pmy = my; mx = e.clientX; my = e.clientY;
-                const dx = mx - pmx, dy = my - pmy, spd = Math.min(Math.hypot(dx, dy), 60);
-                const ang = Math.atan2(dy, dx), sx = 1 + spd / 55, sy = 1 / (1 + spd / 140);
-                dot.style.transform = `translate(${mx}px, ${my}px) translate(-50%, -50%) rotate(${ang}rad) scale(${sx}, ${sy})`;
+                const dx = e.clientX - mx, dy = e.clientY - my;
+                mx = e.clientX; my = e.clientY;
+                const spd = Math.min(Math.hypot(dx, dy), 60);
+                if (spd > 2) ang = Math.atan2(dy, dx);
+                st = Math.min(st + spd / 45, 1.1);
             }, { passive: true });
 
             (function loop() {
+                st *= 0.88; /* stretch decays back to a round dot */
+                const sx = 1 + st * 0.55, sy = 1 / (1 + st * 0.9);
+                dot.style.transform = `translate(${mx}px, ${my}px) translate(-50%, -50%) rotate(${ang}rad) scale(${sx.toFixed(3)}, ${sy.toFixed(3)})`;
                 rx += (mx - rx) * 0.15;
                 ry += (my - ry) * 0.15;
                 ring.style.transform = `translate(${rx}px, ${ry}px) translate(-50%, -50%)`;
@@ -1020,8 +1024,8 @@
 
             const mm = gsap.matchMedia();
 
-            /* ================= DESKTOP: pinned scenes ================= */
-            mm.add('(min-width: 861px)', function () {
+            /* ================= DESKTOP: pinned scenes (needs real height) ================= */
+            mm.add('(min-width: 861px) and (min-height: 641px)', function () {
 
                 /* HERO — pinned opening: the headline holds, then recedes like a title card */
                 gsap.timeline({
@@ -1067,6 +1071,10 @@
                 });
                 etl.to({}, { duration: 0.1 });
 
+            });
+
+            /* ================= DESKTOP: flowing rhythm, depth, tilt ================= */
+            mm.add('(min-width: 861px)', function () {
                 /* passage rhythm for the flowing (non-pinned) sections */
                 ['#philosophy', '#team', '#manufacturing', '#colours', '#enterprise'].forEach(function (sel) {
                     const el = document.querySelector(sel + ' > .minimal-container');
