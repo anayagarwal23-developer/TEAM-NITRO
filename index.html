@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#000022">
+    <meta name="description" content="TEAM N!TRO &bull; The pursuit of zero friction &bull; STEM Racing National Finals 2026">
     <title>TEAM N!TRO | Stem Racing | Stem Racing India Nationals Finals | Team Nitro | 2nd Runners Up, Reigonals Finals 2026</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -19,6 +21,7 @@
     </div>
 
     <div class="scroll-progress" id="scrollProgress"></div>
+    <div class="grain" aria-hidden="true"></div>
 
     <nav id="mainNav">
         <div class="nav-container">
@@ -46,6 +49,7 @@
 
     <!-- HERO -->
     <header class="hero" id="heroSection">
+        <canvas id="heroFx" class="hero-fx" aria-hidden="true"></canvas>
         <div class="hero-content">
             <span class="hero-tag" data-animate="fade">National Finals 2026</span>
             <h1 class="split-text-hero">Design is not just what it looks like. Design is <span class="pink">how it works.</span></h1>
@@ -187,6 +191,7 @@
 
     <!-- SAPPHIRE -->
     <section id="design" class="section sapphire-section">
+        <div class="orbitus-ghost" aria-hidden="true">ORB!TUS</div>
         <div class="minimal-container">
             <h2 class="section-tag" data-animate="tag">03. The Product</h2>
             <div class="philosophy-jobs-layout">
@@ -851,10 +856,12 @@
             const ring = document.createElement('div'); ring.className = 'cursor-ring';
             document.body.append(dot, ring);
 
-            let mx = -100, my = -100, rx = -100, ry = -100;
+            let mx = -100, my = -100, rx = -100, ry = -100, pmx = -100, pmy = -100;
             window.addEventListener('mousemove', e => {
-                mx = e.clientX; my = e.clientY;
-                dot.style.transform = `translate(${mx}px, ${my}px) translate(-50%, -50%)`;
+                pmx = mx; pmy = my; mx = e.clientX; my = e.clientY;
+                const dx = mx - pmx, dy = my - pmy, spd = Math.min(Math.hypot(dx, dy), 60);
+                const ang = Math.atan2(dy, dx), sx = 1 + spd / 55, sy = 1 / (1 + spd / 140);
+                dot.style.transform = `translate(${mx}px, ${my}px) translate(-50%, -50%) rotate(${ang}rad) scale(${sx}, ${sy})`;
             }, { passive: true });
 
             (function loop() {
@@ -870,6 +877,92 @@
                     el.addEventListener('mouseleave', () => { dot.classList.remove('hovering'); ring.classList.remove('hovering'); });
                 });
         }
+
+        /* ─── WOW LAYER: speed field, velocity physics ─── */
+        (function () {
+            const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            if (reduced) return;
+
+            /* one shared scroll-velocity bus, smoothed per frame */
+            let lastY = window.pageYOffset, vel = 0;
+            gsap.ticker.add(function () {
+                const y = window.pageYOffset;
+                vel += ((y - lastY) - vel) * 0.18;
+                lastY = y;
+            });
+
+            /* marquees: GSAP-driven, they accelerate with your scroll and glide back */
+            const mTweens = [];
+            document.querySelectorAll('.marquee-track').forEach(function (tr) {
+                tr.style.animation = 'none';
+                const rev = tr.classList.contains('marquee-track-reverse');
+                gsap.set(tr, { xPercent: rev ? -50 : 0 });
+                mTweens.push(gsap.to(tr, { xPercent: rev ? 0 : -50, duration: 25, ease: 'none', repeat: -1 }));
+            });
+            let ts = 1;
+            gsap.ticker.add(function () {
+                const target = 1 + Math.min(Math.abs(vel) / 28, 2.4);
+                ts += (target - ts) * 0.08;
+                for (let i = 0; i < mTweens.length; i++) mTweens[i].timeScale(ts);
+            });
+
+            /* hero headline: inertia skew — the type leans into your scroll */
+            const h1 = document.querySelector('.hero h1');
+            if (h1) {
+                const sk = gsap.quickTo(h1, 'skewY', { duration: 0.5, ease: 'power3' });
+                gsap.ticker.add(function () { sk(gsap.utils.clamp(-4, 4, vel * 0.05)); });
+            }
+
+            /* hero speed field: streaking light trails, reacting to pointer + scroll */
+            const cv = document.getElementById('heroFx');
+            if (cv) {
+                const ctx = cv.getContext('2d');
+                let w = 0, hgt = 0, running = true, mxr = 0, myr = 0;
+                function size() {
+                    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+                    w = cv.clientWidth; hgt = cv.clientHeight;
+                    cv.width = w * dpr; cv.height = hgt * dpr;
+                    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+                }
+                size();
+                window.addEventListener('resize', size, { passive: true });
+                const COLS = ['255,20,147', '0,224,198', '255,255,225'];
+                const COUNT = window.innerWidth > 860 ? 70 : 34;
+                const P = [];
+                for (let i = 0; i < COUNT; i++) {
+                    P.push({ x: Math.random() * 1.2 - 0.1, y: Math.random(), z: 0.3 + Math.random() * 0.7, c: COLS[(Math.random() * 3) | 0] });
+                }
+                window.addEventListener('mousemove', function (e) {
+                    mxr = e.clientX / window.innerWidth - 0.5;
+                    myr = e.clientY / window.innerHeight - 0.5;
+                }, { passive: true });
+                if ('IntersectionObserver' in window) {
+                    new IntersectionObserver(function (en) { running = en[0].isIntersecting; }, { threshold: 0 }).observe(cv);
+                }
+                gsap.ticker.add(function () {
+                    if (!running || !w) return;
+                    ctx.clearRect(0, 0, w, hgt);
+                    const boost = 1 + Math.min(Math.abs(vel) / 22, 4);
+                    for (let i = 0; i < P.length; i++) {
+                        const p = P[i];
+                        p.x -= 0.0016 * p.z * boost;
+                        if (p.x < -0.18) { p.x = 1.18; p.y = Math.random(); }
+                        const len = (26 + 84 * p.z) * (0.55 + boost * 0.25);
+                        const px = p.x * w + mxr * 40 * p.z;
+                        const py = p.y * hgt + myr * 30 * p.z;
+                        const g = ctx.createLinearGradient(px, py, px + len, py);
+                        g.addColorStop(0, 'rgba(' + p.c + ',0)');
+                        g.addColorStop(1, 'rgba(' + p.c + ',' + (0.09 + 0.16 * p.z).toFixed(3) + ')');
+                        ctx.strokeStyle = g;
+                        ctx.lineWidth = p.z * 1.6;
+                        ctx.beginPath();
+                        ctx.moveTo(px, py);
+                        ctx.lineTo(px + len, py);
+                        ctx.stroke();
+                    }
+                });
+            }
+        })();
 
         /* ─── SITE SCROLL EXPERIENCE v2 — pinned cinematic scenes ─── */
         (function () {
@@ -953,6 +1046,7 @@
                 gsap.timeline({
                     scrollTrigger: { trigger: '#design', start: 'top top', end: '+=150%', scrub: 0.5, pin: true, anticipatePin: 1 }
                 })
+                .fromTo('.orbitus-ghost', { yPercent: 26, opacity: 0 }, { yPercent: -16, opacity: 0.05, ease: 'none', duration: 1 }, 0)
                 .fromTo('.orbitus-title', { scale: 1.45, y: 90 }, { scale: 1, y: 0, ease: 'none', duration: 0.3 }, 0)
                 .fromTo('.pink-info-box', { y: 110, opacity: 0 }, { y: 0, opacity: 1, duration: 0.22 }, 0.24)
                 .fromTo('#design .design-jobs-content > *', { y: 80, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.1, duration: 0.22 }, 0.42)
