@@ -878,6 +878,90 @@
                 });
         }
 
+        /* ─── SITE SCROLL EXPERIENCE (Apple page rhythm) ─── */
+        (function () {
+            const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const desktop = window.matchMedia('(min-width: 861px)').matches;
+
+            /* eased anchor navigation with nav offset — replaces native smooth scroll */
+            let navRAF = null;
+            function navGlide(targetY, dur) {
+                if (navRAF) cancelAnimationFrame(navRAF);
+                const startY = window.pageYOffset;
+                const dist = targetY - startY;
+                const t0 = performance.now();
+                function ease(t) { return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
+                function step(now) {
+                    const p = Math.min((now - t0) / dur, 1);
+                    window.scrollTo(0, startY + dist * ease(p));
+                    if (p < 1) navRAF = requestAnimationFrame(step);
+                    else navRAF = null;
+                }
+                navRAF = requestAnimationFrame(step);
+            }
+            document.querySelectorAll('.nav-links a[href^="#"]').forEach(function (a) {
+                a.addEventListener('click', function (e) {
+                    const id = a.getAttribute('href');
+                    const t = document.querySelector(id);
+                    if (!t) return;
+                    e.preventDefault();
+                    if (reduced) { window.scrollTo(0, t.getBoundingClientRect().top + window.pageYOffset - 92); }
+                    else { navGlide(t.getBoundingClientRect().top + window.pageYOffset - 92, 1000); }
+                    if (history.replaceState) history.replaceState(null, '', id);
+                });
+            });
+            window.addEventListener('wheel', function () { if (navRAF) { cancelAnimationFrame(navRAF); navRAF = null; } }, { passive: true });
+            window.addEventListener('touchstart', function () { if (navRAF) { cancelAnimationFrame(navRAF); navRAF = null; } }, { passive: true });
+
+            if (reduced) return;
+            const amp = desktop ? 70 : 30;
+            const dimIn  = desktop ? 0.42 : 0.68;
+            const dimOut = desktop ? 0.45 : 0.68;
+            const driftK = desktop ? 1 : 0.55;
+
+            /* section passage: rise in, hold, dim + drift out.
+               One timeline per container = no property conflicts.
+               #timeline excluded: transforms on an ancestor would break its sticky HUD. */
+            gsap.utils.toArray('section:not(#timeline) > .minimal-container, footer > .minimal-container').forEach(function (el) {
+                const tl = gsap.timeline({
+                    defaults: { ease: 'none' },
+                    scrollTrigger: { trigger: el.parentElement, start: 'top bottom', end: 'bottom top', scrub: 0.5 }
+                });
+                tl.fromTo(el, { y: amp, opacity: dimIn, scale: 0.985 }, { y: 0, opacity: 1, scale: 1, duration: 0.24 }, 0)
+                  .to(el, { y: -amp, opacity: dimOut, scale: 0.985, duration: 0.24 }, 0.76);
+            });
+
+            /* hero: cinematic settle-back (scale joins the existing lift + fade) */
+            gsap.to('.hero-content', {
+                scale: 0.93, ease: 'none',
+                scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 0.5 }
+            });
+
+            /* depth drift: key blocks travel at their own speed inside their section.
+               Only elements with no one-shot animation of their own — no conflicts. */
+            [
+                ['.team-grid', 1],
+                ['.manufacturing-grid', 1],
+                ['.sponsorship-showcase', 0.7],
+                ['.evolution-flow', 0.6],
+                ['.colour-story-grid', 0.8]
+            ].forEach(function (pair) {
+                gsap.utils.toArray(pair[0]).forEach(function (el) {
+                    const a = 26 * pair[1] * driftK;
+                    gsap.fromTo(el, { y: a }, {
+                        y: -a, ease: 'none',
+                        scrollTrigger: { trigger: el, start: 'top bottom', end: 'bottom top', scrub: 0.6 }
+                    });
+                });
+            });
+
+            /* footer sign-off settles up to full size */
+            gsap.fromTo('.footer-email', { scale: 0.9, opacity: 0.3 }, {
+                scale: 1, opacity: 1, ease: 'none',
+                scrollTrigger: { trigger: 'footer', start: 'top 96%', end: 'top 55%', scrub: 0.4 }
+            });
+        })();
+
         /* ─── TIMELINE INTERACTION (cinematic scroll engine) ─── */
         (function () {
             const track = document.getElementById('tlTrack');
