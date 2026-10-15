@@ -17,10 +17,36 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <title>Team N!TRO — STEM Racing</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62.5..125,100..900;1,62.5..125,100..900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preload" href="fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/jetbrains-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SportsTeam",
+  "name": "Team N!TRO",
+  "alternateName": "Team NITRO",
+  "sport": "STEM Racing",
+  "url": "https://teamnitro.org/",
+  "logo": "https://teamnitro.org/logo-512.png",
+  "image": "https://teamnitro.org/og-image.png",
+  "email": "teamnitro.f1.stem@gmail.com",
+  "description": "STEM Racing (formerly F1 in Schools) team from The British School, New Delhi. 3rd at Regional Finals, 10th at National Finals and winners of the 2026 Team Identity Award.",
+  "location": { "@type": "Place", "name": "The British School, New Delhi" },
+  "sameAs": ["https://www.instagram.com/teamnitro_tbs/"]
+}
+</script>
 <style>
+/* ============================================================
+   FONTS — self-hosted (Latin subsets only)
+   ============================================================ */
+/* Archivo latin-ext */ @font-face { font-family: 'Archivo'; font-style: normal; font-weight: 100 900; font-stretch: 62.5% 125%; font-display: swap; src: url(fonts/archivo-latin-ext.woff2) format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+/* Archivo latin */ @font-face { font-family: 'Archivo'; font-style: normal; font-weight: 100 900; font-stretch: 62.5% 125%; font-display: swap; src: url(fonts/archivo-latin.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+/* JetBrains Mono latin-ext */ @font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 400; font-display: swap; src: url(fonts/jetbrains-mono-latin-ext.woff2) format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+/* JetBrains Mono latin */ @font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 400; font-display: swap; src: url(fonts/jetbrains-mono-latin.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+/* JetBrains Mono latin-ext */ @font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 700; font-display: swap; src: url(fonts/jetbrains-mono-latin-ext.woff2) format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+/* JetBrains Mono latin */ @font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 700; font-display: swap; src: url(fonts/jetbrains-mono-latin.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
 /* ============================================================
    TOKENS — brand colours are fixed and must not change
    ============================================================ */
@@ -56,6 +82,12 @@ img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
 :focus-visible{outline:2px solid var(--olo);outline-offset:4px;border-radius:4px}
 ::selection{background:var(--olo);color:#000}
+
+.skip{position:fixed;top:12px;left:12px;z-index:300;padding:12px 18px;border-radius:999px;
+  background:var(--olo);color:#000;font-family:var(--fm);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  transform:translateY(-160%);transition:transform .3s var(--ease)}
+.skip:focus{transform:none}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 
 /* ============================================================
    ATMOSPHERE — field glows + film grain
@@ -105,6 +137,9 @@ a{color:inherit;text-decoration:none}
 .pre-lights i.on{background:var(--pink);border-color:var(--pink);
   box-shadow:0 0 30px rgb(240 79 106 / .8),0 0 70px rgb(240 79 106 / .35)}
 .pre-go .pre-lights i{background:rgb(255 255 225 / .05);border-color:rgb(255 255 225 / .1);box-shadow:none}
+.pre-skip{position:absolute;bottom:clamp(24px,5vh,44px);left:0;right:0;text-align:center;
+  font-family:var(--fm);font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;color:rgb(255 255 225 / .35);
+  opacity:0;animation:preIn .9s var(--ease) .6s forwards}
 .pre-go .pre-mark{color:var(--olo);text-shadow:0 0 60px rgb(0 255 204 / .5);transition:color .3s,text-shadow .3s}
 @keyframes preIn{to{opacity:1;transform:none}}
 
@@ -146,7 +181,7 @@ a{color:inherit;text-decoration:none}
 .menu{position:fixed;inset:0;z-index:58;display:flex;flex-direction:column;justify-content:center;
   padding:0 var(--gut);background:#000;opacity:0;visibility:hidden;pointer-events:none;
   transition:opacity .45s var(--ease),visibility .45s}
-.menu-open .menu{opacity:1;visibility:visible;pointer-events:auto}
+.menu-open .menu{opacity:1;visibility:visible;pointer-events:auto;transition:opacity .45s var(--ease),visibility 0s}
 .menu a{padding:10px 0;font-size:clamp(30px,8.6vw,46px);font-weight:900;letter-spacing:-.045em;
   opacity:0;transform:translateY(18px);
   transition:opacity .55s var(--ease) var(--d,0ms),transform .55s var(--ease) var(--d,0ms),color .3s}
@@ -156,7 +191,7 @@ a{color:inherit;text-decoration:none}
   color:var(--olo);opacity:1;transform:none}
 .menu-foot{margin-top:38px;padding-top:22px;border-top:1px solid var(--line-2);
   font-family:var(--fm);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--mut)}
-@media(max-width:1180px){.nav{display:none}.burger{display:flex}}
+@media(max-width:1180px){.nav{display:none}.burger{display:flex}.hdr-cta{margin-left:auto}}
 @media(min-width:1181px){.menu{display:none}}
 
 /* progress hairline */
@@ -185,6 +220,7 @@ a{color:inherit;text-decoration:none}
    LAYOUT PRIMITIVES
    ============================================================ */
 main{position:relative;z-index:1}
+main:focus{outline:none}
 .wrap{width:100%;max-width:var(--maxw);margin-inline:auto;padding-inline:var(--gut)}
 .sec{position:relative;padding-block:clamp(88px,13vh,170px)}
 section[id]{scroll-margin-top:92px}
@@ -408,12 +444,40 @@ p{margin:0}
 .nx b{margin-top:auto;font-size:clamp(20px,1.9vw,26px);font-weight:900;letter-spacing:-.035em;color:var(--olo)}
 .nx p{margin-top:12px;font-size:15px;line-height:1.55;color:var(--mut)}
 @media(max-width:900px){.next{grid-template-columns:1fr}}
+/* ============================================================
+   REACTION GAME
+   ============================================================ */
+.rx{margin-top:clamp(40px,6vw,64px)}
+.rx-pad{width:100%;display:grid;justify-items:center;gap:clamp(22px,3vw,34px);
+  padding:clamp(36px,6vw,72px) 20px;border:1px solid var(--line);border-radius:22px;
+  background:var(--glass);color:var(--ink);font:inherit;cursor:pointer;
+  touch-action:manipulation;user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent;
+  transition:border-color .2s,box-shadow .2s,background .2s}
+.rx-pad:hover{border-color:rgb(0 255 204 / .4)}
+.rx-pad.go{border-color:var(--olo);box-shadow:0 0 60px rgb(0 255 204 / .22);background:rgb(0 255 204 / .04)}
+.rx-pad.jump{border-color:var(--pink);background:rgb(240 79 106 / .06)}
+.rx-lights{display:flex;gap:clamp(10px,2.4vw,22px)}
+.rx-lights i{width:clamp(30px,6vw,56px);aspect-ratio:1;border-radius:50%;
+  background:rgb(255 255 225 / .07);border:1px solid rgb(255 255 225 / .14);transition:background .1s,box-shadow .2s}
+.rx-lights i.on{background:var(--pink);border-color:var(--pink);
+  box-shadow:0 0 30px rgb(240 79 106 / .8),0 0 70px rgb(240 79 106 / .3)}
+.rx-msg{font-family:var(--fm);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--olo);text-align:center}
+.rx-pad.jump .rx-msg{color:var(--pink)}
+.rx-stats{display:flex;flex-wrap:wrap;gap:clamp(24px,5vw,64px);margin-top:22px}
+.rx-stats div{display:flex;flex-direction:column;gap:7px}
+.rx-stats b{font-family:var(--fm);font-size:clamp(24px,3vw,38px);font-weight:700;line-height:1}
+.rx-stats b em{font-style:normal;font-size:.5em;color:var(--olo);margin-left:3px}
+.rx-stats .tick-l{order:2}
+
 .contact{display:flex;flex-wrap:wrap;align-items:center;gap:clamp(16px,3vw,32px);
   margin-top:clamp(40px,6vw,64px);padding-top:clamp(26px,3vw,36px);border-top:1px solid var(--line-2)}
 .btn{display:inline-flex;align-items:center;gap:12px;padding:16px 28px;border-radius:999px;
   background:var(--olo);color:#000;font-family:var(--fm);font-size:11px;letter-spacing:.16em;
   text-transform:uppercase;transition:box-shadow .45s,transform .45s var(--ease)}
 .btn:hover{box-shadow:0 0 46px rgb(0 255 204 / .55);transform:translateY(-2px)}
+.btn-ghost{border:1px solid rgb(0 255 204 / .5);background:transparent;color:var(--olo);cursor:pointer;
+  -webkit-tap-highlight-color:transparent}
+.btn-ghost:hover{background:rgb(0 255 204 / .08)}
 .contact-alt{font-size:15px;line-height:1.7;color:var(--mut)}
 .contact-alt a{color:var(--olo);border-bottom:1px solid rgb(0 255 204 / .35)}
 .contact-alt a:hover{border-color:var(--olo)}
@@ -442,7 +506,7 @@ p{margin:0}
 }
 </style>
 <noscript><style>
-  .pre,.cur,.cur-r,.rail,.tele{display:none}
+  .pre,.cur,.cur-r,.rail,.tele,#reaction{display:none}
   body.is-locked{overflow:auto}
   .rise{opacity:1;transform:none}
   .line > span{transform:none}
@@ -452,6 +516,7 @@ p{margin:0}
 <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body class="is-locked">
+<a class="skip" href="#content">Skip to content</a>
 
 <div class="field" aria-hidden="true"></div>
 <div class="grain" aria-hidden="true"></div>
@@ -463,6 +528,7 @@ p{margin:0}
   <div class="pre-mark">N!TRO</div>
   <div class="pre-lights" id="lights"><i></i><i></i><i></i><i></i><i></i></div>
   <div class="pre-sub" id="preSub">STEM RACING</div>
+  <div class="pre-skip">Tap or press any key to skip</div>
 </div>
 
 <div class="prog" id="prog" aria-hidden="true"></div>
@@ -496,7 +562,7 @@ p{margin:0}
   <a href="#identity"   style="--d:330ms">Identity</a>
   <a href="#sponsors"   style="--d:375ms">Sponsors</a>
   <a href="#next"       style="--d:420ms">G-ORB!T</a>
-  <p class="menu-foot">teamnitro.f1.stem@gmail.com<br><a href="https://www.instagram.com/teamnitro.tbs/" target="_blank" rel="noopener">Instagram @teamnitro.tbs</a></p>
+  <p class="menu-foot">teamnitro.f1.stem@gmail.com<br><a href="https://www.instagram.com/teamnitro_tbs/" target="_blank" rel="noopener">Instagram @teamnitro_tbs</a></p>
 </nav>
 
 <!-- TELEMETRY -->
@@ -508,7 +574,7 @@ p{margin:0}
   <b id="teleIdx">01</b><span></span><em style="font-style:normal" id="teleName">START</em>
 </div>
 
-<main>
+<main id="content" tabindex="-1">
 
 <!-- ============ HERO ============ -->
 <section class="hero wrap" id="top">
@@ -756,8 +822,35 @@ p{margin:0}
   </div>
   <div class="contact rise" style="--d:120ms">
     <a class="btn" href="mailto:teamnitro.f1.stem@gmail.com" data-cur>Back the next car</a>
+    <button class="btn btn-ghost" type="button" id="copyEmail" data-email="teamnitro.f1.stem@gmail.com" data-cur>Copy email</button>
     <p class="contact-alt">or reach us at <a href="mailto:teamnitro.f1.stem@gmail.com">teamnitro.f1.stem@gmail.com</a>
-      · follow the build on <a href="https://www.instagram.com/teamnitro.tbs/" target="_blank" rel="noopener">Instagram @teamnitro.tbs</a></p>
+      · follow the build on <a href="https://www.instagram.com/teamnitro_tbs/" target="_blank" rel="noopener">Instagram @teamnitro_tbs</a></p>
+  </div>
+</section>
+
+<!-- ============ REACTION GAME ============ -->
+<section class="sec wrap" id="reaction">
+  <p class="eyebrow rise">10 — Lights out</p>
+  <div class="split end">
+    <h2 class="h-lg">
+      <span class="line" style="--d:0ms"><span>How fast</span></span>
+      <span class="line accent" style="--d:90ms"><span>are you?</span></span>
+    </h2>
+    <p class="body rise" style="--d:160ms">
+      Five red lights. When they go out, hit the pad — or press Space. Go early and it's a jump start.
+      F1 drivers are typically around 200&nbsp;ms.
+    </p>
+  </div>
+  <div class="rx rise" style="--d:120ms">
+    <button class="rx-pad" id="rxPad" type="button" aria-describedby="rxMsg">
+      <span class="rx-lights" id="rxLights" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+      <span class="rx-msg" id="rxMsg">Tap to start</span>
+    </button>
+    <div class="rx-stats">
+      <div><b id="rxLast">—</b><span class="tick-l">Last</span></div>
+      <div><b id="rxBest">—</b><span class="tick-l">Personal best</span></div>
+    </div>
+    <p class="sr-only" aria-live="polite" id="rxLive"></p>
   </div>
 </section>
 
@@ -766,7 +859,7 @@ p{margin:0}
 <footer class="ftr">
   <a class="brand" href="#top" data-cur>N!TRO</a>
   <p>Together we are N!TRO</p>
-  <a class="ftr-ig" href="https://www.instagram.com/teamnitro.tbs/" target="_blank" rel="noopener" data-cur>Instagram @teamnitro.tbs</a>
+  <a class="ftr-ig" href="https://www.instagram.com/teamnitro_tbs/" target="_blank" rel="noopener" data-cur>Instagram @teamnitro_tbs</a>
   <p>© 2026 Team N!TRO</p>
 </footer>
 
@@ -786,25 +879,35 @@ p{margin:0}
     if(hero) hero.classList.add("in");
   }
   var pre = $("#pre");
-  if(RM || sessionStorage.getItem("nitroSeen")){
+  var seen = false;
+  try{ seen = !!sessionStorage.getItem("nitroSeen"); }catch(_){}
+  if(RM || seen){
     if(pre) pre.remove();
     startSite();
   }else{
-    var bulbs = $$("#lights i"), n = 0;
+    var bulbs = $$("#lights i"), n = 0, outT = 0, doneT = 0, finished = false;
+    var finish = function(){
+      if(finished) return;
+      finished = true;
+      clearInterval(seq); clearTimeout(outT); clearTimeout(doneT);
+      document.removeEventListener("pointerdown", finish);
+      document.removeEventListener("keydown", finish);
+      pre.classList.add("gone");
+      try{ sessionStorage.setItem("nitroSeen","1"); }catch(_){}
+      startSite();
+      setTimeout(function(){ if(pre) pre.remove(); }, 900);
+    };
     var seq = setInterval(function(){
       if(n < bulbs.length){ bulbs[n].classList.add("on"); n++; return; }
       clearInterval(seq);
-      setTimeout(function(){
+      outT = setTimeout(function(){
         pre.classList.add("pre-go");
         $("#preSub").textContent = "LIGHTS OUT";
-        setTimeout(function(){
-          pre.classList.add("gone");
-          sessionStorage.setItem("nitroSeen","1");
-          startSite();
-          setTimeout(function(){ if(pre) pre.remove(); }, 900);
-        }, 620);
-      }, 520);
-    }, 290);
+        doneT = setTimeout(finish, 480);
+      }, 380);
+    }, 220);
+    document.addEventListener("pointerdown", finish);
+    document.addEventListener("keydown", finish);
   }
 
   /* ---------- REVEALS ---------- */
@@ -899,17 +1002,28 @@ p{margin:0}
   /* ---------- MOBILE MENU ---------- */
   var burger = $("#burger");
   if(burger){
-    var closeMenu = function(){
+    /* while the menu is open, everything behind it is inert so Tab stays in the menu */
+    var behind = [$("main"), $(".ftr"), $(".hdr .brand"), $(".hdr-cta")];
+    var setInert = function(on){
+      behind.forEach(function(el){ if(el) el.inert = on; });
+    };
+    var closeMenu = function(refocus){
       document.body.classList.remove("menu-open");
       document.body.style.overflow = "";
       burger.setAttribute("aria-expanded","false");
       burger.setAttribute("aria-label","Open menu");
+      setInert(false);
+      if(refocus) burger.focus();
     };
     burger.addEventListener("click", function(){
-      var open = document.body.classList.toggle("menu-open");
-      document.body.style.overflow = open ? "hidden" : "";
-      burger.setAttribute("aria-expanded", open ? "true" : "false");
-      burger.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+      if(document.body.classList.contains("menu-open")){ closeMenu(true); return; }
+      document.body.classList.add("menu-open");
+      document.body.style.overflow = "hidden";
+      burger.setAttribute("aria-expanded","true");
+      burger.setAttribute("aria-label","Close menu");
+      setInert(true);
+      var first = $("#menu a");
+      if(first) setTimeout(function(){ first.focus(); }, 60);
     });
     /* navigate manually: the scroll lock is still active when the browser
        would otherwise process the hash, which swallows the jump */
@@ -925,7 +1039,7 @@ p{margin:0}
       });
     });
     document.addEventListener("keydown", function(e){
-      if(e.key === "Escape" && document.body.classList.contains("menu-open")) closeMenu();
+      if(e.key === "Escape" && document.body.classList.contains("menu-open")) closeMenu(true);
     });
   }
 
@@ -1073,6 +1187,112 @@ p{margin:0}
       });
     },{threshold:0}).observe(c);
   }
+
+  /* ---------- COPY EMAIL ---------- */
+  var copyBtn = $("#copyEmail");
+  if(copyBtn){
+    var copyReset = 0;
+    copyBtn.addEventListener("click", function(){
+      var email = copyBtn.dataset.email;
+      var done = function(ok){
+        copyBtn.textContent = ok ? "Copied \u2713" : email;
+        clearTimeout(copyReset);
+        copyReset = setTimeout(function(){ copyBtn.textContent = "Copy email"; }, ok ? 2200 : 8000);
+      };
+      var fallback = function(){
+        var t = document.createElement("textarea");
+        t.value = email; t.setAttribute("readonly",""); t.style.position = "fixed"; t.style.opacity = "0";
+        document.body.appendChild(t); t.select();
+        var ok = false;
+        try{ ok = document.execCommand("copy"); }catch(_){}
+        document.body.removeChild(t);
+        done(ok);
+      };
+      if(navigator.clipboard && window.isSecureContext){
+        navigator.clipboard.writeText(email).then(function(){ done(true); }, fallback);
+      }else fallback();
+    });
+  }
+
+  /* ---------- REACTION GAME: F1 start lights ---------- */
+  (function(){
+    var pad = $("#rxPad"); if(!pad) return;
+    var lights = $$("#rxLights i"), msg = $("#rxMsg"), live = $("#rxLive"),
+        lastEl = $("#rxLast"), bestEl = $("#rxBest"),
+        state = "idle", timers = [], t0 = 0, best = 0;
+    try{ best = parseInt(localStorage.getItem("nitroBest") || "0", 10) || 0; }catch(_){}
+    var fmt = function(ms){ return ms + "<em>ms</em>"; };
+    if(best) bestEl.innerHTML = fmt(best);
+    var say = function(text, announce){
+      msg.textContent = text;
+      if(announce) live.textContent = text;
+    };
+    var clear = function(){ timers.forEach(clearTimeout); timers = []; };
+    var setLights = function(n){ lights.forEach(function(l,i){ l.classList.toggle("on", i < n); }); };
+    var rate = function(ms){
+      return ms < 200 ? "F1-driver fast" : ms < 250 ? "Race ready" : ms < 350 ? "Solid start" : "Keep practising";
+    };
+    function start(){
+      clear();
+      pad.classList.remove("go","jump");
+      setLights(0);
+      state = "arming";
+      say("Wait for lights out\u2026", true);
+      lights.forEach(function(_, i){
+        timers.push(setTimeout(function(){ setLights(i + 1); }, 1000 * (i + 1)));
+      });
+      /* all five lit, then a random hold — just like a real start */
+      var hold = 200 + Math.random() * 2600;
+      timers.push(setTimeout(function(){
+        setLights(0);
+        state = "go";
+        t0 = performance.now();
+        pad.classList.add("go");
+        say("Go!");
+      }, 1000 * lights.length + hold));
+    }
+    /* event timestamps share performance.now()'s clock in modern browsers; fall back if not */
+    var stampOf = function(e){
+      var now = performance.now(), t = e.timeStamp;
+      return (t && Math.abs(now - t) < 1000) ? t : now;
+    };
+    function press(stamp){
+      if(state === "idle" || state === "done"){ start(); return; }
+      if(state === "arming"){
+        clear();
+        state = "done";
+        setLights(0);
+        pad.classList.add("jump");
+        say("Jump start! Tap to try again", true);
+        return;
+      }
+      if(state === "go"){
+        var ms = Math.max(0, Math.round(stamp - t0));
+        state = "done";
+        pad.classList.remove("go");
+        lastEl.innerHTML = fmt(ms);
+        var pb = !best || ms < best;
+        if(pb){
+          best = ms;
+          bestEl.innerHTML = fmt(ms);
+          try{ localStorage.setItem("nitroBest", String(ms)); }catch(_){}
+        }
+        say(ms + " ms \u2014 " + rate(ms) + (pb ? " \u00b7 new best" : "") + ". Tap to go again", true);
+      }
+    }
+    /* pointerdown is quicker than click, so the measured time is fairer */
+    pad.addEventListener("pointerdown", function(e){
+      if(e.button !== 0) return;
+      e.preventDefault();
+      press(stampOf(e));
+    });
+    pad.addEventListener("keydown", function(e){
+      if(e.key !== " " && e.key !== "Enter") return;
+      e.preventDefault();
+      if(e.repeat) return;
+      press(stampOf(e));
+    });
+  })();
 
   speedCanvas();
   aeroCanvas();

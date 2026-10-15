@@ -1,2 +1,4 @@
 User-agent: *
 Disallow:
+
+Sitemap: https://teamnitro.org/sitemap.xml
