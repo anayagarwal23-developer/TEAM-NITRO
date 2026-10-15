@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#000000">
+<meta name="description" content="Sponsor Team N!TRO — STEM Racing team from The British School, New Delhi. 3rd at Regional Finals, 10th at National Finals, winners of the 2026 Team Identity Award.">
+<meta property="og:title" content="Sponsor Team N!TRO — STEM Racing">
+<meta property="og:description" content="Back the next car. Results, reach and partnership tiers.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://teamnitro.org/sponsor">
+<meta property="og:image" content="https://teamnitro.org/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://teamnitro.org/sponsor">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<title>Sponsor Team N!TRO — STEM Racing</title>
+<style>
+@font-face{font-family:"Archivo";font-weight:100 900;font-stretch:62.5% 125%;font-display:swap;src:url(/fonts/archivo-latin.woff2) format("woff2")}
+@font-face{font-family:"JetBrains Mono";font-weight:400 700;font-display:swap;src:url(/fonts/jetbrains-mono-latin.woff2) format("woff2")}
+:root{
+  --olo:#00ffcc;--pink:#f04f6a;--laser:#223474;--vanilla:#ffffe1;
+  --ink:var(--vanilla);--mut:rgb(255 255 225 / .6);--line:rgb(0 255 204 / .18);--line-2:rgb(255 255 225 / .1);
+  --glass:rgb(255 255 225 / .03);--gut:clamp(20px,4vw,64px);--maxw:1180px;
+  --fd:"Archivo",-apple-system,"Segoe UI",sans-serif;--fm:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:#000;color:var(--ink);font-family:var(--fd);-webkit-font-smoothing:antialiased;
+  background:radial-gradient(60rem 40rem at 8% -6%, rgb(34 52 116 / .5), transparent 70%),
+             radial-gradient(52rem 40rem at 96% 30%, rgb(0 255 204 / .06), transparent 70%),#000}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--olo);outline-offset:4px;border-radius:4px}
+.wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:var(--gut)}
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:22px}
+.brand{font-size:21px;font-weight:900;letter-spacing:-.05em;font-variation-settings:"wdth" 108;color:var(--pink)}
+.mono{font-family:var(--fm);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--olo)}
+.back{color:var(--mut)}
+.back:hover{color:var(--olo)}
+h1,h2,h3{margin:0;font-weight:900;letter-spacing:-.045em;line-height:.9;font-variation-settings:"wdth" 108}
+p{margin:0}
+.hero{padding-block:clamp(56px,10vh,110px) clamp(40px,6vw,70px)}
+.hero h1{font-size:clamp(52px,10vw,140px);line-height:.86;margin:22px 0 28px}
+.hero h1 span{color:var(--olo)}
+.lede{max-width:34em;font-size:clamp(18px,1.6vw,23px);line-height:1.5;color:var(--mut)}
+.lede b{color:var(--ink);font-weight:600}
+section{padding-block:clamp(48px,7vw,84px);border-top:1px solid var(--line-2)}
+h2{font-size:clamp(34px,5vw,64px);margin:16px 0 clamp(26px,4vw,40px)}
+.grid{display:grid;gap:14px}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+@media(max-width:900px){.g3,.g4{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.g3,.g4{grid-template-columns:1fr}}
+.card{padding:clamp(22px,2.4vw,30px);border:1px solid var(--line);border-radius:18px;background:var(--glass)}
+.stat b{display:block;font-size:clamp(46px,5.4vw,76px);font-weight:900;letter-spacing:-.06em;line-height:.85;color:var(--pink)}
+.stat b small{font-size:.42em;letter-spacing:-.02em}
+.stat span{display:block;margin-top:16px;font-size:16px;font-weight:700}
+.stat em{display:block;margin-top:6px;font-style:normal;font-family:var(--fm);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
+.stat.win b{color:var(--olo)}
+.list{margin:0;padding:0;list-style:none;display:grid;gap:12px}
+.list li{position:relative;padding-left:22px;font-size:16px;line-height:1.5;color:var(--mut)}
+.list li::before{content:"";position:absolute;left:0;top:.62em;width:8px;height:8px;border-radius:50%;background:var(--olo)}
+.list li b{color:var(--ink);font-weight:600}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,70px);align-items:start}
+@media(max-width:800px){.split{grid-template-columns:1fr}}
+.tier{display:flex;flex-direction:column;gap:18px}
+.tier h3{font-size:clamp(24px,2.2vw,32px);letter-spacing:-.035em}
+.tier .price{font-family:var(--fm);font-size:15px;color:var(--ink)}
+.tier.lead{border-color:rgb(0 255 204 / .55);background:radial-gradient(24rem 14rem at 0% 0%,rgb(0 255 204 / .1),transparent 70%),var(--glass)}
+.tbd{color:var(--pink);border-bottom:1px dashed var(--pink)}
+.draft{margin-bottom:22px;padding:14px 18px;border:1px dashed var(--pink);border-radius:12px;color:var(--pink);
+  font-family:var(--fm);font-size:11px;letter-spacing:.12em;text-transform:uppercase;line-height:1.6}
+.partners b{display:block;font-size:clamp(20px,2vw,26px);font-weight:900;letter-spacing:-.04em}
+.partners span{display:block;margin-top:8px;font-size:14px;color:var(--mut)}
+.cta{display:flex;flex-wrap:wrap;align-items:center;gap:14px 18px;margin-top:30px}
+.btn{display:inline-flex;align-items:center;padding:16px 28px;border-radius:999px;background:var(--olo);color:#000;border:0;
+  font-family:var(--fm);font-size:11px;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;
+  transition:box-shadow .4s,transform .4s var(--ease)}
+.btn:hover{box-shadow:0 0 46px rgb(0 255 204 / .5);transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:var(--olo);border:1px solid rgb(0 255 204 / .5)}
+.foot{padding-block:34px 44px;border-top:1px solid var(--line-2);display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;color:var(--mut)}
+@media print{
+  @page{size:A4;margin:12mm}
+  html,body{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .no-print{display:none!important}
+  .hero{padding-block:10px 24px}
+  section{padding-block:22px;break-inside:avoid}
+  .card{break-inside:avoid}
+  .g3,.g4{grid-template-columns:repeat(3,1fr)}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="/">N!TRO</a>
+    <div class="no-print" style="display:flex;gap:20px;align-items:center">
+      <button class="btn ghost" type="button" onclick="window.print()">Save as PDF</button>
+      <a class="mono back" href="/">← Back to site</a>
+    </div>
+  </header>
+
+  <div class="hero">
+    <p class="mono">Sponsorship · 2026–27 season</p>
+    <h1>Back the<br><span>next car.</span></h1>
+    <p class="lede">
+      <b>Team N!TRO</b> represents The British School, New Delhi in STEM Racing (formerly F1 in Schools).
+      In our first season we finished <b>3rd of 57</b> at the Regional Finals, <b>10th of 93</b> at the National
+      Finals and won the <b>Team Identity Award</b>. Now N!TRO, Energise and Radeon have merged into one team
+      building <b>G-ORB!T</b> — and we're looking for partners to build it with us.
+    </p>
+  </div>
+
+  <section>
+    <p class="mono">01 — Track record</p>
+    <h2>First season, on the podium.</h2>
+    <div class="grid g4">
+      <div class="card stat"><b>3<small>rd</small></b><span>Regional Finals</span><em>Out of 57 teams</em></div>
+      <div class="card stat"><b>10<small>th</small></b><span>National Finals</span><em>Out of 93 teams</em></div>
+      <div class="card stat win"><b>01</b><span>Team Identity Award</span><em>Winner · Nationals 2026</em></div>
+      <div class="card stat"><b>NOM</b><span>Best Pit Display</span><em>Nominee · Nationals 2026</em></div>
+    </div>
+  </section>
+
+  <section>
+    <p class="mono">02 — Where your brand is seen</p>
+    <div class="split">
+      <h2>Reach.</h2>
+      <ul class="list">
+        <li><b>Competition days</b> — teams, judges, engineers and industry guests at Regional and National Finals.</li>
+        <li><b>Instagram</b> — <a href="https://www.instagram.com/teamnitro_tbs/" target="_blank" rel="noopener"><b>@teamnitro_tbs</b></a>, 360+ followers and growing through the season.</li>
+        <li><b>teamnitro.org</b> — our award-winning identity, with live visitor numbers we can share with partners.</li>
+        <li><b>School community</b> — The British School, New Delhi: students, parents and alumni.</li>
+        <li><b>Judged portfolios</b> — our enterprise and engineering portfolios are read by every judging panel.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <p class="mono">03 — What your support funds</p>
+    <div class="split">
+      <h2>Straight into the car.</h2>
+      <ul class="list">
+        <li><b>Materials</b> — race-grade foam blocks, wheels, bearings and CO₂ testing.</li>
+        <li><b>Machine time</b> — CNC machining and industrial 3D printing.</li>
+        <li><b>Pit display &amp; portfolio</b> — the printed work judges score us on.</li>
+        <li><b>Travel</b> — getting the car, the team and the pit to every final.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <p class="mono">04 — Partnership tiers</p>
+    <h2>Pick your grid slot.</h2>
+    <p class="draft no-print">Draft — the team still needs to confirm the amounts and perks below before this page is shared.</p>
+    <div class="grid g4">
+      <article class="card tier lead">
+        <p class="mono">Title partner</p>
+        <h3>Pole position</h3>
+        <p class="price"><span class="tbd">₹ amount TBC</span></p>
+        <ul class="list">
+          <li>Largest logo placement on the car livery</li>
+          <li>Lead placement on pit display and team kit</li>
+          <li>Top of the sponsors section on teamnitro.org</li>
+          <li>Dedicated Instagram feature + event shout-outs</li>
+        </ul>
+      </article>
+      <article class="card tier">
+        <p class="mono">Gold</p>
+        <h3>Front row</h3>
+        <p class="price"><span class="tbd">₹ amount TBC</span></p>
+        <ul class="list">
+          <li>Logo on the car livery</li>
+          <li>Logo on pit display</li>
+          <li>Logo on teamnitro.org</li>
+          <li>Instagram feature</li>
+        </ul>
+      </article>
+      <article class="card tier">
+        <p class="mono">Silver</p>
+        <h3>Midfield</h3>
+        <p class="price"><span class="tbd">₹ amount TBC</span></p>
+        <ul class="list">
+          <li>Logo on pit display</li>
+          <li>Logo on teamnitro.org</li>
+          <li>Instagram mention</li>
+        </ul>
+      </article>
+      <article class="card tier">
+        <p class="mono">In-kind</p>
+        <h3>Pit crew</h3>
+        <p class="price">Materials, machine time or mentorship</p>
+        <ul class="list">
+          <li>Name on teamnitro.org</li>
+          <li>Thank-you on pit display</li>
+          <li>Instagram mention</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <p class="mono">05 — Current partners</p>
+    <h2>In good company.</h2>
+    <div class="grid g4 partners">
+      <div class="card"><b>Jaypee</b><span>Project and publishing support</span></div>
+      <div class="card"><b>OpenAir</b><span>Team supporter</span></div>
+      <div class="card"><b>BMW Infinity</b><span>Automotive insight and mentorship</span></div>
+      <div class="card"><b>GMR</b><span>Team supporter</span></div>
+    </div>
+  </section>
+
+  <section>
+    <p class="mono">06 — Get in touch</p>
+    <h2>Let's talk.</h2>
+    <p class="lede">Email us and we'll send the full sponsorship deck and set up a call with the team.</p>
+    <div class="cta">
+      <a class="btn" href="mailto:teamnitro.f1.stem@gmail.com?subject=Sponsoring%20Team%20N!TRO">Email the team</a>
+      <span class="mono" style="color:var(--mut)">teamnitro.f1.stem@gmail.com</span>
+    </div>
+  </section>
+
+  <footer class="foot mono" style="color:var(--mut)">
+    <span>© 2026 Team N!TRO</span>
+    <a href="/">teamnitro.org</a>
+  </footer>
+</div>
+<script>window.va = window.va || function(){ (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
