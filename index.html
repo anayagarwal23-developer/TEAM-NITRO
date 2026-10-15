@@ -6,8 +6,15 @@
 <meta name="theme-color" content="#000000">
 <meta name="description" content="Team N!TRO is a five-person STEM Racing team from The British School, New Delhi. 3rd at Regional Finals, 10th at National Finals, winners of the 2026 Team Identity Award.">
 <meta property="og:title" content="Team N!TRO — STEM Racing">
-<meta property="og:description" content="Five engineers. One CO₂-powered car. Twenty metres. Every gram argued for.">
+<meta property="og:description" content="Five specialists. One CO₂-powered car. Twenty metres. Every gram argued for.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://anayagarwal23-developer.github.io/TEAM-NITRO/">
+<meta property="og:image" content="https://anayagarwal23-developer.github.io/TEAM-NITRO/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Team N!TRO — STEM Racing, The British School, New Delhi">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
 <title>Team N!TRO — STEM Racing</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -61,6 +68,7 @@ a{color:inherit;text-decoration:none}
 .grain{position:fixed;inset:-150%;z-index:100;pointer-events:none;opacity:.032;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   animation:grain 6s steps(6) infinite;will-change:transform}
+@media(max-width:760px),(pointer:coarse){.grain{display:none}}
 @keyframes grain{
   0%{transform:translate(0,0)}20%{transform:translate(-4%,3%)}40%{transform:translate(3%,-4%)}
   60%{transform:translate(-3%,-3%)}80%{transform:translate(4%,4%)}100%{transform:translate(0,0)}
@@ -145,8 +153,8 @@ a{color:inherit;text-decoration:none}
 .menu-open .menu a{opacity:1;transform:none}
 .menu-foot{margin-top:38px;padding-top:22px;border-top:1px solid var(--line-2);
   font-family:var(--fm);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--mut)}
-@media(max-width:860px){.nav{display:none}.burger{display:flex}}
-@media(min-width:861px){.menu{display:none}}
+@media(max-width:1180px){.nav{display:none}.burger{display:flex}}
+@media(min-width:1181px){.menu{display:none}}
 
 /* progress hairline */
 .prog{position:fixed;top:0;left:0;height:2px;width:100%;z-index:61;transform:scaleX(0);
@@ -284,6 +292,7 @@ p{margin:0}
 .in .step::before{width:100%}
 .step:hover{background:rgb(0 255 204 / .028)}
 .step-n{font-family:var(--fm);font-size:10px;letter-spacing:.2em;color:var(--pink)}
+.step-loop{margin-left:10px;color:var(--olo)}
 .step h3{margin:clamp(30px,4vw,54px) 0 12px;font-size:clamp(21px,1.9vw,27px);letter-spacing:-.03em}
 .step p{font-size:15px;line-height:1.55;color:var(--mut)}
 @media(max-width:900px){.steps{grid-template-columns:repeat(2,1fr)}
@@ -330,6 +339,8 @@ p{margin:0}
 .res-t{font-size:17px;font-weight:700;letter-spacing:-.01em}
 .res-s{margin-top:6px;font-family:var(--fm);font-size:10px;letter-spacing:.14em;
   text-transform:uppercase;color:var(--mut)}
+.res-nom{border-style:dashed}
+.res-nom .res-n{color:transparent;-webkit-text-stroke:1.5px var(--pink)}
 @media(max-width:900px){.results{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:520px){.results{grid-template-columns:1fr}}
 
@@ -376,6 +387,7 @@ p{margin:0}
   transition:border-color .45s,transform .5s var(--ease),background .45s}
 .pt:hover{border-color:rgb(240 79 106 / .5);transform:translateY(-6px);background:rgb(240 79 106 / .04)}
 .pt b{font-size:clamp(21px,2vw,28px);font-weight:900;letter-spacing:-.04em}
+.pt img{max-height:44px;width:auto;margin-bottom:auto;object-fit:contain}
 .pt span{margin-top:8px;font-size:14px;color:var(--mut);line-height:1.45}
 @media(max-width:900px){.partners{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:520px){.partners{grid-template-columns:1fr}}
@@ -457,6 +469,8 @@ p{margin:0}
     <a href="#team" data-cur>Team</a>
     <a href="#results" data-cur>Results</a>
     <a href="#timeline" data-cur>Timeline</a>
+    <a href="#identity" data-cur>Identity</a>
+    <a href="#sponsors" data-cur>Sponsors</a>
     <a href="#next" data-cur>G-ORB!T</a>
   </nav>
   <a class="hdr-cta" href="mailto:teamnitro.f1.stem@gmail.com" data-cur>Connect</a>
@@ -472,7 +486,9 @@ p{margin:0}
   <a href="#team"       style="--d:195ms">Team</a>
   <a href="#results"    style="--d:240ms">Results</a>
   <a href="#timeline"   style="--d:285ms">Timeline</a>
-  <a href="#next"       style="--d:330ms">G-ORB!T</a>
+  <a href="#identity"   style="--d:330ms">Identity</a>
+  <a href="#sponsors"   style="--d:375ms">Sponsors</a>
+  <a href="#next"       style="--d:420ms">G-ORB!T</a>
   <p class="menu-foot">teamnitro.f1.stem@gmail.com</p>
 </nav>
 
@@ -499,12 +515,12 @@ p{margin:0}
     <span class="line accent" style="--d:180ms"><span>N!TRO.</span></span>
   </h1>
   <p class="hero-lead rise" style="--d:340ms">
-    Five engineers, one <b>CO₂-powered car</b> and twenty metres of track that forgives nothing.
+    Five specialists, one <b>CO₂-powered car</b> and twenty metres of track that forgives nothing.
     Every gram argued for.
   </p>
   <div class="ticker rise" style="--d:440ms">
     <div class="tick"><div class="tick-n"><span class="count" data-to="51">0</span><em>g</em></div><div class="tick-l">Final mass</div></div>
-    <div class="tick"><div class="tick-n"><span class="count" data-to="1.088" data-dec="3">0</span><em>s</em></div><div class="tick-l">Race model</div></div>
+    <div class="tick"><div class="tick-n"><span class="count" data-to="1.088" data-dec="3">0</span><em>s</em></div><div class="tick-l">Predicted time</div></div>
     <div class="tick"><div class="tick-n"><span class="count" data-to="3">0</span><em>rd</em></div><div class="tick-l">Regional finals</div></div>
     <div class="tick"><div class="tick-n"><span class="count" data-to="10">0</span><em>th</em></div><div class="tick-l">National finals</div></div>
   </div>
@@ -556,7 +572,7 @@ p{margin:0}
     <article class="spec tilt rise" style="--d:70ms"><div class="spec-k">Body</div><div class="spec-v">Polyurethane foam</div></article>
     <article class="spec tilt rise" style="--d:140ms"><div class="spec-k">Wheels</div><div class="spec-v">7-spoke SLS nylon</div></article>
     <article class="spec tilt rise" style="--d:210ms"><div class="spec-k">Final mass</div><div class="spec-v">51 g</div></article>
-    <article class="spec tilt rise" style="--d:280ms"><div class="spec-k">Race model</div><div class="spec-v">1.088 s</div></article>
+    <article class="spec tilt rise" style="--d:280ms"><div class="spec-k">Predicted time</div><div class="spec-v">1.088 s</div></article>
     <article class="spec tilt rise" style="--d:350ms"><div class="spec-k">Manufacturing</div><div class="spec-v">CNC + MJF PA12</div></article>
   </div>
 
@@ -583,15 +599,15 @@ p{margin:0}
       <span class="line accent" style="--d:90ms"><span>to car.</span></span>
     </h2>
     <p class="body rise" style="--d:160ms">
-      Four stages, run in order, every season. Nothing moves forward until the stage before it survives
-      being questioned.
+      Four stages, run as a loop. Nothing moves forward until the stage before it survives
+      being questioned — and what the track teaches us goes straight back into design.
     </p>
   </div>
   <div class="steps">
     <article class="step" style="--d:0ms"><div class="step-n">01</div><h3>Research</h3><p>The rulebook sets the boundaries. Last season's race data sets the targets.</p></article>
-    <article class="step" style="--d:120ms"><div class="step-n">02</div><h3>Design</h3><p>Parametric CAD, so nothing is drawn twice. Change one constraint, the whole body follows.</p></article>
-    <article class="step" style="--d:240ms"><div class="step-n">03</div><h3>Test</h3><p>CFD, smoke testing, then physical trials. The model stays a hypothesis until the track agrees.</p></article>
-    <article class="step" style="--d:360ms"><div class="step-n">04</div><h3>Manufacture</h3><p>CNC-machined foam and MJF-printed PA12 — where tolerances stop being theoretical.</p></article>
+    <article class="step" style="--d:120ms"><div class="step-n">02</div><h3>Design</h3><p>Parametric CAD checked in CFD, so nothing is drawn twice. Change one constraint, the whole body follows.</p></article>
+    <article class="step" style="--d:240ms"><div class="step-n">03</div><h3>Manufacture</h3><p>CNC-machined foam and MJF-printed PA12 — where tolerances stop being theoretical.</p></article>
+    <article class="step" style="--d:360ms"><div class="step-n">04 <span class="step-loop">↺ 02</span></div><h3>Test</h3><p>Smoke testing, then track runs. The model stays a hypothesis until the track agrees — then the loop starts again.</p></article>
   </div>
 </section>
 
@@ -645,7 +661,7 @@ p{margin:0}
     <article class="res rise" style="--d:0ms"><div class="res-n">3<span style="font-size:.45em">rd</span></div><div><div class="res-t">Regional Finals</div><div class="res-s">Out of 57 teams</div></div></article>
     <article class="res rise" style="--d:80ms"><div class="res-n">10<span style="font-size:.45em">th</span></div><div><div class="res-t">National Finals</div><div class="res-s">Out of 93 teams</div></div></article>
     <article class="res rise" style="--d:160ms"><div class="res-n">01</div><div><div class="res-t">Team Identity Award</div><div class="res-s">National Finals 2026</div></div></article>
-    <article class="res rise" style="--d:240ms"><div class="res-n">01</div><div><div class="res-t">Best Pit nomination</div><div class="res-s">National Finals 2026</div></div></article>
+    <article class="res res-nom rise" style="--d:240ms"><div class="res-n">NOM</div><div><div class="res-t">Best Pit Display</div><div class="res-s">Nominated · National Finals 2026</div></div></article>
   </div>
 </section>
 
@@ -668,7 +684,7 @@ p{margin:0}
     <article class="lap"><time>DEC 2025</time><div><h3>ORB!TUS begins</h3><p>Research closes and the first parametric model opens. The car stops being an idea.</p></div></article>
     <article class="lap"><time>10 MAY 2026</time><div><h3>Regional Finals</h3><p>3rd of 57, first time out. Enough to reach the National Finals.</p></div></article>
     <article class="lap"><time>MAY–JUL 2026</time><div><h3>Nationals development</h3><p>Everything rebuilt for a bigger stage: car, portfolios, pit display, presentation.</p></div></article>
-    <article class="lap"><time>31 JUL–2 AUG 2026</time><div><h3>National Finals</h3><p>10th of 93. Team Identity Award won, Best Pit Display nominated.</p></div></article>
+    <article class="lap"><time>31 JUL–2 AUG 2026</time><div><h3>National Finals</h3><p>10th of 93. Team Identity Award won, nominated for Best Pit Display.</p></div></article>
     <article class="lap"><time>AUG 2026</time><div><h3>Three become one</h3><p>N!TRO, Energise and Radeon stop being three teams. Five specialists remain.</p></div></article>
     <article class="lap"><time>NEXT</time><div><h3>G-ORB!T</h3><p>A new car, a merged team, and a result of our own to beat.</p></div></article>
   </div>
