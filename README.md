@@ -2,7 +2,7 @@
 
 Team website for **Team N!TRO**, The British School, New Delhi — competing in STEM Racing (formerly F1 in Schools).
 
-**Live site:** https://anayagarwal23-developer.github.io/TEAM-NITRO/
+**Live site:** https://teamnitro.org/
 
 ## 2026 season results
 
