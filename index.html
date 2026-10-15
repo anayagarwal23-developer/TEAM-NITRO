@@ -189,6 +189,7 @@ a{color:inherit;text-decoration:none}
   opacity:0;transform:translateY(18px);
   transition:opacity .55s var(--ease) var(--d,0ms),transform .55s var(--ease) var(--d,0ms),color .3s}
 .menu a:active{color:var(--olo)}
+.menu a.menu-cta{color:var(--olo)}
 .menu-open .menu a{opacity:1;transform:none}
 .menu .menu-foot a{display:inline-block;margin-top:10px;padding:0;font-size:inherit;font-weight:400;letter-spacing:inherit;
   color:var(--olo);opacity:1;transform:none}
@@ -271,6 +272,7 @@ p{margin:0}
 .hero h1 .accent{text-shadow:0 0 70px rgb(0 255 204 / .4)}
 .hero-lead{font-size:clamp(17px,1.5vw,23px);line-height:1.5;color:var(--mut);max-width:50ch}
 .hero-lead b{color:var(--ink);font-weight:500}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:clamp(24px,3vw,34px)}
 .ticker{display:flex;flex-wrap:wrap;gap:clamp(20px,4vw,64px);margin-top:clamp(26px,4vw,46px);
   padding-top:clamp(20px,2.4vw,28px);border-top:1px solid var(--line-2)}
 .tick{display:flex;flex-direction:column;gap:7px}
@@ -553,6 +555,10 @@ p{margin:0}
 .ftr p,.ftr-ig{font-family:var(--fm);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--mut)}
 .ftr-ig{color:var(--olo);transition:text-shadow .3s}
 .ftr-ig:hover{text-shadow:0 0 18px rgb(0 255 204 / .6)}
+.ftr-links{display:flex;flex-wrap:wrap;gap:12px 26px}
+.ftr-btn{padding:0;border:0;background:none;cursor:pointer}
+/* leave room for the fixed telemetry readout in the corner */
+@media(min-width:1101px){.ftr{padding-bottom:84px}}
 
 /* ============================================================
    REDUCED MOTION
@@ -626,6 +632,7 @@ p{margin:0}
   <a href="#identity"   style="--d:330ms">Identity</a>
   <a href="#sponsors"   style="--d:375ms">Sponsors</a>
   <a href="#next"       style="--d:420ms">G-ORB!T</a>
+  <a href="/sponsor" class="menu-cta" style="--d:465ms">Sponsor us →</a>
   <p class="menu-foot">teamnitro.f1.stem@gmail.com<br><a href="https://www.instagram.com/teamnitro_tbs/" target="_blank" rel="noopener">Instagram @teamnitro_tbs</a></p>
 </nav>
 
@@ -655,6 +662,10 @@ p{margin:0}
     Four specialists, one <b>CO₂-powered car</b> and twenty metres of track that forgives nothing.
     Every gram argued for.
   </p>
+  <div class="hero-cta rise" style="--d:400ms">
+    <a class="btn" href="/sponsor" data-cur>Back the next car</a>
+    <a class="btn btn-ghost" href="#results" data-cur>See our results</a>
+  </div>
   <div class="ticker rise" style="--d:440ms">
     <div class="tick"><div class="tick-n"><span class="count" data-to="51">0</span><em>g</em></div><div class="tick-l">Final mass</div></div>
     <div class="tick"><div class="tick-n"><span class="count" data-to="1.088" data-dec="3">0</span><em>s</em></div><div class="tick-l">Predicted time</div></div>
@@ -943,7 +954,12 @@ p{margin:0}
 <footer class="ftr">
   <a class="brand" href="#top" data-cur>N!TRO</a>
   <p>Together we are N!TRO</p>
-  <a class="ftr-ig" href="https://www.instagram.com/teamnitro_tbs/" target="_blank" rel="noopener" data-cur>Instagram @teamnitro_tbs</a>
+  <nav class="ftr-links" aria-label="Footer">
+    <a class="ftr-ig" href="https://www.instagram.com/teamnitro_tbs/" target="_blank" rel="noopener" data-cur>Instagram @teamnitro_tbs</a>
+    <a class="ftr-ig" href="/sponsor" data-cur>Sponsor us</a>
+    <button class="ftr-ig ftr-btn" type="button" id="shareBtn" data-cur>Share site</button>
+    <a class="ftr-ig" href="#top" data-cur>Back to top ↑</a>
+  </nav>
   <p>© 2026 Team N!TRO</p>
 </footer>
 
@@ -1385,6 +1401,19 @@ p{margin:0}
       });
     });
   });
+
+  /* ---------- SHARE ---------- */
+  var shareBtn = $("#shareBtn");
+  if(shareBtn){
+    shareBtn.addEventListener("click", function(){
+      var data = { title: "Team N!TRO \u2014 STEM Racing", text: "Meet Team N!TRO, STEM Racing from The British School, New Delhi.", url: "https://teamnitro.org/" };
+      if(navigator.share){
+        navigator.share(data).catch(function(){});
+      }else{
+        copyText(data.url, function(ok){ showToast(ok ? "Link copied" : data.url); });
+      }
+    });
+  }
 
   /* ---------- COPY EMAIL ---------- */
   var copyBtn = $("#copyEmail");
