@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#000000">
+<meta name="robots" content="noindex">
+<title>DNF — Team N!TRO</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<style>
+@font-face{font-family:"Archivo";font-weight:100 900;font-stretch:62.5% 125%;font-display:swap;src:url(/fonts/archivo-latin.woff2) format("woff2")}
+@font-face{font-family:"JetBrains Mono";font-weight:400 700;font-display:swap;src:url(/fonts/jetbrains-mono-latin.woff2) format("woff2")}
+:root{--olo:#00ffcc;--pink:#f04f6a;--vanilla:#ffffe1;--mut:rgb(255 255 225 / .58);--line-2:rgb(255 255 225 / .1);
+  --gut:clamp(20px,4vw,64px);--ease:cubic-bezier(.16,1,.3,1)}
+*,*::before,*::after{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:#000;color:var(--vanilla);font-family:"Archivo",-apple-system,"Segoe UI",sans-serif;
+  -webkit-font-smoothing:antialiased;display:flex;flex-direction:column;justify-content:center;padding:48px var(--gut);
+  background:radial-gradient(60rem 40rem at 8% -6%, rgb(34 52 116 / .5), transparent 70%),
+             radial-gradient(52rem 40rem at 50% 118%, rgb(240 79 106 / .1), transparent 70%),#000}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--olo);outline-offset:4px;border-radius:4px}
+.brand{position:absolute;top:22px;left:var(--gut);font-size:21px;font-weight:900;letter-spacing:-.05em;
+  font-variation-settings:"wdth" 108;color:var(--pink)}
+.mono{font-family:"JetBrains Mono",ui-monospace,Menlo,monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--olo)}
+.lights{display:flex;gap:clamp(10px,2vw,18px);margin:28px 0 34px}
+.lights i{width:clamp(22px,4vw,36px);aspect-ratio:1;border-radius:50%;background:rgb(255 255 225 / .07);border:1px solid rgb(255 255 225 / .14)}
+h1{margin:0;font-size:clamp(84px,20vw,260px);font-weight:900;line-height:.82;letter-spacing:-.06em;
+  font-variation-settings:"wdth" 112;color:var(--pink)}
+p{margin:22px 0 0;max-width:46ch;font-size:clamp(17px,1.5vw,21px);line-height:1.5;color:var(--mut)}
+.btn{display:inline-flex;align-self:flex-start;margin-top:36px;padding:16px 28px;border-radius:999px;background:var(--olo);color:#000;
+  font-family:"JetBrains Mono",ui-monospace,Menlo,monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  transition:box-shadow .45s,transform .45s var(--ease)}
+.btn:hover{box-shadow:0 0 46px rgb(0 255 204 / .55);transform:translateY(-2px)}
+</style>
+</head>
+<body>
+<a class="brand" href="/">N!TRO</a>
+<main>
+  <p class="mono" style="margin:0">Error 404 · Off track</p>
+  <div class="lights" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+  <h1>DNF.</h1>
+  <p>Wrong turn — this page isn't on the circuit. It may have moved, or the link has a typo.</p>
+  <a class="btn" href="/">Back to the pits →</a>
+</main>
+</body>
+</html>
