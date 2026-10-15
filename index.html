@@ -261,6 +261,7 @@ p{margin:0}
 .hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:center;
   padding-block:clamp(104px,14vh,148px) clamp(58px,8vh,92px);overflow:hidden}
 .hero h1{font-size:clamp(46px,9.4vw,146px)}
+@media(max-width:760px){.hero{min-height:auto;padding-block:128px 64px}}
 #speed{position:absolute;inset:0;width:100%;height:100%;z-index:-1;opacity:.85}
 .hero-tag{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;margin-bottom:clamp(26px,4vw,40px);
   font-family:var(--fm);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--mut)}
@@ -521,6 +522,15 @@ p{margin:0}
 .rx-stats b{font-family:var(--fm);font-size:clamp(24px,3vw,38px);font-weight:700;line-height:1}
 .rx-stats b em{font-style:normal;font-size:.5em;color:var(--olo);margin-left:3px}
 .rx-stats .tick-l{order:2}
+.rx-team{list-style:none;margin:30px 0 0;padding:22px 0 0;border-top:1px solid var(--line-2);
+  display:flex;flex-wrap:wrap;gap:10px}
+.rx-team-h{width:100%;margin-bottom:6px}
+.rx-team li{display:flex;align-items:baseline;gap:10px;padding:10px 16px;border:1px solid var(--line-2);
+  border-radius:999px;font-size:15px;transition:border-color .3s,background .3s}
+.rx-team li b{font-weight:700}
+.rx-team li span{font-family:var(--fm);font-size:12px;color:var(--mut)}
+.rx-team li.beat{border-color:rgb(0 255 204 / .5);background:rgb(0 255 204 / .06)}
+.rx-team li.beat span{color:var(--olo)}
 
 .contact{display:flex;flex-wrap:wrap;align-items:center;gap:clamp(16px,3vw,32px);
   margin-top:clamp(40px,6vw,64px);padding-top:clamp(26px,3vw,36px);border-top:1px solid var(--line-2)}
@@ -916,6 +926,7 @@ p{margin:0}
       <div><b id="rxLast">—</b><span class="tick-l">Last</span></div>
       <div><b id="rxBest">—</b><span class="tick-l">Personal best</span></div>
     </div>
+    <ul class="rx-team" id="rxTeam" hidden></ul>
     <p class="sr-only" aria-live="polite" id="rxLive"></p>
   </div>
 </section>
@@ -931,7 +942,7 @@ p{margin:0}
   <p>© 2026 Team N!TRO</p>
 </footer>
 
-<script src="js/lenis.min.js"></script>
+<script src="js/lenis-1.3.4.min.js"></script>
 <script>
 (function(){
   "use strict";
@@ -1194,16 +1205,19 @@ p{margin:0}
   if(matchMedia("(pointer:fine)").matches && !RM){
     var cur = $(".cur"), ring = $(".cur-r"),
         tx=0, ty=0, rx=0, ry=0;
+    var ringOn = false;
+    function loop(){
+      rx += (tx - rx) * 0.16; ry += (ty - ry) * 0.16;
+      ring.style.transform = "translate(" + rx + "px," + ry + "px)";
+      if(Math.abs(tx - rx) + Math.abs(ty - ry) > 0.3) requestAnimationFrame(loop);
+      else ringOn = false;
+    }
     document.addEventListener("mousemove", function(e){
       tx = e.clientX; ty = e.clientY;
       document.body.classList.add("cur-on");
       cur.style.transform = "translate(" + tx + "px," + ty + "px)";
+      if(!ringOn){ ringOn = true; requestAnimationFrame(loop); }
     });
-    (function loop(){
-      rx += (tx - rx) * 0.16; ry += (ty - ry) * 0.16;
-      ring.style.transform = "translate(" + rx + "px," + ry + "px)";
-      requestAnimationFrame(loop);
-    })();
     $$("a, button, .spec, .res, .pt, .nx, .sw, .mem").forEach(function(el){
       el.addEventListener("mouseenter", function(){ ring.classList.add("big"); });
       el.addEventListener("mouseleave", function(){ ring.classList.remove("big"); });
@@ -1388,6 +1402,20 @@ p{margin:0}
         lastEl = $("#rxLast"), bestEl = $("#rxBest"),
         state = "idle", timers = [], t0 = 0, best = 0;
     try{ best = parseInt(localStorage.getItem("nitroBest") || "0", 10) || 0; }catch(_){}
+    /* "Beat the team": add each member's best once they've played, e.g. { name: "Aryeh", ms: 192 } */
+    var TEAM_TIMES = [];
+    var teamEl = $("#rxTeam");
+    function renderTeam(){
+      if(!teamEl || !TEAM_TIMES.length) return;
+      teamEl.hidden = false;
+      teamEl.innerHTML = '<li class="rx-team-h tick-l" style="border:0;padding:0">Beat the team</li>' +
+        TEAM_TIMES.slice().sort(function(a,b){ return a.ms - b.ms; }).map(function(m){
+          var won = best && best < m.ms;
+          return '<li' + (won ? ' class="beat"' : '') + '><b>' + m.name + '</b><span>' + m.ms + ' ms' +
+                 (won ? ' \u2713' : '') + '</span></li>';
+        }).join("");
+    }
+    renderTeam();
     var fmt = function(ms){ return ms + "<em>ms</em>"; };
     if(best) bestEl.innerHTML = fmt(best);
     var say = function(text, announce){
@@ -1444,7 +1472,11 @@ p{margin:0}
           bestEl.innerHTML = fmt(ms);
           try{ localStorage.setItem("nitroBest", String(ms)); }catch(_){}
         }
-        say(ms + " ms \u2014 " + rate(ms) + (pb ? " \u00b7 new best" : "") + ". Tap to go again", true);
+        var beaten = TEAM_TIMES.filter(function(m){ return ms < m.ms; })
+                               .sort(function(a,b){ return a.ms - b.ms; })[0];
+        say(ms + " ms \u2014 " + (beaten ? "you beat " + beaten.name : rate(ms)) +
+            (pb ? " \u00b7 new best" : "") + ". Tap to go again", true);
+        renderTeam();
       }
     }
     /* pointerdown is quicker than click, so the measured time is fairer */
