@@ -152,6 +152,8 @@ a{color:inherit;text-decoration:none}
   transition:opacity .55s var(--ease) var(--d,0ms),transform .55s var(--ease) var(--d,0ms),color .3s}
 .menu a:active{color:var(--olo)}
 .menu-open .menu a{opacity:1;transform:none}
+.menu .menu-foot a{display:inline-block;margin-top:10px;padding:0;font-size:inherit;font-weight:400;letter-spacing:inherit;
+  color:var(--olo);opacity:1;transform:none}
 .menu-foot{margin-top:38px;padding-top:22px;border-top:1px solid var(--line-2);
   font-family:var(--fm);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--mut)}
 @media(max-width:1180px){.nav{display:none}.burger{display:flex}}
@@ -412,7 +414,7 @@ p{margin:0}
   background:var(--olo);color:#000;font-family:var(--fm);font-size:11px;letter-spacing:.16em;
   text-transform:uppercase;transition:box-shadow .45s,transform .45s var(--ease)}
 .btn:hover{box-shadow:0 0 46px rgb(0 255 204 / .55);transform:translateY(-2px)}
-.contact-alt{font-size:15px;color:var(--mut)}
+.contact-alt{font-size:15px;line-height:1.7;color:var(--mut)}
 .contact-alt a{color:var(--olo);border-bottom:1px solid rgb(0 255 204 / .35)}
 .contact-alt a:hover{border-color:var(--olo)}
 
@@ -421,7 +423,9 @@ p{margin:0}
    ============================================================ */
 .ftr{position:relative;z-index:1;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;
   gap:18px;padding:34px var(--gut) 40px;border-top:1px solid var(--line-2)}
-.ftr p{font-family:var(--fm);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--mut)}
+.ftr p,.ftr-ig{font-family:var(--fm);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--mut)}
+.ftr-ig{color:var(--olo);transition:text-shadow .3s}
+.ftr-ig:hover{text-shadow:0 0 18px rgb(0 255 204 / .6)}
 
 /* ============================================================
    REDUCED MOTION
@@ -444,6 +448,8 @@ p{margin:0}
   .line > span{transform:none}
   .step::before{width:100%}
 </style></noscript>
+<script>window.va = window.va || function(){ (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body class="is-locked">
 
@@ -490,7 +496,7 @@ p{margin:0}
   <a href="#identity"   style="--d:330ms">Identity</a>
   <a href="#sponsors"   style="--d:375ms">Sponsors</a>
   <a href="#next"       style="--d:420ms">G-ORB!T</a>
-  <p class="menu-foot">teamnitro.f1.stem@gmail.com</p>
+  <p class="menu-foot">teamnitro.f1.stem@gmail.com<br><a href="https://www.instagram.com/teamnitro.tbs/" target="_blank" rel="noopener">Instagram @teamnitro.tbs</a></p>
 </nav>
 
 <!-- TELEMETRY -->
@@ -750,7 +756,8 @@ p{margin:0}
   </div>
   <div class="contact rise" style="--d:120ms">
     <a class="btn" href="mailto:teamnitro.f1.stem@gmail.com" data-cur>Back the next car</a>
-    <p class="contact-alt">or reach us at <a href="mailto:teamnitro.f1.stem@gmail.com">teamnitro.f1.stem@gmail.com</a></p>
+    <p class="contact-alt">or reach us at <a href="mailto:teamnitro.f1.stem@gmail.com">teamnitro.f1.stem@gmail.com</a>
+      · follow the build on <a href="https://www.instagram.com/teamnitro.tbs/" target="_blank" rel="noopener">Instagram @teamnitro.tbs</a></p>
   </div>
 </section>
 
@@ -759,6 +766,7 @@ p{margin:0}
 <footer class="ftr">
   <a class="brand" href="#top" data-cur>N!TRO</a>
   <p>Together we are N!TRO</p>
+  <a class="ftr-ig" href="https://www.instagram.com/teamnitro.tbs/" target="_blank" rel="noopener" data-cur>Instagram @teamnitro.tbs</a>
   <p>© 2026 Team N!TRO</p>
 </footer>
 
@@ -905,7 +913,7 @@ p{margin:0}
     });
     /* navigate manually: the scroll lock is still active when the browser
        would otherwise process the hash, which swallows the jump */
-    $$("#menu a").forEach(function(a){
+    $$('#menu a[href^="#"]').forEach(function(a){
       a.addEventListener("click", function(e){
         var target = document.querySelector(a.getAttribute("href"));
         if(!target) return;
