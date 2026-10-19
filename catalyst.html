@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#000000">
+<meta name="description" content="N!TRO Catalyst connects STEM Racing students, mentors and ideas. Join our mentorship community or get in touch with Team N!TRO.">
+<meta property="og:title" content="N!TRO Catalyst — Ideas move faster together.">
+<meta property="og:description" content="A mentorship initiative by Team N!TRO for STEM Racing students and mentors.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://teamnitro.org/catalyst">
+<meta property="og:image" content="https://teamnitro.org/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://teamnitro.org/catalyst">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<title>N!TRO Catalyst — Ideas move faster together.</title>
+<style>
+@font-face{font-family:"Archivo";font-weight:100 900;font-stretch:62.5% 125%;font-display:swap;src:url(/fonts/archivo-latin.woff2) format("woff2")}
+@font-face{font-family:"JetBrains Mono";font-weight:400 700;font-display:swap;src:url(/fonts/jetbrains-mono-latin.woff2) format("woff2")}
+/* N!TRO brand tokens — same as teamnitro.org */
+:root{
+  --olo:#00ffcc;--pink:#f04f6a;--laser:#223474;--vanilla:#ffffe1;--bg:#000;
+  --ink:var(--vanilla);--mut:rgb(255 255 225 / .6);--line:rgb(255 255 225 / .12);--line-olo:rgb(0 255 204 / .2);
+  --card:rgb(255 255 225 / .03);--gut:clamp(20px,5vw,64px);--maxw:1320px;
+  --fd:"Archivo",-apple-system,"Segoe UI",sans-serif;--fm:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:96px;-webkit-text-size-adjust:100%}
+body{margin:0;color:var(--ink);font-family:var(--fd);line-height:1.6;-webkit-font-smoothing:antialiased;
+  background:radial-gradient(1100px 760px at 82% -12%,rgb(34 52 116 / .5),transparent 60%),
+             radial-gradient(900px 700px at -12% 112%,rgb(240 79 106 / .14),transparent 55%),var(--bg)}
+a{color:inherit}
+button,input,select,textarea{font:inherit}
+a,button,input,select,textarea{touch-action:manipulation}
+:focus-visible{outline:2px solid var(--olo);outline-offset:4px;border-radius:4px}
+::selection{background:var(--olo);color:#000}
+.skip{position:fixed;top:12px;left:12px;z-index:20;padding:12px 18px;border-radius:999px;background:var(--olo);color:#000;
+  font-family:var(--fm);font-size:11px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;
+  transform:translateY(-160%);transition:transform .3s var(--ease)}
+.skip:focus{transform:none}
+.mono{font-family:var(--fm);font-size:11px;letter-spacing:.2em;text-transform:uppercase}
+
+/* header */
+header{position:sticky;top:0;z-index:10;background:rgb(0 0 0 / .72);border-bottom:1px solid var(--line-olo);
+  backdrop-filter:blur(18px) saturate(160%);-webkit-backdrop-filter:blur(18px) saturate(160%)}
+.nav{max-width:var(--maxw);margin:auto;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:16px var(--gut)}
+.brand{display:inline-flex;align-items:center;gap:12px;text-decoration:none;padding-block:8px}
+.brand img{display:block;width:32px;height:32px;border-radius:8px}
+.brand b{font-size:21px;font-weight:900;letter-spacing:-.05em;font-variation-settings:"wdth" 108;color:var(--pink)}
+.brand small{font-family:var(--fm);font-size:10px;letter-spacing:.24em;color:var(--olo)}
+nav{display:flex;align-items:center;gap:26px}
+.brand span{white-space:nowrap}
+nav a{white-space:nowrap;font-family:var(--fm);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;color:var(--mut);
+  padding-block:10px;transition:color .3s}
+nav a:hover{color:var(--olo)}
+nav a.home{color:var(--ink)}
+
+main{max-width:var(--maxw);margin:auto;padding:0 var(--gut)}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.3fr 1fr;align-items:center;gap:30px;min-height:640px;padding:72px 0}
+.eyebrow{display:flex;align-items:center;gap:12px;font-family:var(--fm);font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--olo)}
+.eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--olo);box-shadow:0 0 12px var(--olo)}
+h1,h2,h3{font-weight:900;font-variation-settings:"wdth" 108;margin:0}
+h1{font-size:clamp(42px,5vw,76px);font-variation-settings:"wdth" 100;letter-spacing:-.05em;line-height:.98;margin:26px 0}
+h1 em{font-style:normal;color:var(--olo);text-shadow:0 0 60px rgb(0 255 204 / .35)}
+.lead{max-width:520px;color:var(--mut);font-size:clamp(16px,1.3vw,19px)}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.button{display:inline-flex;align-items:center;justify-content:center;gap:14px;padding:16px 26px;border-radius:999px;
+  border:1px solid rgb(0 255 204 / .5);background:transparent;color:var(--olo);text-decoration:none;cursor:pointer;
+  font-family:var(--fm);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  transition:transform .3s var(--ease),box-shadow .3s,background .3s}
+.button:hover{transform:translateY(-2px);background:rgb(0 255 204 / .08)}
+.button.primary{background:var(--olo);border-color:var(--olo);color:#000}
+.button.primary:hover{box-shadow:0 0 44px rgb(0 255 204 / .5)}
+.button:active{transform:translateY(0) scale(.98)}
+.micro{font-size:12px;color:var(--mut);margin-top:16px}
+
+/* 3D hero visual */
+.visual{position:relative;aspect-ratio:1;overflow:hidden;perspective:950px}
+.scene{position:absolute;inset:0;display:grid;place-items:center;transform-style:preserve-3d;transition:transform .3s ease}
+.orbit{position:absolute;width:85%;height:85%;border:1px solid rgb(255 255 225 / .2);border-radius:50%;transform-style:preserve-3d}
+.orbit.one{animation:orbX 26s linear infinite}
+.orbit.two{width:62%;height:62%;border-style:dashed;border-color:rgb(0 255 204 / .4);animation:orbY 34s linear infinite reverse}
+.orbit.three{width:100%;height:34%;border-color:rgb(240 79 106 / .45);animation:orbTilt 14s ease-in-out infinite alternate;
+  box-shadow:inset 0 0 50px -20px rgb(240 79 106 / .3)}
+.core{position:relative;font-size:clamp(120px,18vw,240px);font-weight:900;color:var(--pink);line-height:1;
+  animation:coreFloat 7s ease-in-out infinite;filter:drop-shadow(0 0 38px rgb(240 79 106 / .4)) drop-shadow(0 26px 26px #0009)}
+.node{position:absolute;padding:9px 17px;border:1px solid var(--line);border-radius:999px;background:#05070f;
+  font-family:var(--fm);font-size:10.5px;letter-spacing:.14em;box-shadow:0 16px 34px -18px #000d;animation:bob 6s ease-in-out infinite}
+.n1{top:12%;left:14%;color:var(--olo)}
+.n2{right:0;top:47%;animation-delay:1.6s}
+.n3{bottom:10%;left:12%;color:var(--pink);animation-delay:3.1s}
+.dot{position:absolute;right:18%;bottom:21%;width:14px;height:14px;border-radius:50%;background:var(--olo);
+  box-shadow:0 0 18px var(--olo);animation:pulse 3.4s ease-in-out infinite}
+@keyframes orbX{from{transform:rotateX(68deg) rotate(0)}to{transform:rotateX(68deg) rotate(360deg)}}
+@keyframes orbY{from{transform:rotateY(58deg) rotate(0)}to{transform:rotateY(58deg) rotate(360deg)}}
+@keyframes orbTilt{from{transform:rotate(-35deg) rotateY(-14deg)}to{transform:rotate(-35deg) rotateY(14deg)}}
+@keyframes coreFloat{0%,100%{transform:rotate(-10deg) translateZ(70px) translateY(0) rotateY(-6deg)}50%{transform:rotate(-10deg) translateZ(70px) translateY(-14px) rotateY(6deg)}}
+@keyframes bob{0%,100%{transform:translateZ(48px) translateY(0)}50%{transform:translateZ(48px) translateY(-9px)}}
+@keyframes pulse{0%,100%{transform:translateZ(36px) scale(1)}50%{transform:translateZ(36px) scale(1.5)}}
+@keyframes coin{from{transform:rotateY(0)}to{transform:rotateY(360deg)}}
+
+/* scroll reveal + tilt (applied by JS) */
+.reveal{opacity:0;transform:perspective(900px) rotateX(9deg) translateY(34px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+.tilt{transition:transform .18s ease,box-shadow .35s ease}
+.tilt:hover{box-shadow:0 30px 70px -34px #000e,0 0 0 1px rgb(0 255 204 / .25)}
+
+.strip{display:flex;justify-content:space-between;gap:16px;padding:19px 0;border-block:1px solid var(--line);
+  font-family:var(--fm);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--mut)}
+.strip span:last-child{color:var(--olo)}
+section{padding:88px 0;border-bottom:1px solid var(--line)}
+.sectionhead{display:flex;justify-content:space-between;align-items:end;gap:40px;margin-bottom:36px}
+h2{font-size:clamp(34px,4.4vw,60px);line-height:1;letter-spacing:-.045em;margin:18px 0 0}
+h2 em{font-style:normal;color:var(--olo)}
+.sectionhead p{max-width:380px;color:var(--mut);font-size:15px}
+.paths{display:grid;grid-template-columns:1fr 1fr;gap:16px;perspective:1400px}
+.path{padding:32px;border:1px solid var(--line-olo);border-radius:20px;background:var(--card);transform-style:preserve-3d}
+.num{font-family:var(--fm);font-size:11px;letter-spacing:.16em;color:var(--pink)}
+h3{font-size:clamp(22px,2vw,28px);letter-spacing:-.035em;line-height:1.1;margin:18px 0 10px}
+.path p{max-width:440px;color:var(--mut);font-size:15px}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0}
+.tags span{padding:6px 12px;border:1px solid var(--line);border-radius:999px;background:rgb(255 255 225 / .02);font-size:12px}
+.textlink{display:inline-block;padding:8px 0;text-decoration:none;font-family:var(--fm);font-size:11px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--olo);border-bottom:1px solid rgb(0 255 204 / .4)}
+.textlink:hover{border-color:var(--olo)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:36px}
+.step{position:relative;padding-top:20px;border-top:1px solid var(--line)}
+.step::before{content:"";position:absolute;top:-1px;left:0;width:56px;height:1px;background:linear-gradient(90deg,var(--olo),var(--pink))}
+.step p{color:var(--mut);font-size:15px}
+.contact{display:grid;grid-template-columns:1fr 1fr;gap:64px;perspective:1400px}
+.contact > div > p{color:var(--mut)}
+.email{display:block;margin:18px 0;text-decoration:none;overflow-wrap:anywhere;font-size:clamp(15px,1.7vw,22px);font-weight:600}
+.email:hover{color:var(--olo)}
+.email small{display:block;font-family:var(--fm);font-size:10px;font-weight:400;letter-spacing:.16em;text-transform:uppercase;color:var(--mut)}
+.seal{width:110px;height:110px;margin-top:34px;perspective:620px}
+.seal img{width:110px;height:110px;border-radius:24px;animation:coin 9s linear infinite;transform-style:preserve-3d;
+  filter:drop-shadow(0 18px 30px #000a)}
+form{padding:30px;border:1px solid var(--line-olo);border-radius:20px;background:var(--card);transform-style:preserve-3d}
+form h3{margin-top:0}
+label{display:block;margin:16px 0 6px;font-size:13px;font-weight:600}
+input,select,textarea{width:100%;padding:13px;border:1px solid rgb(255 255 225 / .2);border-radius:10px;background:#05070f;color:var(--ink);font-size:15px}
+input::placeholder,textarea::placeholder{color:rgb(255 255 225 / .4)}
+input:focus,select:focus,textarea:focus{border-color:var(--olo)}
+textarea{min-height:110px;resize:vertical}
+form .button{width:100%;margin-top:20px}
+#status{font-size:13px;color:var(--olo)}
+footer{max-width:var(--maxw);margin:auto;padding:30px var(--gut) 40px;display:flex;justify-content:space-between;align-items:center;gap:20px;
+  font-family:var(--fm);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
+footer b{font-family:var(--fd);font-size:18px;letter-spacing:-.05em;color:var(--pink);text-transform:none;margin-right:10px}
+footer a{color:var(--olo);text-decoration:none;padding-block:10px}
+
+@media(max-width:760px){
+  nav{gap:16px}
+  nav a.hide-sm{display:none}
+  .hero{grid-template-columns:1fr;gap:10px;min-height:0;padding:52px 0 24px}
+  .visual{width:100%;max-width:380px;margin:auto}
+  .core{font-size:160px}
+  .sectionhead{display:block}
+  .paths,.contact,.steps{grid-template-columns:1fr}
+  .contact{gap:30px}
+  .strip{flex-wrap:wrap;font-size:9.5px;letter-spacing:.1em}
+  section{padding:56px 0}
+  .path{padding:24px}
+  footer{flex-direction:column;align-items:flex-start}
+  .sectionhead p{max-width:100%}
+}
+@media(max-width:480px){nav a.hide-xs,.brand img{display:none}}
+@media(prefers-reduced-motion:reduce){
+  *{scroll-behavior:auto!important;animation:none!important;transition:none!important}
+  .reveal{opacity:1!important;transform:none!important}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header>
+  <div class="nav">
+    <a class="brand" href="/catalyst" aria-label="N!TRO Catalyst home">
+      <img src="/logo-512.png" alt="" width="32" height="32" decoding="async">
+      <span><b>N!TRO</b> <small>CATALYST</small></span>
+    </a>
+    <nav aria-label="Main navigation">
+      <a class="hide-sm" href="#mentorship">The initiative</a>
+      <a class="hide-xs" href="#contact">Get in touch</a>
+      <a class="home" href="/">teamnitro.org ↗</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="hero">
+    <div>
+      <div class="eyebrow">A mentorship initiative by Team N!TRO</div>
+      <h1>Good ideas.<br>Great people.<br><em>More momentum.</em></h1>
+      <p class="lead">Meet the people who can help move your next idea forward. A space for STEM Racing students,
+        mentors and Team N!TRO to connect, share and build together.</p>
+      <div class="actions">
+        <a class="button primary" href="https://chat.whatsapp.com/GtGfKBvYK9OKvBppyefecZ" target="_blank" rel="noopener noreferrer">Join the mentorship community <span aria-hidden="true">↗</span></a>
+        <a class="button" href="#contact">Talk to N!TRO <span aria-hidden="true">↓</span></a>
+      </div>
+      <p class="micro">Join via WhatsApp · Reach out directly by email</p>
+    </div>
+    <div class="visual" role="img" aria-label="Students, mentors and N!TRO connected around the Catalyst spark">
+      <div class="scene">
+        <div class="orbit one"></div><div class="orbit two"></div><div class="orbit three"></div>
+        <div class="core">!</div>
+        <span class="node n1">STUDENTS</span><span class="node n2">MENTORS</span><span class="node n3">N!TRO</span>
+        <i class="dot"></i>
+      </div>
+    </div>
+  </div>
+
+  <div class="strip"><span>Curiosity starts the conversation</span><span>Knowledge moves it forward</span><span>Together we are N!TRO</span></div>
+
+  <section id="mentorship">
+    <div class="sectionhead">
+      <div>
+        <div class="eyebrow">Find your starting line</div>
+        <h2>One community.<br><em>Different ways to contribute.</em></h2>
+      </div>
+      <p>Catalyst starts with a conversation. Ask a question, share what you know, or contact N!TRO about the guidance you need.</p>
+    </div>
+    <div class="paths">
+      <article class="path">
+        <div class="num">01 / SEEK GUIDANCE</div>
+        <h3>Bring your next challenge.</h3>
+        <p>Working on a car, a portfolio or a team idea? Introduce yourself in the mentorship community and tell us what you would like help with.</p>
+        <div class="tags"><span>Design &amp; engineering</span><span>Manufacturing</span><span>Enterprise &amp; portfolios</span></div>
+        <a class="textlink" href="#contact" data-role="student">Prepare your introduction ↓</a>
+      </article>
+      <article class="path">
+        <div class="num">02 / SHARE YOUR EXPERIENCE</div>
+        <h3>Be someone’s catalyst.</h3>
+        <p>Have experience to share? Connect with N!TRO about mentoring, giving feedback or helping students think through their next step.</p>
+        <div class="tags"><span>Technical feedback</span><span>Team development</span><span>Ideas &amp; collaboration</span></div>
+        <a class="textlink" href="#contact" data-role="mentor">Introduce yourself as a mentor ↓</a>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <div class="sectionhead">
+      <div>
+        <div class="eyebrow">From hello to what’s next</div>
+        <h2>Make the first connection.</h2>
+      </div>
+    </div>
+    <div class="steps">
+      <article class="step"><span class="num">01</span><h3>Join the community</h3><p>Open the WhatsApp invitation and follow WhatsApp’s steps to join the mentorship community.</p></article>
+      <article class="step"><span class="num">02</span><h3>Introduce yourself</h3><p>Share your team, your interests and one specific question. Mentors can introduce the experience they would like to share.</p></article>
+      <article class="step"><span class="num">03</span><h3>Start a conversation</h3><p>Connect in the community or email N!TRO directly to discuss mentorship and possible next steps.</p></article>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="contact">
+      <div>
+        <div class="eyebrow">Your next step starts here</div>
+        <h2>Let’s get<br><em>something moving.</em></h2>
+        <p>Choose WhatsApp for a community conversation, or send an email to Aryeh or the team.</p>
+        <a class="email" href="mailto:aryeh.vij@icloud.com"><small>Contact Aryeh</small>aryeh.vij@icloud.com ↗</a>
+        <a class="email" href="mailto:teamnitro.f1.stem@gmail.com"><small>Contact Team N!TRO</small>teamnitro.f1.stem@gmail.com ↗</a>
+        <div class="actions">
+          <a class="button" href="https://chat.whatsapp.com/GtGfKBvYK9OKvBppyefecZ" target="_blank" rel="noopener noreferrer">Open WhatsApp community ↗</a>
+        </div>
+        <p class="micro">WhatsApp opens externally. Check its group privacy settings before sharing personal information.</p>
+        <div class="seal" aria-hidden="true"><img src="/logo-512.png" alt="" width="110" height="110" loading="lazy" decoding="async"></div>
+      </div>
+      <form id="intro" novalidate>
+        <h3>A little introduction goes a long way.</h3>
+        <p class="micro">Build your email below, then review and send it in your email app.</p>
+        <label for="name">Your name</label>
+        <input id="name" name="name" autocomplete="name" maxlength="100" placeholder="How should we address you?" required>
+        <label for="role">I’m here to…</label>
+        <select id="role" name="role">
+          <option value="student">Find mentorship</option>
+          <option value="mentor">Offer mentorship</option>
+          <option value="collaborator">Collaborate with N!TRO</option>
+        </select>
+        <label for="recipient">Send to</label>
+        <select id="recipient" name="recipient">
+          <option value="teamnitro.f1.stem@gmail.com">Team N!TRO</option>
+          <option value="aryeh.vij@icloud.com">Aryeh Vij</option>
+        </select>
+        <label for="message">What would you like to explore?</label>
+        <textarea id="message" name="message" maxlength="2500" placeholder="Your team, area of interest, and how we can connect…" required></textarea>
+        <button class="button primary" type="submit">Open email draft <span aria-hidden="true">↗</span></button>
+        <p id="status" role="status" aria-live="polite"></p>
+        <p class="micro">This form opens your email app; it does not submit or store your details. You can also use either email link.</p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <span><b>N!TRO</b>Catalyst · Together we are N!TRO</span>
+  <a href="/">← Back to teamnitro.org</a>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var form = document.getElementById("intro"), status = document.getElementById("status");
+  /* "Prepare your introduction" / "Introduce yourself as a mentor" pre-select the role */
+  document.querySelectorAll("[data-role]").forEach(function(link){
+    link.addEventListener("click", function(){ document.getElementById("role").value = link.dataset.role; });
+  });
+  form.addEventListener("submit", function(event){
+    event.preventDefault();
+    var name = form.elements.name.value.trim(), message = form.elements.message.value.trim();
+    if(!name || !message){
+      status.textContent = "Please add your name and a short introduction.";
+      (name ? form.elements.message : form.elements.name).focus();
+      return;
+    }
+    var role = form.elements.role.options[form.elements.role.selectedIndex].text;
+    var subject = "N!TRO Catalyst — " + role;
+    var body = "Hello N!TRO,\n\nMy name is " + name + ". I would like to " + role.toLowerCase() + ".\n\n" + message + "\n\nBest wishes,\n" + name;
+    window.location.href = "mailto:" + form.elements.recipient.value + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+    status.textContent = "Email draft requested. If your email app did not open, use one of the email links.";
+  });
+
+  /* 3D motion: respects reduced-motion; pointer tilt on fine pointers only */
+  var motionOK = !matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if(motionOK && "IntersectionObserver" in window){
+    var targets = document.querySelectorAll(".sectionhead,.path,.step,.contact > div,form");
+    targets.forEach(function(el){ el.classList.add("reveal"); });
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){ entry.target.classList.add("in"); io.unobserve(entry.target); }
+      });
+    }, {threshold:.15});
+    targets.forEach(function(el){ io.observe(el); });
+  }
+  if(motionOK && matchMedia("(hover: hover) and (pointer: fine)").matches){
+    var visual = document.querySelector(".visual"), scene = document.querySelector(".scene");
+    if(visual && scene){
+      visual.addEventListener("mousemove", function(e){
+        var r = visual.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+        scene.style.transform = "rotateX(" + ((0.5 - y) * 16).toFixed(2) + "deg) rotateY(" + ((x - 0.5) * 20).toFixed(2) + "deg)";
+      });
+      visual.addEventListener("mouseleave", function(){ scene.style.transform = ""; });
+    }
+    document.querySelectorAll(".path,#intro").forEach(function(card){
+      card.classList.add("tilt");
+      card.addEventListener("mousemove", function(e){
+        var r = card.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+        card.style.transform = "perspective(900px) rotateX(" + ((0.5 - y) * 6).toFixed(2) + "deg) rotateY(" + ((x - 0.5) * 8).toFixed(2) + "deg) translateZ(8px)";
+      });
+      card.addEventListener("mouseleave", function(){ card.style.transform = ""; });
+    });
+  }
+})();
+</script>
+<script>window.va = window.va || function(){ (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
