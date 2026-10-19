@@ -548,6 +548,19 @@ p{margin:0}
 .btn-ghost{border:1px solid rgb(0 255 204 / .5);background:transparent;color:var(--olo);cursor:pointer;
   -webkit-tap-highlight-color:transparent}
 .btn-ghost:hover{background:rgb(0 255 204 / .08)}
+/* sponsor call-out at the end of "What's next" */
+.sponsor-call{position:relative;display:grid;grid-template-columns:1.2fr 1fr;align-items:center;gap:26px clamp(26px,4vw,60px);
+  margin-top:clamp(40px,6vw,64px);padding:clamp(28px,4vw,52px);border:1px solid rgb(240 79 106 / .5);border-radius:22px;overflow:hidden;
+  background:radial-gradient(40rem 22rem at 100% 0%,rgb(240 79 106 / .14),transparent 70%),var(--glass)}
+.sponsor-call::before{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--pink),transparent)}
+.sponsor-call .mono{color:var(--pink)}
+.catalyst-intro{margin-top:clamp(24px,3vw,36px)}
+.nowrap{white-space:nowrap}
+.sponsor-call-t{margin:14px 0 14px;font-size:clamp(30px,3.6vw,52px);letter-spacing:-.045em;line-height:.95}
+.sponsor-call-actions{display:flex;flex-direction:column;align-items:stretch;gap:12px}
+.sponsor-call-actions .btn{justify-content:center}
+@media(max-width:860px){.sponsor-call{grid-template-columns:1fr}}
+
 .contact-alt{font-size:15px;line-height:1.7;color:var(--mut)}
 .contact-alt a{color:var(--olo);border-bottom:1px solid rgb(0 255 204 / .35)}
 .contact-alt a:hover{border-color:var(--olo)}
@@ -625,6 +638,7 @@ p{margin:0}
     <a href="#timeline" data-cur>Timeline</a>
     <a href="#identity" data-cur>Identity</a>
     <a href="#sponsors" data-cur>Sponsors</a>
+    <a href="#catalyst" data-cur>Catalyst</a>
     <a href="#next" data-cur>G-ORB!T</a>
   </nav>
   <a class="hdr-cta" href="mailto:teamnitro.f1.stem@gmail.com" data-cur>Connect</a>
@@ -642,8 +656,9 @@ p{margin:0}
   <a href="#timeline"   style="--d:285ms">Timeline</a>
   <a href="#identity"   style="--d:330ms">Identity</a>
   <a href="#sponsors"   style="--d:375ms">Sponsors</a>
-  <a href="#next"       style="--d:420ms">G-ORB!T</a>
-  <a href="/sponsor" class="menu-cta" style="--d:465ms">Sponsor us →</a>
+  <a href="#catalyst"   style="--d:420ms">Catalyst</a>
+  <a href="#next"       style="--d:465ms">G-ORB!T</a>
+  <a href="/sponsor" class="menu-cta" style="--d:510ms">Sponsor us →</a>
   <p class="menu-foot">teamnitro.f1.stem@gmail.com<br><a href="https://www.instagram.com/teamnitro_tbs/" target="_blank" rel="noopener">Instagram @teamnitro_tbs</a></p>
 </nav>
 
@@ -674,7 +689,7 @@ p{margin:0}
     Every gram argued for.
   </p>
   <div class="hero-cta rise" style="--d:400ms">
-    <a class="btn" href="/sponsor" data-cur>Back the next car</a>
+    <a class="btn" href="/sponsor" data-cur>Sponsor the next car</a>
     <a class="btn btn-ghost" href="#results" data-cur>See our results</a>
   </div>
   <div class="ticker rise" style="--d:440ms">
@@ -906,9 +921,31 @@ p{margin:0}
   </div>
 </section>
 
+<!-- ============ CATALYST ============ -->
+<section class="sec wrap" id="catalyst">
+  <p class="eyebrow rise">09 — Catalyst</p>
+  <h2 class="h-lg">
+    <span class="line" style="--d:0ms"><span>Ideas move</span></span>
+    <span class="line accent" style="--d:90ms"><span>faster together.</span></span>
+  </h2>
+  <p class="body rise catalyst-intro" style="--d:160ms">
+      <b style="color:var(--ink);font-weight:500">N!TRO Catalyst</b> is our mentorship initiative — a community where
+      STEM Racing students, mentors and Team N!TRO connect, share what they know and help each other's next idea move.
+  </p>
+  <div class="next">
+    <article class="nx rise" style="--d:0ms"><p class="mono">01</p><b>Seek guidance</b><p>Working on a car, a portfolio or a team idea? Bring one specific question to the community.</p></article>
+    <article class="nx rise" style="--d:90ms"><p class="mono">02</p><b>Share experience</b><p>Mentors and experienced teams can offer technical feedback, team advice or a second pair of eyes.</p></article>
+    <article class="nx rise" style="--d:180ms"><p class="mono">03</p><b>Start a conversation</b><p>Join the community on WhatsApp, or email the team to talk about mentorship.</p></article>
+  </div>
+  <div class="contact rise" style="--d:120ms">
+    <a class="btn" href="/catalyst" data-cur>Explore Catalyst →</a>
+    <a class="btn btn-ghost" href="https://chat.whatsapp.com/GtGfKBvYK9OKvBppyefecZ" target="_blank" rel="noopener noreferrer" data-cur>Join the community ↗</a>
+  </div>
+</section>
+
 <!-- ============ CLOSER ============ -->
 <section class="sec wrap closer" id="next">
-  <p class="eyebrow rise">09 — What's next</p>
+  <p class="eyebrow rise">10 — What's next</p>
   <h2 class="h-xl">
     <span class="line" style="--d:0ms"><span>G-ORB!T</span></span>
     <span class="line accent" style="--d:90ms"><span>is next.</span></span>
@@ -922,10 +959,20 @@ p{margin:0}
     <article class="nx rise" style="--d:90ms"><p class="mono">02</p><b>Smarter manufacture</b><p>Every feature matched to the process that can actually hold it — not the process we used last time.</p></article>
     <article class="nx rise" style="--d:180ms"><p class="mono">03</p><b>One design loop</b><p>Three teams' methods reduced to a single loop, where technical and enterprise decisions stop being separate conversations.</p></article>
   </div>
-  <div class="contact rise" style="--d:120ms">
-    <a class="btn" href="mailto:teamnitro.f1.stem@gmail.com" data-cur>Back the next car</a>
-    <a class="btn btn-ghost" href="/sponsor" data-cur>Sponsorship tiers</a>
-    <button class="btn btn-ghost" type="button" id="copyEmail" data-email="teamnitro.f1.stem@gmail.com" data-cur>Copy email</button>
+  <aside class="sponsor-call rise" style="--d:120ms" aria-labelledby="sponsorCallTitle">
+    <div>
+      <p class="mono">For sponsors &amp; partners</p>
+      <h3 class="sponsor-call-t" id="sponsorCallTitle">Want your brand on <span class="nowrap">G-ORB!T?</span></h3>
+      <p class="body">We're looking for sponsors for the 2026–27 season. See the partnership tiers, our reach and exactly
+        what your support pays for — or email us and we'll send the full sponsorship deck.</p>
+    </div>
+    <div class="sponsor-call-actions">
+      <a class="btn" href="/sponsor" data-cur>View sponsorship tiers →</a>
+      <a class="btn btn-ghost" href="mailto:teamnitro.f1.stem@gmail.com?subject=Sponsoring%20Team%20N!TRO" data-cur>Email us about sponsoring</a>
+      <button class="btn btn-ghost" type="button" id="copyEmail" data-email="teamnitro.f1.stem@gmail.com" data-cur>Copy email</button>
+    </div>
+  </aside>
+  <div class="contact rise" style="--d:160ms">
     <p class="contact-alt">or reach us at <a href="mailto:teamnitro.f1.stem@gmail.com">teamnitro.f1.stem@gmail.com</a>
       · follow the build on <a href="https://www.instagram.com/teamnitro_tbs/" target="_blank" rel="noopener">Instagram @teamnitro_tbs</a></p>
   </div>
@@ -933,7 +980,7 @@ p{margin:0}
 
 <!-- ============ REACTION GAME ============ -->
 <section class="sec wrap" id="reaction">
-  <p class="eyebrow rise">10 — Lights out</p>
+  <p class="eyebrow rise">11 — Lights out</p>
   <div class="split end">
     <h2 class="h-lg">
       <span class="line" style="--d:0ms"><span>How fast</span></span>
