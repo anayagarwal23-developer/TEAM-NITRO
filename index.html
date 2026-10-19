@@ -263,7 +263,7 @@ p{margin:0}
 /* ============================================================
    HERO
    ============================================================ */
-.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:center;
+.hero{position:relative;min-height:min(100svh,1000px);display:flex;flex-direction:column;justify-content:center;
   padding-block:clamp(104px,14vh,148px) clamp(58px,8vh,92px);overflow:hidden}
 .hero h1{font-size:clamp(46px,9.4vw,146px)}
 @media(max-width:760px){.hero{min-height:auto;padding-block:128px 64px}}
@@ -439,6 +439,19 @@ p{margin:0}
 .lap h3{font-size:clamp(19px,1.8vw,26px);letter-spacing:-.03em;margin-bottom:8px}
 .lap p{font-size:15px;line-height:1.55;color:var(--mut)}
 @media(max-width:700px){.lap{grid-template-columns:1fr;gap:8px}}
+@media(min-width:701px){
+  body:not(.tl-h) .track{padding-left:0}
+  body:not(.tl-h) .track::before,body:not(.tl-h) .track-fill{left:50%}
+  body:not(.tl-h) .lap{display:block;width:50%;padding:26px 48px 26px 0;border-bottom:0;text-align:right}
+  body:not(.tl-h) .lap:nth-of-type(even){margin-left:50%;padding:26px 0 26px 48px;text-align:left}
+  /* interlock the two columns so the track isn't twice as tall */
+  body:not(.tl-h) .lap + .lap{margin-top:-56px}
+  body:not(.tl-h) .lap::before{left:auto;right:-5px;top:33px}
+  body:not(.tl-h) .lap:nth-of-type(even)::before{right:auto;left:-4px}
+  body:not(.tl-h) .lap time{display:block;margin-bottom:10px}
+  body:not(.tl-h) .lap h3{font-size:clamp(21px,2.6vw,28px)}
+  body:not(.tl-h) .lap p{font-size:16px}
+}
 /* wide screens: the timeline is pinned and driven sideways by vertical scroll */
 .tl-h .tl-sticky{position:sticky;top:0;height:100vh;display:flex;align-items:center;overflow:hidden;
   width:100vw;margin-left:calc(50% - 50vw)}
@@ -1155,7 +1168,7 @@ p{margin:0}
       railFill = $("#railFill"), railDot = $("#railDot"), railPct = $("#railPct"),
       teleIdx = $("#teleIdx"), teleName = $("#teleName"),
       trackEl = $("#track"), trackFill = $("#trackFill"), tlPin = $("#tlPin"),
-      tlWide = matchMedia("(min-width:1000px)"), tlH = false, tlDist = 0, tlPad = 0, tlLine = 0,
+      tlWide = matchMedia("(min-width:1000px) and (hover:hover) and (pointer:fine)"), tlH = false, tlDist = 0, tlPad = 0, tlLine = 0,
       laps = $$(".lap"),
       secs = $$("main section[id]"),
       navLinks = $$("#nav a"),
