@@ -149,6 +149,10 @@ input:focus,select:focus,textarea:focus{border-color:var(--olo)}
 textarea{min-height:110px;resize:vertical}
 form .button{width:100%;margin-top:20px}
 #status{font-size:13px;color:var(--olo)}
+#status.err{color:var(--pink)}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.sent h3{color:var(--olo)}
+.sent p{margin-top:12px;color:var(--mut)}
 footer{max-width:var(--maxw);margin:auto;padding:30px var(--gut) 40px;display:flex;justify-content:space-between;align-items:center;gap:20px;
   font-family:var(--fm);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
 footer b{font-family:var(--fd);font-size:18px;letter-spacing:-.05em;color:var(--pink);text-transform:none;margin-right:10px}
@@ -271,27 +275,31 @@ footer a{color:var(--olo);text-decoration:none;padding-block:10px}
         <p class="micro">WhatsApp opens externally. Check its group privacy settings before sharing personal information.</p>
         <div class="seal" aria-hidden="true"><img src="/logo-512.png" alt="" width="110" height="110" loading="lazy" decoding="async"></div>
       </div>
-      <form id="intro" novalidate>
+      <!-- Web3Forms access key goes in data-key; until it's set the form falls back to opening an email draft -->
+      <form id="intro" data-key="" novalidate>
         <h3>A little introduction goes a long way.</h3>
-        <p class="micro">Build your email below, then review and send it in your email app.</p>
+        <p class="micro" data-direct>Tell us a little about yourself — your message comes straight to the team.</p>
         <label for="name">Your name</label>
         <input id="name" name="name" autocomplete="name" maxlength="100" placeholder="How should we address you?" required>
+        <label for="email">Your email</label>
+        <input id="email" name="email" type="email" autocomplete="email" maxlength="160" placeholder="So we can reply" required>
         <label for="role">I’m here to…</label>
         <select id="role" name="role">
           <option value="student">Find mentorship</option>
           <option value="mentor">Offer mentorship</option>
           <option value="collaborator">Collaborate with N!TRO</option>
         </select>
-        <label for="recipient">Send to</label>
+        <label for="recipient">Who should read it?</label>
         <select id="recipient" name="recipient">
           <option value="teamnitro.f1.stem@gmail.com">Team N!TRO</option>
           <option value="aryeh.vij@icloud.com">Aryeh Vij</option>
         </select>
         <label for="message">What would you like to explore?</label>
         <textarea id="message" name="message" maxlength="2500" placeholder="Your team, area of interest, and how we can connect…" required></textarea>
-        <button class="button primary" type="submit">Open email draft <span aria-hidden="true">↗</span></button>
+        <label class="hp" aria-hidden="true">Leave this empty <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off"></label>
+        <button class="button primary" type="submit">Send message <span aria-hidden="true">→</span></button>
         <p id="status" role="status" aria-live="polite"></p>
-        <p class="micro">This form opens your email app; it does not submit or store your details. You can also use either email link.</p>
+        <p class="micro" data-note>Your details are only used to reply to you. You can also use either email link.</p>
       </form>
     </div>
   </section>
@@ -310,19 +318,42 @@ footer a{color:var(--olo);text-decoration:none;padding-block:10px}
   document.querySelectorAll("[data-role]").forEach(function(link){
     link.addEventListener("click", function(){ document.getElementById("role").value = link.dataset.role; });
   });
+  /* sends directly through Web3Forms when an access key is set; otherwise opens an email draft */
+  var key = form.dataset.key, btn = form.querySelector('button[type="submit"]');
+  if(!key){
+    btn.innerHTML = 'Open email draft <span aria-hidden="true">\u2197</span>';
+    form.querySelector("[data-direct]").textContent = "Build your email below, then review and send it in your email app.";
+  }
+  function say(text, err){ status.textContent = text; status.classList.toggle("err", !!err); }
   form.addEventListener("submit", function(event){
     event.preventDefault();
-    var name = form.elements.name.value.trim(), message = form.elements.message.value.trim();
-    if(!name || !message){
-      status.textContent = "Please add your name and a short introduction.";
-      (name ? form.elements.message : form.elements.name).focus();
+    var f = form.elements, name = f.name.value.trim(), email = f.email.value.trim(), message = f.message.value.trim();
+    if(!name){ say("Please add your name.", true); f.name.focus(); return; }
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ say("Please add an email address we can reply to.", true); f.email.focus(); return; }
+    if(!message){ say("Please add a short introduction.", true); f.message.focus(); return; }
+    var role = f.role.options[f.role.selectedIndex].text;
+    var reader = f.recipient.options[f.recipient.selectedIndex].text;
+    var subject = "N!TRO Catalyst — " + role + (reader !== "Team N!TRO" ? " — for " + reader : "");
+    var body = "Hello N!TRO,\n\nMy name is " + name + " (" + email + "). I would like to " + role.toLowerCase() + ".\n\n" + message + "\n\nBest wishes,\n" + name;
+    if(!key){
+      window.location.href = "mailto:" + f.recipient.value + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+      say("Email draft requested. If your email app did not open, use one of the email links.");
       return;
     }
-    var role = form.elements.role.options[form.elements.role.selectedIndex].text;
-    var subject = "N!TRO Catalyst — " + role;
-    var body = "Hello N!TRO,\n\nMy name is " + name + ". I would like to " + role.toLowerCase() + ".\n\n" + message + "\n\nBest wishes,\n" + name;
-    window.location.href = "mailto:" + form.elements.recipient.value + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
-    status.textContent = "Email draft requested. If your email app did not open, use one of the email links.";
+    btn.disabled = true; btn.textContent = "Sending\u2026"; say("");
+    fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify({ access_key: key, subject: subject, from_name: "teamnitro.org — Catalyst",
+        name: name, email: email, role: role, for: reader, message: message, botcheck: f.botcheck.checked })
+    }).then(function(r){ return r.json(); }).then(function(d){
+      if(!d.success) throw new Error(d.message || "failed");
+      form.innerHTML = '<div class="sent"><p class="micro">Message sent</p><h3>Thanks, ' + name.replace(/[<>&"]/g, "") +
+        ' — it\u2019s with the team.</h3><p>We\u2019ll reply to ' + email.replace(/[<>&"]/g, "") + ' as soon as we can.</p></div>';
+    }).catch(function(){
+      btn.disabled = false; btn.innerHTML = 'Send message <span aria-hidden="true">\u2192</span>';
+      say("Sorry — that didn't send. Please try again, or use one of the email links.", true);
+    });
   });
 
   /* 3D motion: respects reduced-motion; pointer tilt on fine pointers only */
