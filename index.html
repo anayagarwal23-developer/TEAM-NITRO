@@ -932,13 +932,13 @@ p{margin:0}
     </p>
   </div>
   <div class="board rise">
-    <div class="cell" style="--w:62%;--h:40%" title="GMR"><img src="sponsors/gmr.svg" alt="GMR" decoding="async"></div>
-    <div class="cell" style="--w:70%;--h:42%" title="Safexpress"><img src="sponsors/safexpress.webp" alt="Safexpress" decoding="async"></div>
-    <div class="cell" style="--w:88%;--h:28%" title="Maruti Suzuki"><img src="sponsors/maruti-suzuki.svg" alt="Maruti Suzuki" decoding="async"></div>
-    <div class="cell" style="--w:40%;--h:72%" title="Jaypee"><img src="sponsors/jaypee.webp" alt="Jaypee" decoding="async"></div>
-    <div class="cell" style="--w:46%;--h:52%" title="adidas"><img src="sponsors/adidas.svg" alt="adidas" decoding="async"></div>
-    <div class="cell" style="--w:42%;--h:56%" title="Bomba Pizzeria &amp; Taqueria"><img src="sponsors/bomba.svg" alt="Bomba Pizzeria &amp; Taqueria" decoding="async"></div>
-    <div class="cell" style="--w:76%;--h:30%" title="Athena Education"><img src="sponsors/athena-education.svg" alt="Athena Education" decoding="async"></div>
+    <div class="cell" style="--w:62%;--h:40%" title="GMR"><img src="sponsors/gmr.svg?v=2" alt="GMR" decoding="async"></div>
+    <div class="cell" style="--w:70%;--h:42%" title="Safexpress"><img src="sponsors/safexpress.webp?v=2" alt="Safexpress" decoding="async"></div>
+    <div class="cell" style="--w:88%;--h:28%" title="Maruti Suzuki"><img src="sponsors/maruti-suzuki.svg?v=2" alt="Maruti Suzuki" decoding="async"></div>
+    <div class="cell" style="--w:40%;--h:72%" title="Jaypee"><img src="sponsors/jaypee.webp?v=2" alt="Jaypee" decoding="async"></div>
+    <div class="cell" style="--w:46%;--h:52%" title="adidas"><img src="sponsors/adidas.svg?v=2" alt="adidas" decoding="async"></div>
+    <div class="cell" style="--w:42%;--h:56%" title="Bomba Pizzeria &amp; Taqueria"><img src="sponsors/bomba.svg?v=2" alt="Bomba Pizzeria &amp; Taqueria" decoding="async"></div>
+    <div class="cell" style="--w:76%;--h:30%" title="Athena Education"><img src="sponsors/athena-education.svg?v=2" alt="Athena Education" decoding="async"></div>
     <a class="cell cell-cta" href="/sponsor#contact" data-cur><span>Your logo here</span><b>Become a sponsor →</b></a>
   </div>
 </section>
@@ -1177,32 +1177,40 @@ p{margin:0}
       railFill = $("#railFill"), railDot = $("#railDot"), railPct = $("#railPct"),
       teleIdx = $("#teleIdx"), teleName = $("#teleName"),
       trackEl = $("#track"), trackFill = $("#trackFill"), tlPin = $("#tlPin"),
-      tlWide = matchMedia("(min-width:1000px) and (hover:hover) and (pointer:fine)"), tlH = false, tlDist = 0, tlPad = 0, tlLine = 0,
+      tlWide = matchMedia("(min-width:1000px) and (hover:hover) and (pointer:fine)"), tlH = false, tlDist = 0, tlPad = 0, tlLine = 0, lapLefts = [],
       laps = $$(".lap"),
       secs = $$("main section[id]"),
       navLinks = $$("#nav a"),
       ticking = false;
 
+  /* every measurement happens before any write, so scrolling never forces a mid-frame layout */
   function onScroll(){
     var y   = window.scrollY || window.pageYOffset,
-        max = document.documentElement.scrollHeight - window.innerHeight,
+        vh  = window.innerHeight, vw = window.innerWidth,
+        max = document.documentElement.scrollHeight - vh,
         p   = max > 0 ? Math.min(y / max, 1) : 0;
 
+    /* ---- reads ---- */
+    var mid = y + vh * 0.4, cur = secs[0];
+    secs.forEach(function(s){
+      if(s.getBoundingClientRect().top + y <= mid) cur = s;
+    });
+    var tp = 0, trackRect = null, lapTops = null;
+    if(tlH){
+      tp = tlDist > 0 ? Math.max(0, Math.min(1, -tlPin.getBoundingClientRect().top / tlDist)) : 0;
+    }else if(trackEl && trackFill){
+      trackRect = trackEl.getBoundingClientRect();
+      lapTops = laps.map(function(l){ return l.getBoundingClientRect().top; });
+    }
+
+    /* ---- writes ---- */
     if(prog) prog.style.transform = "scaleX(" + p + ")";
     if(hdr) hdr.classList.toggle("stuck", y > 40);
-
     if(railFill){
       railFill.style.height = (p * 100) + "%";
       railDot.style.top     = (p * 100) + "%";
       railPct.textContent   = String(Math.round(p * 100)).padStart(2,"0") + "%";
     }
-
-    /* active section — rect-based, since some sections sit inside positioned wrappers */
-    var mid = y + window.innerHeight * 0.4, cur = secs[0];
-    secs.forEach(function(s){
-      var top = s.getBoundingClientRect().top + y;
-      if(top <= mid) cur = s;
-    });
     if(cur){
       var id = cur.id, i = secs.indexOf(cur) + 1;
       if(teleIdx) teleIdx.textContent = String(i).padStart(2,"0");
@@ -1211,28 +1219,19 @@ p{margin:0}
         a.classList.toggle("on", a.getAttribute("href") === "#" + id);
       });
     }
-
-    /* timeline fill + node lighting */
     if(tlH){
-      var pr = tlPin.getBoundingClientRect(),
-          tp = tlDist > 0 ? Math.max(0, Math.min(1, -pr.top / tlDist)) : 0,
-          vw = window.innerWidth;
-      trackEl.style.transform = "translate3d(" + (-tp * tlDist) + "px,0,0)";
+      var shift = tp * tlDist;
+      trackEl.style.transform = "translate3d(" + (-shift) + "px,0,0)";
       /* the fill's tip sits at 62% of the screen, which is also where dots light up */
-      var tip = vw * 0.62 + tp * tlDist - tlPad;
+      var tip = vw * 0.62 + shift - tlPad;
       trackFill.style.width = Math.max(0, Math.min(tlLine, tip)) + "px";
-      laps.forEach(function(l){
-        l.classList.toggle("lit", l.getBoundingClientRect().left < vw * 0.62);
+      laps.forEach(function(l, k){
+        l.classList.toggle("lit", lapLefts[k] - shift < vw * 0.62);
       });
-    }else if(trackEl && trackFill){
-      var r = trackEl.getBoundingClientRect(),
-          vh = window.innerHeight,
-          done = Math.max(0, Math.min(1, (vh * 0.68 - r.top) / r.height));
+    }else if(trackRect){
+      var done = Math.max(0, Math.min(1, (vh * 0.68 - trackRect.top) / trackRect.height));
       trackFill.style.height = (done * 100) + "%";
-      laps.forEach(function(l){
-        var lr = l.getBoundingClientRect();
-        l.classList.toggle("lit", lr.top < vh * 0.72);
-      });
+      laps.forEach(function(l, k){ l.classList.toggle("lit", lapTops[k] < vh * 0.72); });
     }
     ticking = false;
   }
@@ -1246,6 +1245,7 @@ p{margin:0}
       tlDist = Math.max(0, trackEl.scrollWidth - window.innerWidth);
       tlPad = parseFloat(getComputedStyle(trackEl).paddingLeft) || 0;
       tlLine = trackEl.scrollWidth - tlPad * 2;
+      lapLefts = laps.map(function(l){ return l.getBoundingClientRect().left; });
       tlPin.style.height = (window.innerHeight + tlDist) + "px";
     }else{
       tlDist = 0;
