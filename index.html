@@ -494,7 +494,7 @@ p{margin:0}
 /* ============================================================
    SPONSORS
    ============================================================ */
-.partners{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:clamp(40px,6vw,64px)}
+.partners{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:clamp(40px,6vw,64px)}
 .pt{padding:clamp(24px,2.6vw,34px);border:1px solid var(--line-2);border-radius:18px;
   background:var(--glass);min-height:170px;display:flex;flex-direction:column;justify-content:flex-end;
   transition:border-color .45s,transform .5s var(--ease),background .45s}
@@ -502,8 +502,9 @@ p{margin:0}
 .pt b{font-size:clamp(21px,2vw,28px);font-weight:900;letter-spacing:-.04em}
 .pt img{max-height:44px;width:auto;margin-bottom:auto;object-fit:contain}
 .pt span{margin-top:8px;font-size:14px;color:var(--mut);line-height:1.45}
+.pt .pt-k{order:-1;margin:0 0 auto;font-family:var(--fm);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--pink)}
 @media(max-width:900px){.partners{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:520px){.partners{grid-template-columns:1fr}.pt{min-height:0;padding-top:46px}}
+@media(max-width:520px){.partners{gap:10px}.pt{min-height:0;padding:18px 18px 20px;justify-content:flex-start}.pt .pt-k{margin-bottom:26px}.pt b{font-size:20px}}
 
 /* ============================================================
    CLOSER
@@ -923,10 +924,12 @@ p{margin:0}
     </p>
   </div>
   <div class="partners">
-    <article class="pt rise" style="--d:0ms"><b>Jaypee</b><span>Project and publishing support</span></article>
-    <article class="pt rise" style="--d:70ms"><b>OpenAir</b><span>Team supporter</span></article>
-    <article class="pt rise" style="--d:140ms"><b>BMW Infinity</b><span>Automotive insight and mentorship</span></article>
-    <article class="pt rise" style="--d:210ms"><b>GMR</b><span>Team supporter</span></article>
+    <article class="pt rise" style="--d:0ms"><span class="pt-k">Sponsor</span><b>GMR</b></article>
+    <article class="pt rise" style="--d:70ms"><span class="pt-k">Sponsor</span><b>Safexpress</b></article>
+    <article class="pt rise" style="--d:140ms"><span class="pt-k">Sponsor</span><b>Maruti</b></article>
+    <article class="pt rise" style="--d:210ms"><span class="pt-k">Sponsor</span><b>Jaypee</b></article>
+    <article class="pt rise" style="--d:280ms"><span class="pt-k">Sponsor</span><b>Adidas</b></article>
+    <article class="pt rise" style="--d:350ms"><span class="pt-k">Sponsor</span><b>Bomba Pizza</b></article>
   </div>
   <div class="contact rise" style="--d:120ms">
     <a class="btn" href="/sponsor" data-cur>Become a sponsor →</a>
