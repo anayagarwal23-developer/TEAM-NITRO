@@ -494,29 +494,24 @@ p{margin:0}
 /* ============================================================
    SPONSORS
    ============================================================ */
-.partners{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:clamp(40px,6vw,64px)}
-.pt{padding:clamp(24px,2.6vw,34px);border:1px solid var(--line-2);border-radius:18px;
-  background:var(--glass);min-height:170px;display:flex;flex-direction:column;justify-content:flex-end;
-  transition:border-color .45s,transform .5s var(--ease),background .45s}
-.pt:hover{border-color:rgb(240 79 106 / .5);transform:translateY(-6px);background:rgb(240 79 106 / .04)}
-.pt b{font-size:clamp(17px,1.5vw,21px);font-weight:900;letter-spacing:-.03em}
-/* logos sit on a white plate in their original colours */
-.pt-logo{position:relative;aspect-ratio:16/10;margin-bottom:18px;border-radius:12px;background:#fff;overflow:hidden;
-  box-shadow:0 10px 30px -18px rgb(0 0 0 / .8);transition:transform .5s var(--ease),box-shadow .5s}
-/* --py/--px: margin around the mark as % of the plate's height/width (optical balance per logo) */
-.pt-logo img{position:absolute;top:var(--py,18%);left:var(--px,18%);
-  width:calc(100% - 2 * var(--px,18%));height:calc(100% - 2 * var(--py,18%));object-fit:contain}
-.pt-logo--fill img{--py:0%;--px:0%;object-fit:cover;object-position:50% 55%}
-.pt:hover .pt-logo{transform:scale(1.025);box-shadow:0 18px 40px -18px rgb(240 79 106 / .45)}
-.pt span{margin-top:8px;font-size:14px;color:var(--mut);line-height:1.45}
-.pt .pt-k{margin:0 0 6px;font-family:var(--fm);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--pink)}
-@media(max-width:900px){.partners{grid-template-columns:repeat(2,1fr)}
-  /* odd count: the last card spans the row instead of leaving a gap */
-  .pt:last-child:nth-child(odd){grid-column:1 / -1;display:grid;grid-template-columns:1fr 1fr;column-gap:14px;align-content:center}
-  .pt:last-child:nth-child(odd) .pt-logo{grid-row:1 / span 2;margin:0}
-  .pt:last-child:nth-child(odd) .pt-k{align-self:end}
-  .pt:last-child:nth-child(odd) b{align-self:start}}
-@media(max-width:520px){.partners{gap:10px}.pt{min-height:0;padding:12px 12px 16px;justify-content:flex-start}.pt-logo{margin-bottom:14px;border-radius:9px}.pt b{font-size:16px}}
+/* ============================================================
+   SPONSOR BOARD — one light panel, logos in original colours
+   ============================================================ */
+.board{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:clamp(40px,6vw,64px);
+  background:#dddbd2;border-radius:24px;overflow:hidden;
+  box-shadow:0 0 0 1px rgb(255 255 225 / .14),0 40px 90px -40px rgb(0 255 204 / .22)}
+.cell{position:relative;aspect-ratio:3/2;background:#f5f4ee;transition:background .4s}
+.cell img{position:absolute;left:calc((100% - var(--w,60%)) / 2);top:calc((100% - var(--h,50%)) / 2);
+  width:var(--w,60%);height:var(--h,50%);object-fit:contain;opacity:0;transition:opacity .6s,transform .6s var(--ease)}
+.cell img.ok{opacity:1}
+.cell:hover{background:#fff}
+.cell:hover img{transform:scale(1.05)}
+.cell-cta{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:10px;
+  padding:0 clamp(18px,2.4vw,34px);background:var(--olo);color:#000;transition:background .3s}
+.cell-cta:hover{background:#5cffe0}
+.cell-cta span{font-family:var(--fm);font-size:10px;letter-spacing:.2em;text-transform:uppercase;opacity:.65}
+.cell-cta b{font-size:clamp(18px,1.8vw,27px);font-weight:900;letter-spacing:-.035em;line-height:1.05}
+@media(max-width:900px){.board{grid-template-columns:repeat(2,1fr);border-radius:18px}}
 
 /* ============================================================
    CLOSER
@@ -627,6 +622,7 @@ p{margin:0}
 </style>
 <noscript><style>
   .pre,.cur,.cur-r,.rail,.tele,#reaction{display:none}
+  .cell img{opacity:1}
   body.is-locked{overflow:auto}
   .rise{opacity:1;transform:none}
   .line > span{transform:none}
@@ -935,18 +931,15 @@ p{margin:0}
       that gets the car to the grid.
     </p>
   </div>
-  <div class="partners">
-    <article class="pt rise" style="--d:0ms"><div class="pt-logo" style="--py:30%;--px:18%"><img src="sponsors/gmr.svg" alt="GMR logo" loading="lazy" decoding="async"></div><span class="pt-k">Sponsor</span><b>GMR</b></article>
-    <article class="pt rise" style="--d:70ms"><div class="pt-logo" style="--py:25%;--px:12%"><img src="sponsors/safexpress.png" alt="Safexpress logo" loading="lazy" decoding="async"></div><span class="pt-k">Sponsor</span><b>Safexpress</b></article>
-    <article class="pt rise" style="--d:140ms"><div class="pt-logo" style="--py:11%;--px:28%"><img src="sponsors/maruti-suzuki.svg" alt="Maruti Suzuki logo" loading="lazy" decoding="async"></div><span class="pt-k">Sponsor</span><b>Maruti Suzuki</b></article>
-    <article class="pt rise" style="--d:210ms"><div class="pt-logo" style="--py:8%;--px:30%"><img src="sponsors/jaypee.svg" alt="Jaypee logo" loading="lazy" decoding="async"></div><span class="pt-k">Sponsor</span><b>Jaypee</b></article>
-    <article class="pt rise" style="--d:280ms"><div class="pt-logo" style="--py:22%;--px:27%"><img src="sponsors/adidas.svg" alt="Adidas logo" loading="lazy" decoding="async"></div><span class="pt-k">Sponsor</span><b>Adidas</b></article>
-    <article class="pt rise" style="--d:350ms"><div class="pt-logo" style="--py:15%;--px:25%"><img src="sponsors/bomba.svg" alt="Bomba Pizza logo" loading="lazy" decoding="async"></div><span class="pt-k">Sponsor</span><b>Bomba Pizza</b></article>
-    <article class="pt rise" style="--d:420ms"><div class="pt-logo pt-logo--fill"><img src="sponsors/athena-education.png" alt="Athena Education logo" loading="lazy" decoding="async"></div><span class="pt-k">Sponsor</span><b>Athena Education</b></article>
-  </div>
-  <div class="contact rise" style="--d:120ms">
-    <a class="btn" href="/sponsor" data-cur>Become a sponsor →</a>
-    <p class="contact-alt">Partner with us on G-ORB!T — see what we've achieved and send us a message.</p>
+  <div class="board rise">
+    <div class="cell" style="--w:62%;--h:40%" title="GMR"><img src="sponsors/gmr.svg" alt="GMR" decoding="async"></div>
+    <div class="cell" style="--w:70%;--h:42%" title="Safexpress"><img src="sponsors/safexpress.webp" alt="Safexpress" decoding="async"></div>
+    <div class="cell" style="--w:88%;--h:28%" title="Maruti Suzuki"><img src="sponsors/maruti-suzuki.svg" alt="Maruti Suzuki" decoding="async"></div>
+    <div class="cell" style="--w:40%;--h:72%" title="Jaypee"><img src="sponsors/jaypee.webp" alt="Jaypee" decoding="async"></div>
+    <div class="cell" style="--w:46%;--h:52%" title="adidas"><img src="sponsors/adidas.svg" alt="adidas" decoding="async"></div>
+    <div class="cell" style="--w:42%;--h:56%" title="Bomba Pizzeria &amp; Taqueria"><img src="sponsors/bomba.svg" alt="Bomba Pizzeria &amp; Taqueria" decoding="async"></div>
+    <div class="cell" style="--w:76%;--h:30%" title="Athena Education"><img src="sponsors/athena-education.svg" alt="Athena Education" decoding="async"></div>
+    <a class="cell cell-cta" href="/sponsor#contact" data-cur><span>Your logo here</span><b>Become a sponsor →</b></a>
   </div>
 </section>
 
@@ -1329,7 +1322,7 @@ p{margin:0}
       cur.style.transform = "translate(" + tx + "px," + ty + "px)";
       if(!ringOn){ ringOn = true; requestAnimationFrame(loop); }
     });
-    $$("a, button, .spec, .res, .pt, .nx, .sw, .mem").forEach(function(el){
+    $$("a, button, .spec, .res, .cell, .nx, .sw, .mem").forEach(function(el){
       el.addEventListener("mouseenter", function(){ ring.classList.add("big"); });
       el.addEventListener("mouseleave", function(){ ring.classList.remove("big"); });
     });
@@ -1620,6 +1613,13 @@ p{margin:0}
   speedCanvas();
   aeroCanvas();
 })();
+</script>
+<script>
+/* sponsor logos fade in once loaded, so cells never flash half-drawn */
+document.querySelectorAll(".cell img").forEach(function(i){
+  if(i.complete && i.naturalWidth) i.classList.add("ok");
+  else i.addEventListener("load", function(){ i.classList.add("ok"); });
+});
 </script>
 </body>
 </html>

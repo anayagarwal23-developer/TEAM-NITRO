@@ -91,13 +91,24 @@ h2 span{color:var(--olo)}
 .hl a{position:relative;color:var(--olo)}
 .hl a::after{content:"";position:absolute;inset:-10px -4px}
 @media(max-width:760px){.highlights{grid-template-columns:1fr}}
-.backed{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:34px;padding-top:26px;border-top:1px solid var(--line-2)}
-.backed .logo{position:relative;flex:1 1 0;min-width:0;max-width:150px;aspect-ratio:16/10;border-radius:10px;background:#fff;overflow:hidden}
-/* --py/--px: margin around each mark (% of plate height/width), balanced by eye */
-.backed .logo img{position:absolute;top:var(--py,18%);left:var(--px,18%);width:calc(100% - 2 * var(--px,18%));height:calc(100% - 2 * var(--py,18%));object-fit:contain}
-.backed .logo--fill img{--py:0%;--px:0%;object-fit:cover;object-position:50% 55%}
-.backed .mono{width:100%}
-@media(max-width:760px){.backed .logo{flex:0 0 calc(50% - 6px);max-width:none}}
+/* ============================================================
+   SPONSOR BOARD — one light panel, logos in original colours
+   ============================================================ */
+.board{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:16px;
+  background:#dddbd2;border-radius:24px;overflow:hidden;
+  box-shadow:0 0 0 1px rgb(255 255 225 / .14),0 40px 90px -40px rgb(0 255 204 / .22)}
+.cell{position:relative;aspect-ratio:3/2;background:#f5f4ee;transition:background .4s}
+.cell img{position:absolute;left:calc((100% - var(--w,60%)) / 2);top:calc((100% - var(--h,50%)) / 2);
+  width:var(--w,60%);height:var(--h,50%);object-fit:contain;opacity:0;transition:opacity .6s,transform .6s var(--ease)}
+.cell img.ok{opacity:1}
+.cell:hover{background:#fff}
+.cell:hover img{transform:scale(1.05)}
+.cell-cta{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:10px;
+  padding:0 clamp(18px,2.4vw,34px);background:var(--olo);color:#000;transition:background .3s}
+.cell-cta:hover{background:#5cffe0}
+.cell-cta span{font-family:var(--fm);font-size:10px;letter-spacing:.2em;text-transform:uppercase;opacity:.65}
+.cell-cta b{font-size:clamp(18px,1.8vw,27px);font-weight:900;letter-spacing:-.035em;line-height:1.05}
+@media(max-width:900px){.board{grid-template-columns:repeat(2,1fr);border-radius:18px}}
 
 /* get in touch */
 .contact{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,6vw,72px);align-items:start}
@@ -172,16 +183,17 @@ form .btn{width:100%;margin-top:22px}
         <div class="hl"><i></i><div><b>N!TRO Catalyst</b><p>We started a mentorship community connecting STEM Racing students and mentors. <a class="mono" href="/catalyst">Learn more →</a></p></div></div>
         <div class="hl"><i></i><div><b>An award-winning identity</b><p>Our team identity won the Team Identity Award at Nationals — see it in action on Instagram <a href="https://www.instagram.com/teamnitro_tbs/" target="_blank" rel="noopener">@teamnitro_tbs</a>.</p></div></div>
       </div>
-      <div class="backed">
-        <span class="mono" style="color:var(--mut)">Backed by</span>
-        <span class="logo" title="GMR" style="--py:30%;--px:18%"><img src="/sponsors/gmr.svg" alt="GMR" loading="lazy" decoding="async"></span>
-        <span class="logo" title="Safexpress" style="--py:25%;--px:12%"><img src="/sponsors/safexpress.png" alt="Safexpress" loading="lazy" decoding="async"></span>
-        <span class="logo" title="Maruti Suzuki" style="--py:11%;--px:28%"><img src="/sponsors/maruti-suzuki.svg" alt="Maruti Suzuki" loading="lazy" decoding="async"></span>
-        <span class="logo" title="Jaypee" style="--py:8%;--px:30%"><img src="/sponsors/jaypee.svg" alt="Jaypee" loading="lazy" decoding="async"></span>
-        <span class="logo" title="Adidas" style="--py:22%;--px:27%"><img src="/sponsors/adidas.svg" alt="Adidas" loading="lazy" decoding="async"></span>
-        <span class="logo" title="Bomba Pizza" style="--py:15%;--px:25%"><img src="/sponsors/bomba.svg" alt="Bomba Pizza" loading="lazy" decoding="async"></span>
-        <span class="logo logo--fill" title="Athena Education"><img src="/sponsors/athena-education.png" alt="Athena Education" loading="lazy" decoding="async"></span>
-      </div>
+      <p class="mono" style="color:var(--mut);margin-top:40px">Backed by</p>
+      <div class="board">
+    <div class="cell" style="--w:62%;--h:40%" title="GMR"><img src="/sponsors/gmr.svg" alt="GMR" decoding="async"></div>
+    <div class="cell" style="--w:70%;--h:42%" title="Safexpress"><img src="/sponsors/safexpress.webp" alt="Safexpress" decoding="async"></div>
+    <div class="cell" style="--w:88%;--h:28%" title="Maruti Suzuki"><img src="/sponsors/maruti-suzuki.svg" alt="Maruti Suzuki" decoding="async"></div>
+    <div class="cell" style="--w:40%;--h:72%" title="Jaypee"><img src="/sponsors/jaypee.webp" alt="Jaypee" decoding="async"></div>
+    <div class="cell" style="--w:46%;--h:52%" title="adidas"><img src="/sponsors/adidas.svg" alt="adidas" decoding="async"></div>
+    <div class="cell" style="--w:42%;--h:56%" title="Bomba Pizzeria &amp; Taqueria"><img src="/sponsors/bomba.svg" alt="Bomba Pizzeria &amp; Taqueria" decoding="async"></div>
+    <div class="cell" style="--w:76%;--h:30%" title="Athena Education"><img src="/sponsors/athena-education.svg" alt="Athena Education" decoding="async"></div>
+    <a class="cell cell-cta" href="#contact" data-cur><span>Your logo here</span><b>Become a sponsor →</b></a>
+  </div>
     </section>
 
     <section id="contact">
@@ -282,5 +294,12 @@ form .btn{width:100%;margin-top:22px}
 </script>
 <script>window.va = window.va || function(){ (window.vaq = window.vaq || []).push(arguments); };</script>
 <script defer src="/_vercel/insights/script.js"></script>
+<script>
+/* sponsor logos fade in once loaded, so cells never flash half-drawn */
+document.querySelectorAll(".cell img").forEach(function(i){
+  if(i.complete && i.naturalWidth) i.classList.add("ok");
+  else i.addEventListener("load", function(){ i.classList.add("ok"); });
+});
+</script>
 </body>
 </html>
