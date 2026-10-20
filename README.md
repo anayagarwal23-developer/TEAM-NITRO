@@ -11,7 +11,7 @@ Team website for **Team N!TRO**, The British School, New Delhi — competing in 
 - **Winner** — Team Identity Award, National Finals 2026
 - **Nominated** — Best Pit Display, National Finals 2026
 
-In August 2026, N!TRO, Energise and Radeon merged into one four-person team. Next car: **G-ORB!T**.
+In August 2026, N!TRO, Energise and Radeon merged into one five-person team. Next car: **G-ORB!T**.
 
 ## Contact
 
