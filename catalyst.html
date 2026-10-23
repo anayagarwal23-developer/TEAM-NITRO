@@ -266,9 +266,8 @@ footer a{color:var(--olo);text-decoration:none;padding-block:10px}
       <div>
         <div class="eyebrow">Your next step starts here</div>
         <h2>Let’s get<br><em>something moving.</em></h2>
-        <p>Choose WhatsApp for a community conversation, or send an email to Aryeh or the team.</p>
+        <p>Choose WhatsApp for a community conversation, or send an email to Aryeh.</p>
         <a class="email" href="mailto:aryeh.vij@icloud.com"><small>Contact Aryeh</small>aryeh.vij@icloud.com ↗</a>
-        <a class="email" href="mailto:teamnitro.f1.stem@gmail.com"><small>Contact Team N!TRO</small>teamnitro.f1.stem@gmail.com ↗</a>
         <div class="actions">
           <a class="button" href="https://chat.whatsapp.com/GtGfKBvYK9OKvBppyefecZ" target="_blank" rel="noopener noreferrer">Open WhatsApp community ↗</a>
         </div>
@@ -289,17 +288,13 @@ footer a{color:var(--olo);text-decoration:none;padding-block:10px}
           <option value="mentor">Offer mentorship</option>
           <option value="collaborator">Collaborate with N!TRO</option>
         </select>
-        <label for="recipient">Who should read it?</label>
-        <select id="recipient" name="recipient">
-          <option value="teamnitro.f1.stem@gmail.com">Team N!TRO</option>
-          <option value="aryeh.vij@icloud.com">Aryeh Vij</option>
-        </select>
+        <input type="hidden" name="recipient" value="aryeh.vij@icloud.com">
         <label for="message">What would you like to explore?</label>
         <textarea id="message" name="message" maxlength="2500" placeholder="Your team, area of interest, and how we can connect…" required></textarea>
         <label class="hp" aria-hidden="true">Leave this empty <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off"></label>
         <button class="button primary" type="submit">Send message <span aria-hidden="true">→</span></button>
         <p id="status" role="status" aria-live="polite"></p>
-        <p class="micro" data-note>Your details are only used to reply to you. You can also use either email link.</p>
+        <p class="micro" data-note>Your details are only used to reply to you. You can also use the email link above.</p>
       </form>
     </div>
   </section>
@@ -332,12 +327,11 @@ footer a{color:var(--olo);text-decoration:none;padding-block:10px}
     if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ say("Please add an email address we can reply to.", true); f.email.focus(); return; }
     if(!message){ say("Please add a short introduction.", true); f.message.focus(); return; }
     var role = f.role.options[f.role.selectedIndex].text;
-    var reader = f.recipient.options[f.recipient.selectedIndex].text;
-    var subject = "N!TRO Catalyst — " + role + (reader !== "Team N!TRO" ? " — for " + reader : "");
+    var subject = "N!TRO Catalyst — " + role;
     var body = "Hello N!TRO,\n\nMy name is " + name + " (" + email + "). I would like to " + role.toLowerCase() + ".\n\n" + message + "\n\nBest wishes,\n" + name;
     if(!key){
       window.location.href = "mailto:" + f.recipient.value + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
-      say("Email draft requested. If your email app did not open, use one of the email links.");
+      say("Email draft requested. If your email app did not open, use the email link.");
       return;
     }
     btn.disabled = true; btn.textContent = "Sending\u2026"; say("");
@@ -352,7 +346,7 @@ footer a{color:var(--olo);text-decoration:none;padding-block:10px}
         ' — it\u2019s with the team.</h3><p>We\u2019ll reply to ' + email.replace(/[<>&"]/g, "") + ' as soon as we can.</p></div>';
     }).catch(function(){
       btn.disabled = false; btn.innerHTML = 'Send message <span aria-hidden="true">\u2192</span>';
-      say("Sorry — that didn't send. Please try again, or use one of the email links.", true);
+      say("Sorry — that didn't send. Please try again, or use the email link.", true);
     });
   });
 
