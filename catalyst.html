@@ -48,7 +48,7 @@ header{position:sticky;top:0;z-index:10;background:rgb(0 0 0 / .72);border-botto
   backdrop-filter:blur(18px) saturate(160%);-webkit-backdrop-filter:blur(18px) saturate(160%)}
 .nav{max-width:var(--maxw);margin:auto;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:16px var(--gut)}
 .brand{display:inline-flex;align-items:center;gap:12px;text-decoration:none;padding-block:8px}
-.brand img{display:block;width:32px;height:32px;border-radius:8px}
+.brand img{display:block;height:34px;width:auto}
 .brand b{font-size:21px;font-weight:900;letter-spacing:-.05em;font-variation-settings:"wdth" 108;color:var(--pink)}
 .brand small{font-family:var(--fm);font-size:10px;letter-spacing:.24em;color:var(--olo)}
 nav{display:flex;align-items:center;gap:26px}
@@ -173,7 +173,8 @@ footer a{color:var(--olo);text-decoration:none;padding-block:10px}
   footer{flex-direction:column;align-items:flex-start}
   .sectionhead p{max-width:100%}
 }
-@media(max-width:480px){nav a.hide-xs,.brand img{display:none}}
+@media(max-width:480px){nav a.hide-xs{display:none}}
+@media(max-width:380px){.brand small{display:none}.brand img{height:30px}}
 @media(prefers-reduced-motion:reduce){
   *{scroll-behavior:auto!important;animation:none!important;transition:none!important}
   .reveal{opacity:1!important;transform:none!important}
@@ -185,8 +186,8 @@ footer a{color:var(--olo);text-decoration:none;padding-block:10px}
 <header>
   <div class="nav">
     <a class="brand" href="/catalyst" aria-label="N!TRO Catalyst home">
-      <img src="/logo-512.png" alt="" width="32" height="32" decoding="async">
-      <span><b>N!TRO</b> <small>CATALYST</small></span>
+      <img src="/logo-team-nitro.webp" alt="Team N!TRO" width="480" height="159" decoding="async">
+      <small>CATALYST</small>
     </a>
     <nav aria-label="Main navigation">
       <a class="hide-sm" href="#mentorship">The initiative</a>
