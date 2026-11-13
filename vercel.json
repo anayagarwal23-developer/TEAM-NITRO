@@ -20,7 +20,7 @@
       ]
     },
     {
-      "source": "/(favicon.svg|apple-touch-icon.png|logo-512.png|og-image.png)",
+      "source": "/(favicon.svg|apple-touch-icon.png|logo-512.png|logo-team-nitro.webp|og-image.png)",
       "headers": [
         {
           "key": "Cache-Control",
