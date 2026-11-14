@@ -14,6 +14,8 @@
 <link rel="canonical" href="https://teamnitro.org/sponsor">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="apple-mobile-web-app-title" content="N!TRO">
 <link rel="preload" href="/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
 <title>Partner with Team N!TRO — STEM Racing</title>
 <style>
@@ -301,6 +303,9 @@ document.querySelectorAll(".cell img").forEach(function(i){
   if(i.complete && i.naturalWidth) i.classList.add("ok");
   else i.addEventListener("load", function(){ i.classList.add("ok"); });
 });
+</script>
+<script>
+if("serviceWorker" in navigator && location.protocol === "https:") addEventListener("load", function(){ navigator.serviceWorker.register("/sw.js").catch(function(){}); });
 </script>
 </body>
 </html>
