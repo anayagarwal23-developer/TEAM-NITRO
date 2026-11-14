@@ -18,6 +18,7 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <title>Team N!TRO — STEM Racing</title>
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preload" href="logo-team-nitro-lg.webp" as="image" type="image/webp" fetchpriority="high">
 <link rel="preload" href="fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/jetbrains-mono-latin.woff2" as="font" type="font/woff2" crossorigin>
 <script type="application/ld+json">
@@ -128,8 +129,7 @@ a{color:inherit;text-decoration:none}
 .pre{position:fixed;inset:0;z-index:200;display:grid;place-content:center;justify-items:center;
   gap:clamp(30px,5vw,54px);background:#000;transition:opacity .8s var(--ease),visibility .8s}
 .pre.gone{opacity:0;visibility:hidden}
-.pre-mark{font-size:clamp(52px,11vw,132px);font-weight:900;line-height:.86;letter-spacing:-.05em;
-  font-variation-settings:"wdth" 112;color:var(--pink);text-align:center;
+.pre-mark{display:block;width:clamp(240px,52vw,560px);height:auto;
   opacity:0;transform:translateY(18px);animation:preIn .9s var(--ease) .1s forwards}
 .pre-sub{font-family:var(--fm);font-size:11px;letter-spacing:.42em;color:var(--olo);text-align:center;
   opacity:0;animation:preIn .9s var(--ease) .32s forwards}
@@ -143,7 +143,8 @@ a{color:inherit;text-decoration:none}
 .pre-skip{position:absolute;bottom:clamp(24px,5vh,44px);left:0;right:0;text-align:center;
   font-family:var(--fm);font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;color:rgb(255 255 225 / .35);
   opacity:0;animation:preIn .9s var(--ease) .6s forwards}
-.pre-go .pre-mark{color:var(--olo);text-shadow:0 0 60px rgb(0 255 204 / .5);transition:color .3s,text-shadow .3s}
+.pre-mark{transition:filter .3s}
+.pre-go .pre-mark{filter:drop-shadow(0 0 28px rgb(0 255 204 / .45))}
 @keyframes preIn{to{opacity:1;transform:none}}
 
 /* ============================================================
@@ -644,7 +645,7 @@ p{margin:0}
 
 <!-- PRELOADER -->
 <div class="pre" id="pre" aria-hidden="true">
-  <div class="pre-mark">N!TRO</div>
+  <img class="pre-mark" src="logo-team-nitro-lg.webp" alt="" width="1072" height="355" decoding="sync" fetchpriority="high">
   <div class="pre-lights" id="lights"><i></i><i></i><i></i><i></i><i></i></div>
   <div class="pre-sub" id="preSub">STEM RACING</div>
   <div class="pre-skip">Tap or press any key to skip</div>
