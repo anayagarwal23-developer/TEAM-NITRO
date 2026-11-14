@@ -14,6 +14,8 @@
 <link rel="canonical" href="https://teamnitro.org/catalyst">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="apple-mobile-web-app-title" content="N!TRO">
 <link rel="preload" href="/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
 <title>N!TRO Catalyst — Ideas move faster together.</title>
 <style>
@@ -385,5 +387,8 @@ footer a{color:var(--olo);text-decoration:none;padding-block:10px}
 </script>
 <script>window.va = window.va || function(){ (window.vaq = window.vaq || []).push(arguments); };</script>
 <script defer src="/_vercel/insights/script.js"></script>
+<script>
+if("serviceWorker" in navigator && location.protocol === "https:") addEventListener("load", function(){ navigator.serviceWorker.register("/sw.js").catch(function(){}); });
+</script>
 </body>
 </html>
