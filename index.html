@@ -533,6 +533,31 @@ p{margin:0}
    ============================================================ */
 .closer{position:relative;text-align:left}
 .closer .h-xl{margin-bottom:clamp(26px,4vw,40px)}
+.gtrack{margin-top:clamp(40px,6vw,64px);padding:clamp(22px,3vw,34px);border:1px solid var(--line-2);border-radius:22px;background:var(--glass)}
+.gtrack-h{color:var(--olo)}
+.gtrack-steps{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:26px 0 0;padding:0;list-style:none}
+.gtrack-steps::before,.gtrack-steps::after{content:"";position:absolute;top:8px;left:9px;height:2px;border-radius:2px}
+.gtrack-steps::before{width:calc(75% + 9px);background:var(--line-2)}
+.gtrack-steps::after{width:calc((75% + 9px) * var(--p,0));background:var(--olo);box-shadow:0 0 14px rgb(0 255 204 / .5);
+  transform-origin:left;transform:scaleX(0);transition:transform 1.2s var(--ease) .3s}
+.in .gtrack-steps::after,.gtrack.in .gtrack-steps::after{transform:none}
+.gtrack-steps li{position:relative;display:flex;flex-direction:column;gap:5px;padding-top:32px}
+.gtrack-steps i{position:absolute;top:0;left:0;z-index:1;width:18px;height:18px;border-radius:50%;background:#000;border:2px solid rgb(255 255 225 / .28)}
+.gtrack-steps b{font-size:clamp(17px,1.7vw,23px);font-weight:800;letter-spacing:-.03em;color:var(--mut)}
+.gtrack-steps span{font-size:14px;line-height:1.4;color:var(--mut)}
+.gtrack-steps li.done i{background:var(--olo);border-color:var(--olo)}
+.gtrack-steps li.done b{color:var(--ink)}
+.gtrack-steps li.now i{border-color:var(--pink);background:var(--pink);box-shadow:0 0 0 5px rgb(240 79 106 / .2),0 0 20px rgb(240 79 106 / .7)}
+.gtrack-steps li.now b{color:var(--ink)}
+.gtrack-steps li.now b::after{content:"Now";margin-left:10px;padding:3px 8px;border-radius:999px;background:var(--pink);color:#000;
+  font-family:var(--fm);font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;vertical-align:middle}
+@media(max-width:700px){
+  .gtrack-steps{grid-template-columns:1fr;gap:0}
+  .gtrack-steps::before{top:9px;bottom:42px;left:8px;right:auto;width:2px;height:auto}
+  .gtrack-steps::after{top:9px;left:8px;width:2px;max-width:none;height:calc((100% - 51px) * var(--p,0));transform-origin:top;transform:scaleY(0)}
+  .gtrack-steps li{padding:0 0 22px 34px}
+  .gtrack-steps li:last-child{padding-bottom:0}
+}
 .next{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:clamp(40px,6vw,64px)}
 .nx{padding:clamp(24px,2.6vw,34px);border:1px solid var(--line);border-radius:18px;background:var(--glass);
   min-height:220px;display:flex;flex-direction:column;
@@ -992,6 +1017,16 @@ p{margin:0}
     ORB!TUS set the floor. G-ORB!T has to clear it — this time with three teams' worth of
     engineering behind one car.
   </p>
+  <!-- G-ORB!T progress: move data-now to the stage the car is in (1 Design, 2 Manufacture, 3 Testing, 4 Race) -->
+  <div class="gtrack rise" style="--d:120ms" data-now="1" role="group" aria-label="G-ORB!T progress">
+    <p class="mono gtrack-h">Where G-ORB!T is now</p>
+    <ol class="gtrack-steps">
+      <li><i></i><b>Design</b><span>Shaping the concept</span></li>
+      <li><i></i><b>Manufacture</b><span>Building the car</span></li>
+      <li><i></i><b>Testing</b><span>Proving it on track</span></li>
+      <li><i></i><b>Race</b><span>Competition day</span></li>
+    </ol>
+  </div>
   <div class="next">
     <article class="nx rise" style="--d:0ms"><p class="mono">01</p><b>New aero language</b><p>A cleaner relationship between body and floor, so air leaves the car with less of it wasted.</p></article>
     <article class="nx rise" style="--d:90ms"><p class="mono">02</p><b>Smarter manufacture</b><p>Every feature matched to the process that can actually hold it — not the process we used last time.</p></article>
@@ -1646,6 +1681,18 @@ p{margin:0}
   ["pointerup","pointerleave","pointercancel"].forEach(function(n){ el.addEventListener(n, stop); });
   window.addEventListener("scroll", stop, {passive:true});
   el.addEventListener("contextmenu", function(e){ e.preventDefault(); });
+})();
+</script>
+<script>
+/* G-ORB!T progress tracker: marks finished and current stages from data-now */
+(function(){
+  var t = document.querySelector(".gtrack"); if(!t) return;
+  var now = Math.min(4, Math.max(1, parseInt(t.dataset.now, 10) || 1)), li = t.querySelectorAll("li");
+  li.forEach(function(el, i){
+    if(i + 1 < now) el.classList.add("done");
+    if(i + 1 === now){ el.classList.add("now"); el.setAttribute("aria-current", "step"); }
+  });
+  t.querySelector(".gtrack-steps").style.setProperty("--p", (now - 1) / 3);
 })();
 </script>
 <script>

@@ -212,8 +212,8 @@ form .btn{width:100%;margin-top:22px}
           <div class="funds"><span>Race materials</span><span>CNC &amp; 3D-printing time</span><span>Pit display &amp; portfolios</span><span>Travel to finals</span></div>
         </div>
 
-        <!-- Web3Forms access key goes in data-key; until it's set the form falls back to opening an email draft -->
-        <form id="sponsorForm" data-key="" data-to="aryeh.vij@icloud.com" novalidate>
+        <!-- sent through FormSubmit to the address in data-to; opens an email draft if that ever fails -->
+        <form id="sponsorForm" data-to="aryeh.vij@icloud.com" novalidate>
           <h3>A little introduction goes a long way.</h3>
           <p class="micro" data-direct>Tell us who you are and what you have in mind — your message comes straight to the team.</p>
           <div class="row">
@@ -252,12 +252,7 @@ form .btn{width:100%;margin-top:22px}
   "use strict";
   var form = document.getElementById("sponsorForm"); if(!form) return;
   var status = form.querySelector(".status"), btn = form.querySelector('button[type="submit"]');
-  var key = form.dataset.key, to = form.dataset.to;
-  if(!key){
-    btn.textContent = "Open email draft ↗";
-    var note = form.querySelector("[data-direct]");
-    if(note) note.textContent = "Fill this in, then review and send it from your email app.";
-  }
+  var to = form.dataset.to;
   function say(text, err){ status.textContent = text; status.classList.toggle("err", !!err); }
   form.addEventListener("submit", function(e){
     e.preventDefault();
@@ -269,28 +264,28 @@ form .btn{width:100%;margin-top:22px}
     if(!msg){ say("Please add a short message.", true); f.message.focus(); return; }
     var subject = "Sponsorship enquiry — " + interest + " — " + (org || name);
     var text = "Name: " + name + "\nOrganisation: " + (org || "—") + "\nEmail: " + email + "\nInterested in: " + interest + "\n\n" + msg;
-    if(!key){
-      window.location.href = "mailto:" + to + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(text);
-      say("Email draft opened. If nothing happened, email us at " + to + ".");
-      return;
-    }
-    btn.disabled = true; btn.textContent = "Sending…"; say("");
-    fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      headers: { "Content-Type": "application/json", "Accept": "application/json" },
-      body: JSON.stringify({
-        access_key: key, subject: subject, from_name: "teamnitro.org — Sponsor page",
-        name: name, email: email, organisation: org || "—", interest: interest, message: msg,
-        botcheck: f.botcheck.checked
-      })
-    }).then(function(r){ return r.json(); }).then(function(d){
-      if(!d.success) throw new Error(d.message || "failed");
+    function done(){
       form.innerHTML = '<div class="sent"><p class="mono">Message sent</p><h3>Thanks, ' +
         name.replace(/[<>&"]/g, "") + ' — it’s with the team.</h3><p>We’ll reply to ' +
         email.replace(/[<>&"]/g, "") + ' as soon as we can.</p></div>';
+    }
+    if(f.botcheck.checked){ done(); return; }
+    btn.disabled = true; btn.textContent = "Sending…"; say("");
+    fetch("https://formsubmit.co/ajax/" + encodeURIComponent(to), {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify({
+        _subject: subject, _template: "table", _captcha: "false", _replyto: email,
+        Name: name, Organisation: org || "—", Email: email, "Interested in": interest, Message: msg,
+        Page: "teamnitro.org/sponsor"
+      })
+    }).then(function(r){ return r.json(); }).then(function(d){
+      if(String(d.success) !== "true") throw new Error(d.message || "failed");
+      done();
     }).catch(function(){
       btn.disabled = false; btn.textContent = "Send message →";
-      say("Sorry — that didn't send. Please try again, or email " + to + ".", true);
+      window.location.href = "mailto:" + to + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(text);
+      say("We couldn't send that directly, so we've opened an email draft with your message. If nothing happened, email " + to + ".", true);
     });
   });
 })();
