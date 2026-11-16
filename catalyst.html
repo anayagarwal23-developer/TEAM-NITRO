@@ -30,8 +30,8 @@
   --ease:cubic-bezier(.16,1,.3,1);
 }
 *,*::before,*::after{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:96px;-webkit-text-size-adjust:100%}
-body{margin:0;color:var(--ink);font-family:var(--fd);line-height:1.6;-webkit-font-smoothing:antialiased;
+html{overflow-x:clip;scroll-behavior:smooth;scroll-padding-top:96px;-webkit-text-size-adjust:100%}
+body{margin:0;overflow-x:clip;color:var(--ink);font-family:var(--fd);line-height:1.6;-webkit-font-smoothing:antialiased;
   background:radial-gradient(1100px 760px at 82% -12%,rgb(34 52 116 / .5),transparent 60%),
              radial-gradient(900px 700px at -12% 112%,rgb(240 79 106 / .14),transparent 55%),var(--bg)}
 a{color:inherit}
@@ -188,7 +188,7 @@ footer a{color:var(--olo);text-decoration:none;padding-block:10px}
 <header>
   <div class="nav">
     <a class="brand" href="/catalyst" aria-label="N!TRO Catalyst home">
-      <img src="/logo-team-nitro.webp" alt="Team N!TRO" width="480" height="159" decoding="async">
+      <img src="/logo-team-nitro.webp" srcset="/logo-team-nitro-sm.webp 240w, /logo-team-nitro.webp 480w" sizes="103px" alt="Team N!TRO" width="480" height="159" decoding="async">
       <small>CATALYST</small>
     </a>
     <nav aria-label="Main navigation">
