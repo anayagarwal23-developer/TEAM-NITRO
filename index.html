@@ -953,11 +953,7 @@ html{-webkit-tap-highlight-color:transparent}
       Eleven months from the first meeting to the National Finals grid — and the merger that followed it.
     </p>
   </div>
-  <div class="tl-nav" id="tlNav">
-    <button type="button" id="tlPrev" aria-label="Earlier in the timeline" data-cur>←</button>
-    <button type="button" id="tlNext" aria-label="Later in the timeline" data-cur>→</button>
-  </div>
-  <div class="tl-pin" id="tlPin"><div class="tl-sticky" id="tlScroll" tabindex="0" role="group" aria-label="Season timeline, scrolls sideways">
+  <div class="tl-pin" id="tlPin"><div class="tl-sticky" id="tlScroll">
   <div class="track" id="track">
     <div class="track-fill" id="trackFill"></div>
     <article class="lap"><time>SEP 2025</time><div><h3>Team N!TRO forms</h3><p>Five people, a rulebook and a deadline. Roles assigned in the first week.</p></div></article>
@@ -1264,7 +1260,7 @@ html{-webkit-tap-highlight-color:transparent}
       teleIdx = $("#teleIdx"), teleName = $("#teleName"),
       trackEl = $("#track"), trackFill = $("#trackFill"), tlPin = $("#tlPin"),
       tlScroll = $("#tlScroll"), tlPrev = $("#tlPrev"), tlNext = $("#tlNext"),
-      tlWide = matchMedia("(min-width:1000px)"), tlH = false, tlPad = 0, tlLine = 0, lapLefts = [],
+      tlWide = { matches: false }, tlH = false,   /* sideways strip retired: the timeline is vertical on every screen */ tlPad = 0, tlLine = 0, lapLefts = [],
       laps = $$(".lap"),
       secs = $$("main section[id]"),
       navLinks = $$("#nav a"),
