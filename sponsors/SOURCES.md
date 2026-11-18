@@ -12,4 +12,6 @@ Logos are shown in their original colours. Fetched 2026-10-19.
 | `athena-education.svg` | athenaeducation.co.in — `Athena-Dark-logo.png`, traced to SVG in its original colour (#093139) |
 | `bomba.svg` | Traced from the team-supplied photo of the Bomba Pizzeria & Taqueria sign (no official file available) |
 
+Claude (Anthropic) is shown as a text tile until the official logo file is supplied.
+
 If a sponsor sends an official vector file, replace the matching file here.
