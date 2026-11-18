@@ -111,6 +111,14 @@ h2 span{color:var(--olo)}
 .cell-cta:hover{background:#5cffe0}
 .cell-cta span{font-family:var(--fm);font-size:10px;letter-spacing:.2em;text-transform:uppercase;opacity:.65}
 .cell-cta b{font-size:clamp(18px,1.8vw,27px);font-weight:900;letter-spacing:-.035em;line-height:1.05}
+/* text tile for a sponsor whose official logo file is still to come */
+.cell-name{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:#141413;text-align:center}
+.cell-name b{font-family:Georgia,"Times New Roman",serif;font-size:clamp(28px,3.2vw,44px);font-weight:500;letter-spacing:-.02em;line-height:1}
+.cell-name small{font-family:var(--fm);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#6b6a65}
+/* the invitation runs the full width of the board so it stays the first thing you notice */
+.cell-cta{grid-column:1 / -1;aspect-ratio:auto;min-height:clamp(110px,12vw,150px);flex-direction:row;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px 24px}
+.cell-cta b{font-size:clamp(26px,3.4vw,46px)}
+.cell-cta span{font-size:11px}
 @media(max-width:900px){.board{grid-template-columns:repeat(2,1fr);border-radius:18px}}
 
 /* get in touch */
@@ -198,6 +206,7 @@ input:focus,select:focus,textarea:focus{box-shadow:0 0 0 4px rgb(0 255 204 / .12
     <div class="cell" style="--w:46%;--h:52%" title="adidas"><img src="/sponsors/adidas.svg?v=2" alt="adidas" decoding="async"></div>
     <div class="cell" style="--w:42%;--h:56%" title="Bomba Pizzeria &amp; Taqueria"><img src="/sponsors/bomba.svg?v=2" alt="Bomba Pizzeria &amp; Taqueria" decoding="async"></div>
     <div class="cell" style="--w:76%;--h:30%" title="Athena Education"><img src="/sponsors/athena-education.svg?v=2" alt="Athena Education" decoding="async"></div>
+    <div class="cell cell-name" title="Claude by Anthropic"><b>Claude</b><small>by Anthropic</small></div>
     <a class="cell cell-cta" href="#contact" data-cur><span>Your logo here</span><b>Become a sponsor →</b></a>
   </div>
     </section>

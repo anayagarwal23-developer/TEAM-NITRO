@@ -2,7 +2,7 @@
    without a connection. Pages always come from the network first so new
    content shows straight away; fonts, scripts and images are reused from
    the device once downloaded and refreshed in the background. */
-var CACHE = "nitro-v3";
+var CACHE = "nitro-v4";
 var SHELL = ["/", "/sponsor", "/catalyst", "/favicon.svg", "/logo-192.png", "/logo-team-nitro.webp",
   "/logo-team-nitro-lg.webp", "/fonts/archivo-latin.woff2", "/fonts/jetbrains-mono-latin.woff2", "/js/lenis-1.3.4.min.js"];
 
