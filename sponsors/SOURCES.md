@@ -10,8 +10,7 @@ Logos are shown in their original colours. Fetched 2026-10-19.
 | `jaypee.webp` | jaypeebrothers.com — `/images/Jaypee-Logo.png` (trimmed, converted to WebP) |
 | `safexpress.webp` | safexpress.com — `/assets/images/new-logo-white.png` (cropped to the framed logo, resized, WebP) |
 | `athena-education.svg` | athenaeducation.co.in — `Athena-Dark-logo.png`, traced to SVG in its original colour (#093139) |
+| `claude.svg` | Wikimedia Commons — [File:Claude AI logo.svg](https://commons.wikimedia.org/wiki/File:Claude_AI_logo.svg), editor metadata removed |
 | `bomba.svg` | Traced from the team-supplied photo of the Bomba Pizzeria & Taqueria sign (no official file available) |
-
-Claude (Anthropic) is shown as a text tile until the official logo file is supplied.
 
 If a sponsor sends an official vector file, replace the matching file here.
