@@ -16,5 +16,3 @@ In August 2026, N!TRO, Energise and Radeon merged into one five-person team. Nex
 ## Contact
 
 aryeh.vij@icloud.com · Instagram [@teamnitro_tbs](https://www.instagram.com/teamnitro_tbs/)
-
-Website built with help from Claude (Anthropic).
