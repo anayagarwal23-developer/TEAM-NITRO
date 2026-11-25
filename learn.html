@@ -1,0 +1,491 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#000000">
+<meta name="description" content="Learn the physics of a STEM Racing car with Team N!TRO: a race simulator with sliders, and worked examples on friction, forces, drag, energy, the CO₂ cartridge and race data.">
+<meta property="og:title" content="Learn with N!TRO — the physics of a STEM Racing car">
+<meta property="og:description" content="A race simulator and seven worked topics for STEM Racing teams.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://teamnitro.org/learn">
+<meta property="og:image" content="https://teamnitro.org/og-image.png?v=3">
+<link rel="canonical" href="https://teamnitro.org/learn">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="preload" href="/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<title>Learn with N!TRO — the physics of a STEM Racing car</title>
+<style>
+
+@font-face{font-family:"Archivo";font-weight:100 900;font-stretch:62.5% 125%;font-display:swap;src:url(/fonts/archivo-latin.woff2) format("woff2")}
+@font-face{font-family:"JetBrains Mono";font-weight:400 700;font-display:swap;src:url(/fonts/jetbrains-mono-latin.woff2) format("woff2")}
+/* N!TRO brand tokens — same as teamnitro.org */
+:root{
+  --olo:#00ffcc;--pink:#f04f6a;--laser:#223474;--vanilla:#ffffe1;--bg:#000;
+  --ink:var(--vanilla);--mut:rgb(255 255 225 / .6);--line:rgb(255 255 225 / .12);--line-olo:rgb(0 255 204 / .2);
+  --card:rgb(255 255 225 / .03);--gut:clamp(20px,5vw,64px);--maxw:1320px;
+  --fd:"Archivo",-apple-system,"Segoe UI",sans-serif;--fm:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{overflow-x:clip;scroll-behavior:smooth;scroll-padding-top:96px;-webkit-text-size-adjust:100%}
+body{margin:0;overflow-x:clip;color:var(--ink);font-family:var(--fd);line-height:1.6;-webkit-font-smoothing:antialiased;
+  background:radial-gradient(1100px 760px at 82% -12%,rgb(34 52 116 / .5),transparent 60%),
+             radial-gradient(900px 700px at -12% 112%,rgb(240 79 106 / .14),transparent 55%),var(--bg)}
+a{color:inherit}
+button,input,select,textarea{font:inherit}
+a,button,input,select,textarea{touch-action:manipulation}
+:focus-visible{outline:2px solid var(--olo);outline-offset:4px;border-radius:4px}
+::selection{background:var(--olo);color:#000}
+.skip{position:fixed;top:12px;left:12px;z-index:20;padding:12px 18px;border-radius:999px;background:var(--olo);color:#000;
+  font-family:var(--fm);font-size:11px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;
+  transform:translateY(-160%);transition:transform .3s var(--ease)}
+.skip:focus{transform:none}
+.mono{font-family:var(--fm);font-size:11px;letter-spacing:.2em;text-transform:uppercase}
+
+/* header */
+header{position:sticky;top:0;z-index:10;background:rgb(0 0 0 / .72);border-bottom:1px solid var(--line-olo);
+  backdrop-filter:blur(18px) saturate(160%);-webkit-backdrop-filter:blur(18px) saturate(160%)}
+.nav{max-width:var(--maxw);margin:auto;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:16px var(--gut)}
+.brand{display:inline-flex;align-items:center;gap:12px;text-decoration:none;padding-block:8px}
+.brand img{display:block;height:34px;width:auto}
+.brand b{font-size:21px;font-weight:900;letter-spacing:-.05em;font-variation-settings:"wdth" 108;color:var(--pink)}
+.brand small{font-family:var(--fm);font-size:10px;letter-spacing:.24em;color:var(--olo)}
+nav{display:flex;align-items:center;gap:26px}
+.brand span{white-space:nowrap}
+nav a{white-space:nowrap;font-family:var(--fm);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;color:var(--mut);
+  padding-block:10px;transition:color .3s}
+nav a:hover{color:var(--olo)}
+nav a.home{color:var(--ink)}
+
+main{max-width:var(--maxw);margin:auto;padding:0 var(--gut)}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.3fr 1fr;align-items:center;gap:30px;min-height:640px;padding:72px 0}
+.eyebrow{display:flex;align-items:center;gap:12px;font-family:var(--fm);font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--olo)}
+.eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--olo);box-shadow:0 0 12px var(--olo)}
+h1,h2,h3{font-weight:900;font-variation-settings:"wdth" 108;margin:0}
+h1{font-size:clamp(42px,5vw,76px);font-variation-settings:"wdth" 100;letter-spacing:-.05em;line-height:.98;margin:26px 0}
+h1 em{font-style:normal;color:var(--olo);text-shadow:0 0 60px rgb(0 255 204 / .35)}
+.lead{max-width:520px;color:var(--mut);font-size:clamp(16px,1.3vw,19px)}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.button{display:inline-flex;align-items:center;justify-content:center;gap:14px;padding:16px 26px;border-radius:999px;
+  border:1px solid rgb(0 255 204 / .5);background:transparent;color:var(--olo);text-decoration:none;cursor:pointer;
+  font-family:var(--fm);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  transition:transform .3s var(--ease),box-shadow .3s,background .3s}
+.button:hover{transform:translateY(-2px);background:rgb(0 255 204 / .08)}
+.button.primary{background:var(--olo);border-color:var(--olo);color:#000}
+.button.primary:hover{box-shadow:0 0 44px rgb(0 255 204 / .5)}
+.button:active{transform:translateY(0) scale(.98)}
+.micro{font-size:12px;color:var(--mut);margin-top:16px}
+
+/* 3D hero visual */
+.visual{position:relative;aspect-ratio:1;overflow:hidden;perspective:950px}
+.scene{position:absolute;inset:0;display:grid;place-items:center;transform-style:preserve-3d;transition:transform .3s ease}
+.orbit{position:absolute;width:85%;height:85%;border:1px solid rgb(255 255 225 / .2);border-radius:50%;transform-style:preserve-3d}
+.orbit.one{animation:orbX 26s linear infinite}
+.orbit.two{width:62%;height:62%;border-style:dashed;border-color:rgb(0 255 204 / .4);animation:orbY 34s linear infinite reverse}
+.orbit.three{width:100%;height:34%;border-color:rgb(240 79 106 / .45);animation:orbTilt 14s ease-in-out infinite alternate;
+  box-shadow:inset 0 0 50px -20px rgb(240 79 106 / .3)}
+.core{position:relative;font-size:clamp(120px,18vw,240px);font-weight:900;color:var(--pink);line-height:1;
+  animation:coreFloat 7s ease-in-out infinite;filter:drop-shadow(0 0 38px rgb(240 79 106 / .4)) drop-shadow(0 26px 26px #0009)}
+.node{position:absolute;padding:9px 17px;border:1px solid var(--line);border-radius:999px;background:#05070f;
+  font-family:var(--fm);font-size:10.5px;letter-spacing:.14em;box-shadow:0 16px 34px -18px #000d;animation:bob 6s ease-in-out infinite}
+.n1{top:12%;left:14%;color:var(--olo)}
+.n2{right:0;top:47%;animation-delay:1.6s}
+.n3{bottom:10%;left:12%;color:var(--pink);animation-delay:3.1s}
+.dot{position:absolute;right:18%;bottom:21%;width:14px;height:14px;border-radius:50%;background:var(--olo);
+  box-shadow:0 0 18px var(--olo);animation:pulse 3.4s ease-in-out infinite}
+@keyframes orbX{from{transform:rotateX(68deg) rotate(0)}to{transform:rotateX(68deg) rotate(360deg)}}
+@keyframes orbY{from{transform:rotateY(58deg) rotate(0)}to{transform:rotateY(58deg) rotate(360deg)}}
+@keyframes orbTilt{from{transform:rotate(-35deg) rotateY(-14deg)}to{transform:rotate(-35deg) rotateY(14deg)}}
+@keyframes coreFloat{0%,100%{transform:rotate(-10deg) translateZ(70px) translateY(0) rotateY(-6deg)}50%{transform:rotate(-10deg) translateZ(70px) translateY(-14px) rotateY(6deg)}}
+@keyframes bob{0%,100%{transform:translateZ(48px) translateY(0)}50%{transform:translateZ(48px) translateY(-9px)}}
+@keyframes pulse{0%,100%{transform:translateZ(36px) scale(1)}50%{transform:translateZ(36px) scale(1.5)}}
+@keyframes coin{from{transform:rotateY(0)}to{transform:rotateY(360deg)}}
+
+/* scroll reveal + tilt (applied by JS) */
+.reveal{opacity:0;transform:perspective(900px) rotateX(9deg) translateY(34px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+.tilt{transition:transform .18s ease,box-shadow .35s ease}
+.tilt:hover{box-shadow:0 30px 70px -34px #000e,0 0 0 1px rgb(0 255 204 / .25)}
+
+.strip{display:flex;justify-content:space-between;gap:16px;padding:19px 0;border-block:1px solid var(--line);
+  font-family:var(--fm);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--mut)}
+.strip span:last-child{color:var(--olo)}
+section{padding:88px 0;border-bottom:1px solid var(--line)}
+.sectionhead{display:flex;justify-content:space-between;align-items:end;gap:40px;margin-bottom:36px}
+h2{font-size:clamp(34px,4.4vw,60px);line-height:1;letter-spacing:-.045em;margin:18px 0 0}
+h2 em{font-style:normal;color:var(--olo)}
+.sectionhead p{max-width:380px;color:var(--mut);font-size:15px}
+.paths{display:grid;grid-template-columns:1fr 1fr;gap:16px;perspective:1400px}
+.path{padding:32px;border:1px solid var(--line-olo);border-radius:20px;background:var(--card);transform-style:preserve-3d}
+.num{font-family:var(--fm);font-size:11px;letter-spacing:.16em;color:var(--pink)}
+h3{font-size:clamp(22px,2vw,28px);letter-spacing:-.035em;line-height:1.1;margin:18px 0 10px}
+.path p{max-width:440px;color:var(--mut);font-size:15px}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0}
+.tags span{padding:6px 12px;border:1px solid var(--line);border-radius:999px;background:rgb(255 255 225 / .02);font-size:12px}
+.textlink{display:inline-block;padding:8px 0;text-decoration:none;font-family:var(--fm);font-size:11px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--olo);border-bottom:1px solid rgb(0 255 204 / .4)}
+.textlink:hover{border-color:var(--olo)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:36px}
+.step{position:relative;padding-top:20px;border-top:1px solid var(--line)}
+.step::before{content:"";position:absolute;top:-1px;left:0;width:56px;height:1px;background:linear-gradient(90deg,var(--olo),var(--pink))}
+.step p{color:var(--mut);font-size:15px}
+.contact{display:grid;grid-template-columns:1fr 1fr;gap:64px;perspective:1400px}
+.contact > div > p{color:var(--mut)}
+.email{display:block;margin:18px 0;text-decoration:none;overflow-wrap:anywhere;font-size:clamp(15px,1.7vw,22px);font-weight:600}
+.email:hover{color:var(--olo)}
+.email small{display:block;font-family:var(--fm);font-size:10px;font-weight:400;letter-spacing:.16em;text-transform:uppercase;color:var(--mut)}
+.seal{width:110px;height:110px;margin-top:34px;perspective:620px}
+.seal img{width:110px;height:110px;border-radius:24px;animation:coin 9s linear infinite;transform-style:preserve-3d;
+  filter:drop-shadow(0 18px 30px #000a)}
+form{padding:30px;border:1px solid var(--line-olo);border-radius:20px;background:var(--card);transform-style:preserve-3d}
+form h3{margin-top:0}
+label{display:block;margin:16px 0 6px;font-size:13px;font-weight:600}
+input,select,textarea{width:100%;padding:13px;border:1px solid rgb(255 255 225 / .2);border-radius:10px;background:#05070f;color:var(--ink);font-size:15px}
+input::placeholder,textarea::placeholder{color:rgb(255 255 225 / .4)}
+input:focus,select:focus,textarea:focus{border-color:var(--olo)}
+textarea{min-height:110px;resize:vertical}
+form .button{width:100%;margin-top:20px}
+#status{font-size:13px;color:var(--olo)}
+#status.err{color:var(--pink)}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.sent h3{color:var(--olo)}
+.sent p{margin-top:12px;color:var(--mut)}
+footer{max-width:var(--maxw);margin:auto;padding:30px var(--gut) 40px;display:flex;justify-content:space-between;align-items:center;gap:20px;
+  font-family:var(--fm);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
+footer b{font-family:var(--fd);font-size:18px;letter-spacing:-.05em;color:var(--pink);text-transform:none;margin-right:10px}
+footer a{color:var(--olo);text-decoration:none;padding-block:10px}
+
+@media(max-width:760px){
+  nav{gap:16px}
+  nav a.hide-sm{display:none}
+  .hero{grid-template-columns:1fr;gap:10px;min-height:0;padding:52px 0 24px}
+  .visual{width:100%;max-width:380px;margin:auto}
+  .core{font-size:160px}
+  .sectionhead{display:block}
+  .paths,.contact,.steps{grid-template-columns:1fr}
+  .contact{gap:30px}
+  .strip{flex-wrap:wrap;font-size:9.5px;letter-spacing:.1em}
+  section{padding:56px 0}
+  .path{padding:24px}
+  footer{flex-direction:column;align-items:flex-start}
+  .sectionhead p{max-width:100%}
+}
+@media(max-width:480px){nav a.hide-xs{display:none}}
+@media(max-width:380px){.brand small{display:none}.brand img{height:30px}}
+@media(prefers-reduced-motion:reduce){
+  *{scroll-behavior:auto!important;animation:none!important;transition:none!important}
+  .reveal{opacity:1!important;transform:none!important}
+}
+html{-webkit-tap-highlight-color:transparent}
+.button:active{transform:scale(.96);transition-duration:.1s}
+input:focus,select:focus,textarea:focus{box-shadow:0 0 0 4px rgb(0 255 204 / .12)}
+.email:active{transform:scale(.98)}
+
+/* ---------- learn page ---------- */
+main{max-width:var(--maxw);margin:auto;padding:0 var(--gut)}
+.hero-l{padding:90px 0 60px;border-bottom:1px solid var(--line)}
+.hero-l h1{font-size:clamp(48px,8vw,112px);line-height:.92;letter-spacing:-.055em;margin:20px 0 0;font-variation-settings:"wdth" 108}
+.hero-l h1 em{font-style:normal;color:var(--olo)}
+.hero-l p.lead{max-width:640px;margin-top:26px;color:var(--mut);font-size:clamp(16px,1.6vw,19px)}
+.facts{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.facts span{padding:8px 14px;border:1px solid var(--line-olo);border-radius:999px;font-family:var(--fm);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--olo)}
+.jump{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.jump a{padding:8px 14px;border:1px solid var(--line);border-radius:999px;text-decoration:none;font-size:14px;color:var(--mut)}
+.jump a:hover{color:var(--olo);border-color:var(--olo)}
+/* simulator */
+.bench{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:18px}
+@media(max-width:900px){.bench{grid-template-columns:1fr}}
+.panel{padding:26px;border:1px solid var(--line-olo);border-radius:20px;background:var(--card)}
+.slider{margin-top:18px}
+.slider label{display:flex;justify-content:space-between;gap:12px;font-size:14px;color:var(--mut)}
+.slider label b{font-family:var(--fm);font-weight:700;color:var(--ink)}
+.slider input[type=range]{width:100%;margin-top:10px;accent-color:var(--olo)}
+.seg{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.seg button{flex:1;min-height:40px;padding:0 12px;border:1px solid var(--line);border-radius:12px;background:transparent;color:var(--mut);font-size:14px;cursor:pointer}
+.seg button[aria-pressed=true]{border-color:var(--olo);color:var(--olo);background:rgb(0 255 204 / .1)}
+.run-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.lane{position:relative;height:96px;margin-top:6px;border-radius:14px;background:linear-gradient(90deg,rgb(255 255 225 / .04),rgb(255 255 225 / .02));border:1px solid var(--line);overflow:hidden}
+.lane::before{content:"";position:absolute;left:4%;right:4%;top:50%;border-top:1px dashed rgb(255 255 225 / .18)}
+.lane i{position:absolute;top:0;bottom:0;width:1px;background:rgb(255 255 225 / .1)}
+.lane .ghost,.lane .car{position:absolute;top:50%;left:4%;width:42px;height:14px;margin:-7px 0 0 -21px;border-radius:7px 14px 14px 7px}
+.lane .car{background:var(--olo);box-shadow:0 0 18px rgb(0 255 204 / .6)}
+.lane .ghost{background:transparent;border:1.5px dashed var(--pink);opacity:.8}
+.lane small{position:absolute;bottom:6px;font-family:var(--fm);font-size:10px;color:var(--mut)}
+.out{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:16px}
+.out div{padding:14px 16px;border:1px solid var(--line);border-radius:14px}
+.out b{display:block;font-family:var(--fm);font-size:clamp(20px,2.4vw,28px)}
+.out span{font-family:var(--fm);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut)}
+.out .delta{display:block;margin-top:4px;font-family:var(--fm);font-size:12px;letter-spacing:0;text-transform:none}
+.delta.good{color:var(--olo)}.delta.bad{color:var(--pink)}
+canvas{display:block;width:100%;height:auto;margin-top:16px;border-radius:12px;background:rgb(0 0 0 / .3)}
+.note{margin-top:14px;font-size:13px;color:var(--mut)}
+/* topics */
+.topics{display:grid;gap:16px}
+.topic{padding:30px;border:1px solid var(--line-olo);border-radius:20px;background:var(--card);scroll-margin-top:100px}
+.topic header{position:static;background:none;border:0;backdrop-filter:none;-webkit-backdrop-filter:none;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
+.topic .code{font-family:var(--fm);font-size:11px;letter-spacing:.18em;color:var(--olo)}
+.topic .tag{font-family:var(--fm);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mut)}
+.topic h3{font-size:clamp(24px,2.6vw,34px);letter-spacing:-.03em;margin:12px 0 10px}
+.topic p,.topic li{color:var(--mut);font-size:15.5px}
+.topic ul{padding-left:20px}
+.cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:14px}
+@media(max-width:800px){.cols{grid-template-columns:1fr}}
+.box{padding:18px;border:1px solid var(--line);border-radius:14px;background:rgb(0 0 0 / .25)}
+.box h4{margin:0 0 8px;font-family:var(--fm);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--olo);font-weight:400}
+.eq{display:block;margin:10px 0;padding:10px 14px;border-left:2px solid var(--olo);border-radius:8px;background:rgb(0 255 204 / .06);font-family:var(--fm);font-size:15px;color:var(--ink);overflow-x:auto}
+table{width:100%;border-collapse:collapse;margin-top:8px;font-size:14px}
+th,td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left}
+th{font-family:var(--fm);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--mut);font-weight:400}
+td{color:var(--ink)}
+details{margin-top:10px;border:1px solid var(--line);border-radius:12px;padding:12px 16px}
+details summary{cursor:pointer;color:var(--ink);font-weight:600}
+details p{margin:10px 0 0}
+.rules{margin-top:20px;padding:18px 20px;border:1px dashed var(--line-olo);border-radius:16px;color:var(--mut);font-size:14px}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header>
+  <div class="nav">
+    <a class="brand" href="/catalyst" aria-label="N!TRO Catalyst home">
+      <img src="/logo-team-nitro.webp" srcset="/logo-team-nitro-sm.webp 240w, /logo-team-nitro.webp 480w" sizes="103px" alt="Team N!TRO" width="480" height="159" decoding="async">
+      <small>LEARN</small>
+    </a>
+    <nav aria-label="Main navigation">
+      <a class="hide-sm" href="#bench">Race bench</a>
+      <a class="hide-xs" href="#topics">Topics</a>
+      <a class="home" href="/catalyst">← Catalyst</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+  <section class="hero-l">
+    <div class="eyebrow">N!TRO Catalyst · Learn</div>
+    <h1>The physics of<br><em>twenty metres.</em></h1>
+    <p class="lead">Everything that decides a STEM Racing run, explained for teams: the push from the cartridge, the drag that grows with speed, the friction in the wheels and the numbers behind them. Try the race bench, then work through the seven topics.</p>
+    <div class="facts"><span>Free for any team</span><span>Race simulator</span><span>Worked examples</span><span>Questions + answers</span></div>
+    <div class="jump"><a href="#t1">Bearings &amp; friction</a><a href="#t2">Newton’s third law</a><a href="#t3">Drag maths</a><a href="#t4">Substitution</a><a href="#t5">Launch energy</a><a href="#t6">The CO₂ cartridge</a><a href="#t7">Race data</a></div>
+  </section>
+
+  <section id="bench">
+    <div class="sectionhead">
+      <div>
+        <div class="eyebrow">Race bench</div>
+        <h2>Change the car,<br><em>watch the run.</em></h2>
+      </div>
+      <p>Set the car, press Run, then pin it as a baseline. Change one thing and run again to see exactly what that one change is worth.</p>
+    </div>
+    <div class="bench">
+      <div class="panel">
+        <div class="slider"><label for="m">Car mass <b id="mv"></b></label><input id="m" type="range" min="40" max="90" step="1" value="55"></div>
+        <div class="slider"><label for="cd">Drag coefficient (Cd) <b id="cdv"></b></label><input id="cd" type="range" min="0.2" max="1.2" step="0.01" value="0.6"></div>
+        <div class="slider"><label for="a">Frontal area <b id="av"></b></label><input id="a" type="range" min="8" max="24" step="0.5" value="13"></div>
+        <div class="slider"><label>Bearings</label>
+          <div class="seg" id="brg" role="group" aria-label="Bearings">
+            <button type="button" data-mu="0.022" aria-pressed="false">Steel · dusty</button>
+            <button type="button" data-mu="0.012" aria-pressed="true">Steel · cleaned</button>
+            <button type="button" data-mu="0.006" aria-pressed="false">Ceramic · cleaned</button>
+          </div></div>
+        <div class="run-row">
+          <button class="button primary" type="button" id="run">Run the lane →</button>
+          <button class="button" type="button" id="pin" disabled>Pin as baseline</button>
+        </div>
+        <p class="note">A learning model, not a race prediction. Thrust is <span class="mono" style="letter-spacing:0;text-transform:none">F = F₀·e<sup>−t/τ</sup></span> with F₀ = 6 N and τ = 0.25 s (about 1.5 N·s in total), air density 1.20 kg/m³, rolling resistance μ·m·g at the wheels, and a small constant tether drag of 0.02 N.</p>
+      </div>
+      <div class="panel">
+        <div class="lane" id="lane" aria-hidden="true"><div class="ghost" id="ghost" hidden></div><div class="car" id="car"></div><small style="left:4%">0 m</small><small style="left:48%">10 m</small><small style="right:4%">20 m</small></div>
+        <div class="out" aria-live="polite">
+          <div><b id="t">—</b><span>Finish time · 20 m</span><em class="delta" id="dt"></em></div>
+          <div><b id="vmax">—</b><span>Top speed</span><em class="delta" id="dv"></em></div>
+          <div><b id="ke">—</b><span>Energy at the finish</span><em class="delta" id="dke"></em></div>
+          <div><b id="lost">—</b><span>Lost to drag</span><em class="delta" id="dl"></em></div>
+        </div>
+        <canvas id="plot" width="640" height="220" aria-label="Speed over the run"></canvas>
+        <p class="note">Speed against distance: <span style="color:var(--olo)">this run</span> and <span style="color:var(--pink)">your pinned baseline</span>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="topics">
+    <div class="sectionhead">
+      <div>
+        <div class="eyebrow">Seven topics</div>
+        <h2>Learn it,<br><em>then prove it.</em></h2>
+      </div>
+      <p>Each topic explains one idea, works an example with real numbers and ends with questions. Open an answer only after you have tried it.</p>
+    </div>
+    <div class="topics">
+
+      <article class="topic" id="t1">
+        <header><span class="code">01 · PHYSICS · CHEMISTRY</span><span class="tag">≈ 40 min</span></header>
+        <h3>Bearings &amp; friction</h3>
+        <p>Once the cartridge is empty, the car coasts, and every bit of friction steals speed. Rolling resistance at the axles is roughly a constant force, <b>μ·m·g</b>, so a heavier car and dirtier bearings both lose more. Cleaning bearings with isopropyl alcohol (IPA) removes old grease and dust; ceramic balls are lighter and harder than steel, so they roll with less resistance.</p>
+        <span class="eq">F_roll = μ · m · g</span>
+        <div class="cols">
+          <div class="box"><h4>Worked example</h4><p>A 55 g car (0.055 kg), g = 9.81 m/s².</p>
+            <table><tr><th>Bearings</th><th>μ</th><th>Force</th></tr>
+            <tr><td>Steel, dusty</td><td>0.022</td><td>0.0119 N</td></tr><tr><td>Steel, cleaned</td><td>0.012</td><td>0.0065 N</td></tr><tr><td>Ceramic, cleaned</td><td>0.006</td><td>0.0032 N</td></tr></table>
+            <p>Over 20 m, cleaning steel bearings saves about 0.0054 N × 20 m ≈ 0.11 J of energy.</p></div>
+          <div class="box"><h4>Spin-down test</h4><p>Spin a wheel by hand and time how long it takes to stop. Repeat five times for each bearing and compare the averages. Longer spin = less friction. Change only one thing between tests.</p></div>
+        </div>
+        <details><summary>Q1. Why does friction matter more in the second half of the run?</summary><p>The thrust is gone after a fraction of a second, so friction and drag are the only forces left. With nothing pushing, every newton of friction slows the car.</p></details>
+        <details><summary>Q2. A 70 g car uses μ = 0.012. What is the rolling force?</summary><p>0.012 × 0.070 × 9.81 ≈ 0.0082 N.</p></details>
+      </article>
+
+      <article class="topic" id="t2">
+        <header><span class="code">02 · PHYSICS</span><span class="tag">≈ 35 min</span></header>
+        <h3>Newton’s third law</h3>
+        <p>Forces always come in pairs: if A pushes B, B pushes A back with the same size force in the opposite direction. The key is that the two forces act on <b>different objects</b>, so they never cancel each other out.</p>
+        <div class="cols">
+          <div class="box"><h4>At the launch</h4><p>The car pushes the gas backwards out of the cartridge; the gas pushes the car forwards. That forward push on the car is the thrust.</p></div>
+          <div class="box"><h4>At the stop</h4><p>The car hits the catch and pushes on it; the catch pushes back on the car with an equal force, which stops it.</p></div>
+        </div>
+        <p><b>The common mistake:</b> drawing both forces of a pair on the same object. Draw each arrow on the object it acts on.</p>
+        <details><summary>Q1. The car’s weight is one force. What is its Newton’s-third-law partner?</summary><p>The car pulling the Earth upwards with the same size force. (The track pushing up on the car is a different pair.)</p></details>
+        <details><summary>Q2. If the forces are equal and opposite, why does the car move?</summary><p>Because they act on different objects. Only the forward push of the gas acts on the car, so the car accelerates.</p></details>
+      </article>
+
+      <article class="topic" id="t3">
+        <header><span class="code">03 · MATHS · PHYSICS</span><span class="tag">≈ 40 min</span></header>
+        <h3>Drag maths</h3>
+        <p>Air resistance grows with the <b>square</b> of speed: double the speed and the drag is four times bigger. That is why shape and frontal area matter so much at 20 m/s.</p>
+        <span class="eq">F_drag = ½ · ρ · v² · C_d · A</span>
+        <div class="cols">
+          <div class="box"><h4>The letters</h4><ul><li>ρ: air density, about 1.20 kg/m³</li><li>v: speed in m/s</li><li>C_d: drag coefficient (shape)</li><li>A: frontal area in m² (13 cm² = 0.0013 m²)</li></ul></div>
+          <div class="box"><h4>Worked example</h4><p>C_d = 0.6, A = 0.0013 m², v = 20 m/s:</p><span class="eq">½ × 1.20 × 400 × 0.6 × 0.0013 = 0.187 N</span><p>At 10 m/s it is only 0.047 N, a quarter as much.</p></div>
+        </div>
+        <details><summary>Q1. You cut frontal area from 15 cm² to 12 cm². By what percentage does drag fall?</summary><p>12 ÷ 15 = 0.8, so drag falls by 20% at every speed.</p></details>
+        <details><summary>Q2. Why can a lower C_d be worth more than a lighter car at top speed?</summary><p>Drag grows with v², so at high speed it is the biggest force slowing the car. Mass mostly matters during the launch and through rolling resistance.</p></details>
+      </article>
+
+      <article class="topic" id="t4">
+        <header><span class="code">04 · MATHS</span><span class="tag">≈ 30 min</span></header>
+        <h3>Substitution practice</h3>
+        <p>Before changing the car, check the idea on paper. Write the formula, put in the numbers <b>with units</b>, then work it out. Three lines, every time.</p>
+        <div class="cols">
+          <div class="box"><h4>Worked example: average speed</h4><span class="eq">v = s ÷ t = 20 m ÷ 1.25 s = 16 m/s</span></div>
+          <div class="box"><h4>Worked example: momentum</h4><span class="eq">p = m × v = 0.055 kg × 16 m/s = 0.88 kg·m/s</span></div>
+        </div>
+        <details><summary>Q1. A car runs 20 m in 1.10 s. Average speed?</summary><p>20 ÷ 1.10 ≈ 18.2 m/s.</p></details>
+        <details><summary>Q2. Convert 18.2 m/s to km/h.</summary><p>18.2 × 3.6 ≈ 65.5 km/h.</p></details>
+      </article>
+
+      <article class="topic" id="t5">
+        <header><span class="code">05 · PHYSICS</span><span class="tag">≈ 45 min</span></header>
+        <h3>Launch: energy, momentum &amp; impulse</h3>
+        <p>The cartridge gives the car a short, strong push. The total push is the <b>impulse</b>: force multiplied by time, or the area under the force–time graph. Impulse equals the change in momentum.</p>
+        <span class="eq">Impulse = F × t = Δp = m × Δv</span>
+        <div class="cols">
+          <div class="box"><h4>Worked example</h4><p>Thrust starting at 6 N and fading with τ = 0.25 s gives an impulse of 6 × 0.25 = <b>1.5 N·s</b>.</p><p>For a 55 g car with no losses: Δv = 1.5 ÷ 0.055 ≈ <b>27 m/s</b>, and kinetic energy ½mv² ≈ 20.5 J.</p></div>
+          <div class="box"><h4>Where the energy goes</h4><p>Real cars finish far slower because drag and rolling resistance take energy away the whole run. Use the race bench above: it shows the energy lost to drag for your settings.</p></div>
+        </div>
+        <details><summary>Q1. Why does a lighter car leave the line faster?</summary><p>The impulse from the cartridge is about the same, so Δv = impulse ÷ m is bigger when m is smaller.</p></details>
+        <details><summary>Q2. A 70 g car gets the same 1.5 N·s. Top speed with no losses?</summary><p>1.5 ÷ 0.070 ≈ 21.4 m/s.</p></details>
+      </article>
+
+      <article class="topic" id="t6">
+        <header><span class="code">06 · CHEMISTRY</span><span class="tag">≈ 40 min</span></header>
+        <h3>The CO₂ cartridge: moles, gas &amp; pressure</h3>
+        <p>An 8 g cartridge holds liquid carbon dioxide under high pressure. When it is pierced, the liquid turns into gas and expands to hundreds of times its volume in a fraction of a second.</p>
+        <span class="eq">n = m ÷ M      pV = nRT</span>
+        <div class="cols">
+          <div class="box"><h4>Worked example</h4><p>Molar mass of CO₂ = 44.0 g/mol, so n = 8 ÷ 44.0 = <b>0.18 mol</b>.</p><p>At 20 °C (293 K) and normal pressure (101 325 Pa):</p><span class="eq">V = nRT ÷ p = 0.18 × 8.314 × 293 ÷ 101 325 ≈ 0.0044 m³</span><p>That is about <b>4.4 litres</b> of gas from 8 grams.</p></div>
+          <div class="box"><h4>Why temperature matters</h4><p>Pressure rises with temperature (p ∝ T at a fixed volume). A cartridge left in a warm pit area holds a higher pressure than one kept cool, so keep them at the same temperature for fair tests.</p></div>
+        </div>
+        <details><summary>Q1. How many moles are in a 12 g cartridge?</summary><p>12 ÷ 44.0 ≈ 0.27 mol.</p></details>
+        <details><summary>Q2. What volume would 0.18 mol take up at 30 °C?</summary><p>0.18 × 8.314 × 303 ÷ 101 325 ≈ 0.0045 m³, about 4.5 L.</p></details>
+      </article>
+
+      <article class="topic" id="t7">
+        <header><span class="code">07 · MATHS · DATA</span><span class="tag">≈ 40 min</span></header>
+        <h3>Race data &amp; graphs</h3>
+        <p>One run proves nothing. Run several times, find the mean and the range, and look for results that don’t fit. Then decide if a change really helped.</p>
+        <div class="cols">
+          <div class="box"><h4>Worked example: six runs (s)</h4><table><tr><td>1.21</td><td>1.18</td><td>1.24</td><td>1.19</td><td style="color:var(--pink)">1.62</td><td>1.20</td></tr></table>
+            <p>Mean of all six = 1.27 s. The 1.62 s run is far from the others (maybe a bad launch), so check what happened. Without it: mean = <b>1.20 s</b>, range = 1.24 − 1.18 = <b>0.06 s</b>.</p></div>
+          <div class="box"><h4>Distance–time graphs</h4><p>Plot distance against time using split timings. The gradient (slope) is the speed: steep at the start while the cartridge pushes, then flattening as drag and friction slow the car.</p></div>
+        </div>
+        <details><summary>Q1. After a change, your mean improves from 1.20 s to 1.19 s, but your range is 0.06 s. Did the change work?</summary><p>Not clearly. The improvement (0.01 s) is smaller than the normal spread between runs, so you need more runs before you can be sure.</p></details>
+        <details><summary>Q2. Split times: 5 m at 0.40 s, 20 m at 1.20 s. Average speed between them?</summary><p>15 m ÷ 0.80 s = 18.75 m/s.</p></details>
+      </article>
+    </div>
+    <p class="rules">These are learning numbers and simplified models. Always check your own event’s current rules for cartridge, mass, dimensions and safety, and test changes with repeated runs.</p>
+  </section>
+</main>
+<footer><span><b>N!TRO</b>Catalyst · Learn</span><a href="/catalyst">← Back to Catalyst</a></footer>
+<script>
+/* race bench: a simple 1D model of a STEM Racing run, written for this page */
+(function(){
+  "use strict";
+  var $ = function(id){ return document.getElementById(id); };
+  var m = $("m"), cd = $("cd"), a = $("a"), brg = $("brg"), mu = 0.012, base = null, last = null, anim = 0;
+  function labels(){ $("mv").textContent = m.value + " g"; $("cdv").textContent = (+cd.value).toFixed(2); $("av").textContent = (+a.value).toFixed(1) + " cm²"; }
+  brg.addEventListener("click", function(e){
+    var b = e.target.closest("button"); if(!b) return;
+    brg.querySelectorAll("button").forEach(function(x){ x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+    mu = +b.dataset.mu;
+  });
+  [m, cd, a].forEach(function(s){ s.addEventListener("input", labels); });
+  labels();
+  function simulate(){
+    var mass = m.value / 1000, Cd = +cd.value, A = a.value / 10000, rho = 1.2, g = 9.81, F0 = 6, tau = 0.25, tether = 0.02;
+    var t = 0, x = 0, v = 0, dt = 0.0005, vmax = 0, lost = 0, trace = [[0,0]], mark = 0.1;
+    while (x < 20 && t < 10) {
+      var thrust = F0 * Math.exp(-t / tau), drag = 0.5 * rho * v * v * Cd * A, roll = v > 0 || thrust > 0 ? mu * mass * g + tether : 0;
+      var acc = (thrust - drag - roll) / mass;
+      v = Math.max(0, v + acc * dt); x += v * dt; t += dt; lost += drag * v * dt;
+      if (v > vmax) vmax = v;
+      if (x >= mark) { trace.push([Math.min(x, 20), v]); mark += 0.1; }
+      if (v === 0 && thrust < 0.01) break;
+    }
+    return { t: x >= 20 ? t : null, vmax: vmax, ke: 0.5 * mass * v * v, lost: lost, trace: trace };
+  }
+  function fmt(r){ return { t: r.t ? r.t.toFixed(3) + " s" : "did not finish", vmax: r.vmax.toFixed(1) + " m/s", ke: r.ke.toFixed(2) + " J", lost: r.lost.toFixed(2) + " J" }; }
+  function delta(id, now, was, unit, lowerIsBetter, dp){
+    var el = $(id); if (was == null || now == null) { el.textContent = ""; return; }
+    var d = now - was; if (Math.abs(d) < Math.pow(10, -dp) / 2) { el.textContent = "same as baseline"; el.className = "delta"; return; }
+    var good = lowerIsBetter ? d < 0 : d > 0;
+    el.textContent = (d > 0 ? "+" : "−") + Math.abs(d).toFixed(dp) + unit + " vs baseline"; el.className = "delta " + (good ? "good" : "bad");
+  }
+  function plot(r){
+    var c = $("plot"), x = c.getContext("2d"), W = c.width, H = c.height, P = 30, top = 32;
+    x.clearRect(0, 0, W, H);
+    x.strokeStyle = "rgba(255,255,225,.12)"; x.lineWidth = 1; x.font = "11px JetBrains Mono, monospace"; x.fillStyle = "rgba(255,255,225,.55)";
+    for (var i = 0; i <= 4; i++) { var yy = H - P - (H - P - 12) * i / 4; x.beginPath(); x.moveTo(P, yy); x.lineTo(W - 8, yy); x.stroke(); x.fillText(Math.round(top * i / 4), 4, yy + 4); }
+    x.fillText("0 m", P, H - 10); x.fillText("20 m", W - 40, H - 10); x.fillText("m/s", 34, 14);
+    function line(tr, col, dash){ x.strokeStyle = col; x.lineWidth = 2.5; x.setLineDash(dash || []); x.beginPath();
+      tr.forEach(function(p, i){ var px = P + (W - P - 8) * p[0] / 20, py = H - P - (H - P - 12) * Math.min(p[1], top) / top; i ? x.lineTo(px, py) : x.moveTo(px, py); }); x.stroke(); x.setLineDash([]); }
+    if (base) line(base.trace, "#f04f6a", [6, 5]);
+    line(r.trace, "#00ffcc");
+  }
+  function show(r){
+    var f = fmt(r); $("t").textContent = f.t; $("vmax").textContent = f.vmax; $("ke").textContent = f.ke; $("lost").textContent = f.lost;
+    delta("dt", r.t, base && base.t, " s", true, 3); delta("dv", r.vmax, base && base.vmax, " m/s", false, 1);
+    delta("dke", r.ke, base && base.ke, " J", false, 2); delta("dl", r.lost, base && base.lost, " J", true, 2);
+    plot(r);
+  }
+  function race(r){
+    cancelAnimationFrame(anim);
+    var car = $("car"), ghost = $("ghost"), lane = $("lane"), span = lane.clientWidth * 0.92, start = null, total = (r.t || 3) * 1000;
+    var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    function posAt(tr, frac){ var idx = Math.min(tr.length - 1, Math.floor(frac * (tr.length - 1))); return tr[idx][0] / 20; }
+    function step(ts){
+      if (!start) start = ts;
+      var frac = reduce ? 1 : Math.min(1, (ts - start) / total);
+      car.style.left = (4 + 92 * Math.min(1, posAt(r.trace, frac))) + "%";
+      if (base) { ghost.hidden = false; ghost.style.left = (4 + 92 * Math.min(1, posAt(base.trace, Math.min(1, frac * total / ((base.t || 3) * 1000))))) + "%"; }
+      if (frac < 1) anim = requestAnimationFrame(step);
+    }
+    anim = requestAnimationFrame(step);
+  }
+  $("run").addEventListener("click", function(){ last = simulate(); show(last); race(last); $("pin").disabled = false; });
+  $("pin").addEventListener("click", function(){ if (!last) return; base = last; show(last); $("pin").textContent = "Baseline pinned ✓"; setTimeout(function(){ $("pin").textContent = "Pin as baseline"; }, 1600); });
+  last = simulate(); show(last);
+})();
+</script>
+</body>
+</html>
