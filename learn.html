@@ -245,13 +245,9 @@ details{margin-top:10px;border:1px solid var(--line);border-radius:12px;padding:
 details summary{cursor:pointer;color:var(--ink);font-weight:600}
 details p{margin:10px 0 0}
 .rules{margin-top:20px;padding:18px 20px;border:1px dashed var(--line-olo);border-radius:16px;color:var(--mut);font-size:14px}
-.nitro{margin-top:14px;padding:16px 18px;border:1px solid rgb(240 79 106 / .45);border-radius:14px;background:linear-gradient(120deg,rgb(240 79 106 / .12),transparent)}
-.nitro .mono{color:var(--pink)}
-.nitro p{margin:8px 0 0;color:var(--ink)}
-.spec-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:18px;padding:18px;border:1px solid rgb(240 79 106 / .45);border-radius:20px;background:var(--card)}
-.spec-strip .mono{grid-column:1 / -1;color:var(--pink)}
-.spec-strip b{display:block;font-family:var(--fm);font-size:clamp(18px,2vw,24px)}
-.spec-strip i{font-style:normal;font-size:13px;color:var(--mut)}
+.nitro{margin-top:14px;padding:16px 18px;border:1px solid var(--line);border-radius:14px;background:rgb(0 0 0 / .25)}
+.nitro .mono{color:var(--olo)}
+.nitro p{margin:8px 0 0;color:var(--mut)}
 </style>
 </head>
 <body>
@@ -274,7 +270,7 @@ details p{margin:10px 0 0}
     <div class="eyebrow">N!TRO Catalyst · Learn</div>
     <h1>The physics of<br><em>twenty metres.</em></h1>
     <p class="lead">Everything that decides a STEM Racing run, explained for teams: the push from the cartridge, the drag that grows with speed, the friction in the wheels and the numbers behind them. Try the race bench, then work through the seven topics.</p>
-    <div class="facts"><span>Free for any team</span><span>Race simulator</span><span>Worked examples</span><span>Real ORB!TUS numbers</span></div>
+    <div class="facts"><span>Free for any team</span><span>Race simulator</span><span>Worked examples</span><span>Real numbers</span></div>
     <div class="jump"><a href="#t1">Bearings &amp; friction</a><a href="#t2">Newton’s third law</a><a href="#t3">Drag maths</a><a href="#t4">Substitution</a><a href="#t5">Launch energy</a><a href="#t6">The CO₂ cartridge</a><a href="#t7">Race data</a></div>
   </section>
 
@@ -323,12 +319,7 @@ details p{margin:10px 0 0}
         <div class="eyebrow">Seven topics</div>
         <h2>Learn it,<br><em>on a real car.</em></h2>
       </div>
-      <p>Each topic explains one idea, works an example with real numbers, then shows the same idea on our own car, ORB!TUS.</p>
-    </div>
-    <div class="spec-strip">
-      <span class="mono">ORB!TUS · 2025–26</span>
-      <div><b>51 g</b><i>Final mass</i></div><div><b>1.088 s</b><i>Predicted time</i></div><div><b>BOCA</b><i>Hybrid ceramic bearings</i></div>
-      <div><b>PU foam</b><i>Body</i></div><div><b>SLS nylon</b><i>7-spoke wheels</i></div><div><b>CNC + MJF PA12</b><i>Manufacturing</i></div>
+      <p>Each topic explains one idea, works an example with real numbers, then shows the same idea on our own car.</p>
     </div>
     <div class="topics">
 
@@ -342,7 +333,7 @@ details p{margin:10px 0 0}
             <table><tr><th>Bearings</th><th>μ</th><th>Force</th></tr>
             <tr><td>Steel, dusty</td><td>0.022</td><td>0.0119 N</td></tr><tr><td>Steel, cleaned</td><td>0.012</td><td>0.0065 N</td></tr><tr><td>Ceramic, cleaned</td><td>0.006</td><td>0.0032 N</td></tr></table>
             <p>Over 20 m, cleaning steel bearings saves about 0.0054 N × 20 m ≈ 0.11 J of energy.</p></div>
-        <div class="nitro"><span class="mono">On ORB!TUS</span><p>ORB!TUS runs <b>BOCA hybrid ceramic bearings</b> on a <b>51 g</b> car. With ceramic bearings (μ ≈ 0.006) the rolling force is 0.006 × 0.051 × 9.81 ≈ <b>0.0030 N</b>, against about 0.0110 N with dusty steel bearings: roughly a quarter of the friction.</p></div>
+        <div class="nitro"><span class="mono">Our car</span><p>ORB!TUS runs <b>BOCA hybrid ceramic bearings</b> on a <b>51 g</b> car. With ceramic bearings (μ ≈ 0.006) the rolling force is 0.006 × 0.051 × 9.81 ≈ <b>0.0030 N</b>, against about 0.0110 N with dusty steel bearings: roughly a quarter of the friction.</p></div>
           <div class="box"><h4>Spin-down test</h4><p>Spin a wheel by hand and time how long it takes to stop. Repeat five times for each bearing and compare the averages. Longer spin = less friction. Change only one thing between tests.</p></div>
         </div>
       </article>
@@ -356,7 +347,7 @@ details p{margin:10px 0 0}
           <div class="box"><h4>At the stop</h4><p>The car hits the catch and pushes on it; the catch pushes back on the car with an equal force, which stops it.</p></div>
         </div>
         <p><b>The common mistake:</b> drawing both forces of a pair on the same object. Draw each arrow on the object it acts on.</p>
-        <div class="nitro"><span class="mono">On ORB!TUS</span><p>ORB!TUS weighs <b>51 g</b>, so the Earth pulls it down with 0.051 × 9.81 ≈ <b>0.50 N</b>, and ORB!TUS pulls the Earth up with the same 0.50 N. The track pushing up on the car is a separate pair.</p></div>
+        <div class="nitro"><span class="mono">Our car</span><p>ORB!TUS weighs <b>51 g</b>, so the Earth pulls it down with 0.051 × 9.81 ≈ <b>0.50 N</b>, and ORB!TUS pulls the Earth up with the same 0.50 N. The track pushing up on the car is a separate pair.</p></div>
       </article>
 
       <article class="topic" id="t3">
@@ -367,7 +358,7 @@ details p{margin:10px 0 0}
         <div class="cols">
           <div class="box"><h4>The letters</h4><ul><li>ρ: air density, about 1.20 kg/m³</li><li>v: speed in m/s</li><li>C_d: drag coefficient (shape)</li><li>A: frontal area in m² (13 cm² = 0.0013 m²)</li></ul></div>
           <div class="box"><h4>Worked example</h4><p>C_d = 0.6, A = 0.0013 m², v = 20 m/s:</p><span class="eq">½ × 1.20 × 400 × 0.6 × 0.0013 = 0.187 N</span><p>At 10 m/s it is only 0.047 N, a quarter as much.</p></div>
-        <div class="nitro"><span class="mono">On ORB!TUS</span><p>ORB!TUS’s predicted <b>1.088 s</b> means an average speed of 20 ÷ 1.088 ≈ <b>18.4 m/s</b>. At that speed, a car with the example shape above (C_d 0.6, 13 cm²) would feel ½ × 1.20 × 18.4² × 0.6 × 0.0013 ≈ 0.16 N of drag. (The shape values are examples, not ORB!TUS measurements.)</p></div>
+        <div class="nitro"><span class="mono">Our car</span><p>ORB!TUS’s predicted <b>1.088 s</b> means an average speed of 20 ÷ 1.088 ≈ <b>18.4 m/s</b>. At that speed, a car with the example shape above (C_d 0.6, 13 cm²) would feel ½ × 1.20 × 18.4² × 0.6 × 0.0013 ≈ 0.16 N of drag. (The shape values are examples, not ORB!TUS measurements.)</p></div>
         </div>
       </article>
 
@@ -378,7 +369,7 @@ details p{margin:10px 0 0}
         <div class="cols">
           <div class="box"><h4>Worked example: average speed</h4><span class="eq">v = s ÷ t = 20 m ÷ 1.25 s = 16 m/s</span></div>
           <div class="box"><h4>Worked example: momentum</h4><span class="eq">p = m × v = 0.055 kg × 16 m/s = 0.88 kg·m/s</span></div>
-        <div class="nitro"><span class="mono">On ORB!TUS</span><span class="eq">v = 20 m ÷ 1.088 s = 18.4 m/s ≈ 66 km/h</span><span class="eq">p = 0.051 kg × 18.4 m/s ≈ 0.94 kg·m/s</span><p>Average speed and momentum for ORB!TUS’s predicted run.</p></div>
+        <div class="nitro"><span class="mono">Our car</span><span class="eq">v = 20 m ÷ 1.088 s = 18.4 m/s ≈ 66 km/h</span><span class="eq">p = 0.051 kg × 18.4 m/s ≈ 0.94 kg·m/s</span><p>Average speed and momentum for ORB!TUS’s predicted run.</p></div>
         </div>
       </article>
 
@@ -390,7 +381,7 @@ details p{margin:10px 0 0}
         <div class="cols">
           <div class="box"><h4>Worked example</h4><p>Thrust starting at 6 N and fading with τ = 0.25 s gives an impulse of 6 × 0.25 = <b>1.5 N·s</b>.</p><p>For a 55 g car with no losses: Δv = 1.5 ÷ 0.055 ≈ <b>27 m/s</b>, and kinetic energy ½mv² ≈ 20.5 J.</p></div>
           <div class="box"><h4>Where the energy goes</h4><p>Real cars finish far slower because drag and rolling resistance take energy away the whole run. Use the race bench above: it shows the energy lost to drag for your settings.</p></div>
-        <div class="nitro"><span class="mono">On ORB!TUS</span><p>For ORB!TUS (51 g), the same 1.5 N·s with no losses gives 1.5 ÷ 0.051 ≈ <b>29.4 m/s</b> and ½ × 0.051 × 29.4² ≈ <b>22 J</b>. Its predicted 1.088 s run averages 18.4 m/s, so drag and friction take a large share of that energy over 20 m.</p></div>
+        <div class="nitro"><span class="mono">Our car</span><p>For ORB!TUS (51 g), the same 1.5 N·s with no losses gives 1.5 ÷ 0.051 ≈ <b>29.4 m/s</b> and ½ × 0.051 × 29.4² ≈ <b>22 J</b>. Its predicted 1.088 s run averages 18.4 m/s, so drag and friction take a large share of that energy over 20 m.</p></div>
         </div>
       </article>
 
@@ -402,7 +393,7 @@ details p{margin:10px 0 0}
         <div class="cols">
           <div class="box"><h4>Worked example</h4><p>Molar mass of CO₂ = 44.0 g/mol, so n = 8 ÷ 44.0 = <b>0.18 mol</b>.</p><p>At 20 °C (293 K) and normal pressure (101 325 Pa):</p><span class="eq">V = nRT ÷ p = 0.18 × 8.314 × 293 ÷ 101 325 ≈ 0.0044 m³</span><p>That is about <b>4.4 litres</b> of gas from 8 grams.</p></div>
           <div class="box"><h4>Why temperature matters</h4><p>Pressure rises with temperature (p ∝ T at a fixed volume). A cartridge left in a warm pit area holds a higher pressure than one kept cool, so keep them at the same temperature for fair tests.</p></div>
-        <div class="nitro"><span class="mono">On ORB!TUS</span><p>The 8 g of CO₂ is about <b>16%</b> of ORB!TUS’s 51 g, and it leaves the car during the launch, so the car is lighter for the rest of the run.</p></div>
+        <div class="nitro"><span class="mono">Our car</span><p>The 8 g of CO₂ is about <b>16%</b> of ORB!TUS’s 51 g, and it leaves the car during the launch, so the car is lighter for the rest of the run.</p></div>
         </div>
       </article>
 
@@ -414,7 +405,7 @@ details p{margin:10px 0 0}
           <div class="box"><h4>Worked example: six runs (s)</h4><table><tr><td>1.21</td><td>1.18</td><td>1.24</td><td>1.19</td><td style="color:var(--pink)">1.62</td><td>1.20</td></tr></table>
             <p>Mean of all six = 1.27 s. The 1.62 s run is far from the others (maybe a bad launch), so check what happened. Without it: mean = <b>1.20 s</b>, range = 1.24 − 1.18 = <b>0.06 s</b>.</p></div>
           <div class="box"><h4>Distance–time graphs</h4><p>Plot distance against time using split timings. The gradient (slope) is the speed: steep at the start while the cartridge pushes, then flattening as drag and friction slow the car.</p></div>
-        <div class="nitro"><span class="mono">On ORB!TUS</span><p>Compare every run with the prediction. ORB!TUS was predicted at <b>1.088 s</b>, so a run of, say, 1.12 s would be (1.12 − 1.088) ÷ 1.088 ≈ <b>2.9%</b> slower than predicted: worth checking the launch or the bearings.</p></div>
+        <div class="nitro"><span class="mono">Our car</span><p>Compare every run with the prediction. ORB!TUS was predicted at <b>1.088 s</b>, so a run of, say, 1.12 s would be (1.12 − 1.088) ÷ 1.088 ≈ <b>2.9%</b> slower than predicted: worth checking the launch or the bearings.</p></div>
         </div>
       </article>
     </div>
